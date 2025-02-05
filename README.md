@@ -55,7 +55,7 @@ live demo <Br/>
 2. uppdate  pet with c,<br/>
 3. delete pet<br/>
 4. pagination ways pets show <br/>
-5. request for petsd<br/>
+5. request for pets<br/>
 6. give donation with stripe payment method<br/>
 7. role based use this application suppose user can specific actives and<br/>
 8.  Admin can all actives and<br/>
