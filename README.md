@@ -41,4 +41,5 @@ install npm , mongodb.
 
 
 live demo <Br/>
-<img src='https://ibb.co.com/C5y8QLzC' alt=''>
+
+<img src="https://ibb.co.com/C5y8QLzC" alt="Profile Picture" width="150">
