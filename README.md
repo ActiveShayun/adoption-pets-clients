@@ -44,4 +44,8 @@ live demo <Br/>
 
 
 ![image alt](https://github.com/ActiveShayun/adoption-pets-clients/blob/7797c62734a642cd0921125622047907f092610c/Screenshot%202025-02-05%20040829.png)
+
+![image alt](https://github.com/ActiveShayun/adoption-pets-clients/blob/9013f0e2c05aacc5f08209809d11012a4967e917/Screenshot%202025-02-05%20193553.png)
+
+![image alt](https://github.com/ActiveShayun/adoption-pets-clients/blob/7797c62734a642cd0921125622047907f092610c/Screenshot%202025-02-05%20040829.png)
 --------
