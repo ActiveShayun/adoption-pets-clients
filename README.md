@@ -9,32 +9,36 @@ add , delete , update, stop donation, integete  payment method,
 this dependencies use the project
 
   "dependencies
-    "@stripe/react-stripe-js": "^3.1.1",
-    "@stripe/stripe-js": "^5.5.0",
-    "@tanstack/react-query": "^5.64.1",
-    "@tanstack/react-table": "^8.20.6",
-    "axios": "^1.7.9",
-    "date-fns": "^4.1.0",
-    "firebase": "^11.2.0",
-    "flowbite-react": "^0.10.2",
-    "localforage": "^1.10.0",
-    "lottie-react": "^2.4.1",
-    "match-sorter": "^8.0.0",
+    "@stripe/react-stripe-js<br/>
+    "@stripe/stripe-js<br/>
+    "@tanstack/react-query<br/>
+    "@tanstack/react-table<br/>
+    "axios<br/>
+    "date-fns<br/>
+    "firebase<br/>
+    "flowbite-react<br/>
+    "localforage<br/>
+    "lottie-react<br/>
+    "match-sorter<br/>
     "react": "^18.3.1",
-    "react-datepicker": "^7.6.0",
-    "react-dom": "^18.3.1",
-    "react-helmet-async": "^2.0.5",
-    "react-hook-form": "^7.54.2",
-    "react-hot-toast": "^2.5.1",
-    "react-icons": "^5.4.0",
-    "react-router-dom": "^7.1.1",
-    "reoverlay": "^1.0.3",
-    "sort-by": "^1.2.0",
-    "stripe": "^17.5.0",
-    "sweetalert2": "^11.15.10",
-    "swiper": "^11.2.1"
+    "react-datepicker<br/>
+    "react-dom<br/>
+    "react-helmet-async<br/>
+    "react-hook-form<br/>
+    "react-hot-toast<br/>
+    "react-icons<br/>
+    "react-router-dom<br/>
+    "reoverlay<br/>
+    "sort-by<br/>
+    "stripe<br/>
+    "sweetalert2<br/>
+    "swiper<br/>
 
 
 
------------this project for run locally must need----------
+-----------this project for run locally must need---------- <br/>
 install npm , mongodb.
+
+
+live demo <Br/>
+<img src='https://ibb.co.com/C5y8QLzC' alt=''>
