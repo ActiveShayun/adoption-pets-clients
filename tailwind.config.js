@@ -13,13 +13,13 @@ export default {
     extend: {
       backgroundImage: {
         'slide-1': "url('./assets/slide1.jpg')",
-        'slide-2': "url('./assets/slide6.jpg')",
+        'slide-2': "url('./assets/slide2.jpg')",
         'slide-3': "url('./assets/slide3.jpg')",
         'slide-4': "url('./assets/slide4.jpg')",
         'slide-5': "url('./assets/slide5.jpg')",
-        'slide-6': "url('./assets/slide6.avif')",
+        'slide-6': "url('./assets/slide6.jpg')",
         'slide-7': "url('./assets/slide7.jpg')",
-        'service': "url('./assets/callBg.webp')",
+        'slide-8': "url('./assets/slide8.jpg')",
       }
     },
   },
