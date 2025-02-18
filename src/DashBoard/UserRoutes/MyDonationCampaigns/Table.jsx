@@ -61,7 +61,7 @@ const Table = ({ donation, updateDonationStatusPause, updateDonationStatusUnPaus
                         <button><FaEdit /></button>
                     </Link>
                 </td>
-                <td class="px-6 py-4 text-right">
+                <td class="px-6 py-4 text-right hidden lg:block">
                     <img className='w-[50px] h-[50px] rounded-full'
                         src={donation.petsImage} alt="" />
                 </td>

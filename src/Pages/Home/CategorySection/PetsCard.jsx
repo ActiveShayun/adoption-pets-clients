@@ -23,7 +23,7 @@ const PetsCard = ({ pet }) => {
 
                 {/* <!-- Description --> */}
                 <p class="mt-2 text-gray-600">
-                    {pet.description} &amp; nail trim.
+                    {pet.description.slice(0, 50)}...
                 </p>
             </div>
 

@@ -12,10 +12,10 @@ const PetsTable = ({ pet, idx, handlePetsDelete, updateAdoptedStatus, handleUAdo
                 <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {idx + 1}
                 </th>
-                <td className="lg:px-6 py-2">
+                <td className="lg:px-6 py-2 hidden lg:block">
                     {petsName}
                 </td>
-                <td className="lg:px-6 py-2">
+                <td className="lg:px-6 py-2 hidden lg:block">
                     {petsCategory}
                 </td>
                 <td className="lg:px-6 py-2">

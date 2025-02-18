@@ -7,13 +7,12 @@ import Pets from './Pets';
 const CategorySection = () => {
     const [allPets] = AllPets()
     console.log(allPets);
-
-    const cats = allPets.slice(1, 6).filter(cat => cat.petsCategory === 'cat')
-    console.log(cats);
     const dogs = allPets.slice(1, 6).filter(dog => dog.petsCategory === 'dog')
     const fishes = allPets.slice(1, 6).filter(fish => fish.petsCategory === 'fish')
     const rabbits = allPets.slice(1, 6).filter(rabbit => rabbit.petsCategory === 'rabbits')
-
+    // console.log('cats'.cats, dogs);
+    const cats = allPets.slice(1, 6).filter(c => c.petsCategory === 'cat')
+    console.log(cats);
 
     return (
         <div className='text-center mt-10'>
@@ -34,16 +33,16 @@ const CategorySection = () => {
                 </TabList>
 
                 <TabPanel>
-                    <Pets pets={cats} />
+                    <Pets pets={dogs} />
                 </TabPanel>
                 <TabPanel>
                     <Pets pets={dogs} />
                 </TabPanel>
                 <TabPanel>
-                    <Pets pets={fishes} />
+                    <Pets pets={rabbits} />
                 </TabPanel>
                 <TabPanel>
-                    <Pets pets={rabbits} />
+                    <Pets pets={fishes} />
                 </TabPanel>
 
             </Tabs>

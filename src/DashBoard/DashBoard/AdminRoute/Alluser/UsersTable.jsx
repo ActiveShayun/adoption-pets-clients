@@ -10,7 +10,7 @@ const UsersTable = ({ user, idx, handleMakeAdmin }) => {
                 <td class="px-6 py-2">
                     {user.name}
                 </td>
-                <td class="px-6 py-2">
+                <td class="px-6 py-2 hidden lg:block">
                     {user.email}
                 </td>
                 <td class="px-6 py-2">

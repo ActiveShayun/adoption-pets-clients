@@ -34,7 +34,7 @@ const AllUsers = () => {
 
 
     return (
-        <div className="mt-10 relative shadow-md rounded-xl max-w-screen-xl overflow-x-auto overflow-hidden">
+        <div className="mt-10 relative shadow-md rounded-xl w-full">
             <Helmet><title>All Users</title></Helmet>
             <SectionTitle subheading={'That"s Users Visit This Website'} heading={'All Users'} />
             <table className="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -42,7 +42,7 @@ const AllUsers = () => {
                     <tr>
                         <th scope="col" className="px-4 py-3">User ID</th>
                         <th scope="col" className="px-4 py-3">User Number</th>
-                        <th scope="col" className="px-4 py-3">User Email</th>
+                        <th scope="col" className="px-4 py-3 hidden lg:block">User Email</th>
                         <th scope="col" className="px-4 py-3">User Photo</th>
                         <th scope="col" className="px-4 py-3">Make Admin</th>
                     </tr>

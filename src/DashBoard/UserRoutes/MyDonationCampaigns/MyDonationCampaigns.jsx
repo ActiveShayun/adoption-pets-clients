@@ -59,8 +59,8 @@ const MyDonationCampaigns = () => {
                                     <th scope="col" className="px-4 py-3">
                                         <button>View Donators</button>
                                     </th>
-                                    <th scope="col" className="px-4 py-3 hidden sm:table-cell">Edit</th>
-                                    <th scope="col" className="px-4 py-3">Pets Image</th>
+                                    <th scope="col" className="px-4 py-3  sm:table-cell">Edit</th>
+                                    <th scope="col" className="px-4 py-3 hidden lg:block ">Pets Image</th>
                                 </tr>
                             </thead>
                             <tbody>

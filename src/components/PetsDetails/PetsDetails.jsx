@@ -19,9 +19,9 @@ const PetsDetails = () => {
     return (
         <div className='pt-24'>
              <Helmet><title>PetsDetails</title></Helmet>
-            <div className="max-w-4xl mx-auto pt-24 p-6 bg-white rounded-lg shadow-xl flex flex-col md:flex-row items-center md:items-start gap-6">
+            <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-xl flex flex-col md:flex-row items-center md:items-start gap-6">
                 {/* Left Side - Pet Image */}
-                <div className="relative w-full md:w-1/2 h-96 overflow-hidden rounded-lg shadow-lg">
+                <div className="relative w-full md:w-1/2 h-[500px] overflow-hidden rounded-lg shadow-lg">
                     <img
                         src={pets.petsImg}
                         alt={pets.petsName}

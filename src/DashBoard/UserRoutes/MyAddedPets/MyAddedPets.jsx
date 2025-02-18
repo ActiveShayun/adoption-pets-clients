@@ -63,11 +63,13 @@ const MyAddedPets = () => {
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-3 py-3">Serial Number</th>
-                            <th scope="col" className="px-3 py-3">Pet name</th>
-                            <th scope="col" className="px-3 py-3">Pet category</th>
+                            <th scope="col"
+                                className="px-3 py-3 hidden lg:block">Pet name</th>
+                            <th scope="col"
+                                className="px-3 py-3 hidden lg:block">Pet category</th>
                             <th scope="col" className="px-3 py-3">Pet image</th>
-                            <th scope="col" className="px-3 py-3 hidden md:table-cell">Update</th>
-                            <th scope="col" className="px-3 py-3 hidden md:table-cell">Delete</th>
+                            <th scope="col" className="px-3 py-3 md:table-cell">Update</th>
+                            <th scope="col" className="px-3 py-3 md:table-cell">Delete</th>
                             <th scope="col" className="px-3 py-3">Adopted Status</th>
                         </tr>
                     </thead>
