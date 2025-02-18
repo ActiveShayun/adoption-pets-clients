@@ -69,6 +69,16 @@ const UserCategory = () => {
                     >
                         Adoption Request
                     </NavLink>
+                    <NavLink
+                        to="userProfile/"
+                        className={({ isActive }) =>
+                            isActive
+                                ? 'text-black border-b-2 border-blue-500'
+                                : 'hover:text-[#E7470C]'
+                        }
+                    >
+                        Profile
+                    </NavLink>
                 </div>
                 <div className='mt-10 px-4 py-4 border-t-2 border-gray-400'>
                     <NavLink to={'/'}>Home</NavLink>

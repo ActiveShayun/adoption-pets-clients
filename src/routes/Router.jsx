@@ -28,6 +28,8 @@ import ErrorElement from "./ErrorElement";
 import DashErrorElement from "./DashErrorElement";
 import UserrRoutesAccess from "../components/AdminAcceccUserRoutes/UserrRoutesAccess";
 import DonationDetails from "../Pages/Donation/DonationDetails";
+import AdminProfile from "../DashBoard/DashBoard/AdminRoute/AdminProfile/AdminProfile";
+import Profile from "../DashBoard/UserRoutes/UserProfile/Profile";
 
 
 
@@ -69,7 +71,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/detailsDonation/:id",
-                element:<PrivateRoute> <DonationDetails /></PrivateRoute>,
+                element: <PrivateRoute> <DonationDetails /></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/details-donation/${params.id}`)
             },
             {
@@ -125,6 +127,10 @@ const router = createBrowserRouter([
                 path: "myDonations",
                 element: <PrivateRoute> <MyDonations /></PrivateRoute>
             },
+            {
+                path: "userProfile/",
+                element: <Profile />
+            },
 
             // admin route
             {
@@ -148,6 +154,10 @@ const router = createBrowserRouter([
                 path: "editDonation/:id",
                 element: <AdminRoute><UpdateDonation /></AdminRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/details-donation/${params.id}`)
+            },
+            {
+                path: "adminProfile/",
+                element: <AdminProfile />
             }
 
         ]

@@ -17,7 +17,7 @@ const PetsDetails = () => {
 
 
     return (
-        <div>
+        <div className='pt-24'>
              <Helmet><title>PetsDetails</title></Helmet>
             <div className="max-w-4xl mx-auto pt-24 p-6 bg-white rounded-lg shadow-xl flex flex-col md:flex-row items-center md:items-start gap-6">
                 {/* Left Side - Pet Image */}
