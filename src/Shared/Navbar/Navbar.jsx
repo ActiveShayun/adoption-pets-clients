@@ -3,6 +3,7 @@ import UseAuth from "../../AuthProvider/UseAuth";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import AdminUse from "../../UseHooks/AdminUse/AdminUse";
+import Modal from "../../Pages/Home/Home/ReviewModal/Modal";
 
 
 
@@ -59,9 +60,18 @@ const Navbar = () => {
         >
             Donation Campaigns
         </NavLink>
+        <button
+            onClick={() => document.getElementById('my_modal_1').showModal()}
+            className={({ isActive }) =>
+                isActive
+                    ? 'text-black border-b-2 border-blue-500'
+                    : 'hover:text-[#E7470C]'
+            }
+        >
+            Add Review
+        </button>
+
     </>
-
-
 
     const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
@@ -171,8 +181,16 @@ const Navbar = () => {
                     </ul>
                 </div>
             )}
+            {/* add review section */}
+            <dialog id="my_modal_1" className="modal">
+                <div className="modal-box">
+                    <Modal />
+                </div>
+
+            </dialog>
         </nav>
     )
+
 };
 
 export default Navbar;

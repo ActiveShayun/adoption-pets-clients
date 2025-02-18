@@ -15,7 +15,7 @@ const PetListing = () => {
     }
     // console.log(search);
     return (
-        <div className='pt-20 pb-10'>
+        <div className='pt-20 mb-8'>
             <SectionTitle subheading={'Available Pets For Adoption'} heading={'Gets Pets Here'} />
             <div className=' flex items-center gap-5 justify-center'>
                 <div className='flex items-center gap-4'>

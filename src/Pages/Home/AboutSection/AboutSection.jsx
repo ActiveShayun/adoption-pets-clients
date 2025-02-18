@@ -13,14 +13,20 @@ const AboutSection = () => {
 
                     {/* Short Introduction */}
                     <p className="text-lg sm:text-xl mb-8 text-gray-700">
-                        Welcome to [Website Name]! We're dedicated to connecting pets in need with loving homes. Our platform allows you to easily browse and adopt pets, ensuring a better future for animals everywhere.
+                        Welcome to Pet Care! We're dedicated to connecting pets in need with loving homes.
+                        <span className='lg:block'>
+                            Our platform allows you to easily browse and adopt pets, ensuring a better future for animals everywhere.
+                        </span>
                     </p>
 
                     {/* Why We Were Made */}
-                    <div className="mb-12">
+                    <div className="mb-12 w-4/5 mx-auto">
                         <h3 className="text-2xl font-semibold text-primary mb-4">Why We Were Created</h3>
                         <p className="text-lg sm:text-xl text-gray-700">
-                            Our website was created to make pet adoption simpler and more accessible. We understand the importance of giving pets a second chance at life, and our goal is to connect people with the perfect pets in need of a home.
+                            Our website was created to make pet adoption simpler and more accessible. We understand
+                            <span className='lg:block'>
+                                the importance of  giving pets a second chance at life, and our goal is to connect people with the perfect pets in need of a home.
+                            </span>
                         </p>
                     </div>
 
@@ -28,7 +34,7 @@ const AboutSection = () => {
                     <div className="flex flex-col sm:flex-row justify-center items-center space-y-8 sm:space-x-8 sm:space-y-0">
                         <div className="max-w-xs text-center">
                             <div className="mb-4">
-                            <MdScreenSearchDesktop className='text-4xl block mx-auto' />
+                                <MdScreenSearchDesktop className='text-4xl block mx-auto' />
                             </div>
                             <h4 className="font-semibold text-xl">Browse Pets</h4>
                             <p className="text-gray-600">
@@ -37,7 +43,7 @@ const AboutSection = () => {
                         </div>
                         <div className="max-w-xs text-center">
                             <div className="mb-4">
-                            <VscGitStashApply className='text-4xl block mx-auto'/>
+                                <VscGitStashApply className='text-4xl block mx-auto' />
                             </div>
                             <h4 className="font-semibold text-xl">Apply for Adoption</h4>
                             <p className="text-gray-600">
@@ -46,7 +52,7 @@ const AboutSection = () => {
                         </div>
                         <div className="max-w-xs text-center">
                             <div className="mb-4">
-                              <FaHome className='text-4xl block mx-auto'/>
+                                <FaHome className='text-4xl block mx-auto' />
                             </div>
                             <h4 className="font-semibold text-xl">Bring Them Home</h4>
                             <p className="text-gray-600">
