@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SectionTitle from '../../../Shared/SectionTitle/SectionTitle';
+import CategorySection from '../CategorySection/CategorySection';
 
 const PetsCategorySection = () => {
     return (
         <div className='mt-20'>
-
             <section className="py-10 bg-gray-100">
                 <div className="container mx-auto px-4">
                     <SectionTitle subheading={'Discover Pet Types'} heading={' Explore Our Pet Categories'} />
@@ -66,7 +66,10 @@ const PetsCategorySection = () => {
                     </div>
                 </div>
             </section>
-
+            {/* show pets with categories */}
+            <section>
+                <CategorySection />
+            </section>
         </div>
     );
 };

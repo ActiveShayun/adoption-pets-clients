@@ -14,7 +14,7 @@ import { Autoplay, EffectCoverflow, Pagination, Navigation } from 'swiper/module
 const Banner = () => {
     return (
         <>
-            <Swiper
+            <Swiper className="mySwiper"
                 effect={'coverflow'}
                 grabCursor={true}
                 centeredSlides={true}

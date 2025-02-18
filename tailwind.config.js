@@ -20,6 +20,7 @@ export default {
         'slide-6': "url('./assets/slide6.jpg')",
         'slide-7': "url('./assets/slide7.jpg')",
         'slide-8': "url('./assets/slide8.jpg')",
+        'features': "url('./assets/features.jpg')",
       }
     },
   },
