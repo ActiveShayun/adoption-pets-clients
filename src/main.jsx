@@ -19,7 +19,18 @@ createRoot(document.getElementById('root')).render(
       <AuthProvider>
         <QueryClientProvider client={queryClient}>
           <RouterProvider router={router} />
-          <Toaster position="top-right" reverseOrder={false} />
+          <Toaster
+            toastOptions={{
+              className: '',
+              style: {
+                border: '1px solid #713200',
+                padding: '16px',
+                color: '#713200',
+                position: 'relative',
+                top: '80px'
+              },
+            }}
+            reverseOrder={false} />
         </QueryClientProvider>
       </AuthProvider>
     </HelmetProvider>

@@ -4,7 +4,8 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import AdminUse from "../../UseHooks/AdminUse/AdminUse";
 import Modal from "../../Pages/Home/Home/ReviewModal/Modal";
-
+import loginBtn from '../../../src/assets/loginBtn.json'
+import Lottie from "lottie-react";
 
 
 const Navbar = () => {
@@ -129,10 +130,9 @@ const Navbar = () => {
                                         </button> :
                                         <Link to={'login/'}>
                                             <button
-
-                                                className="block bg-gray-300 w-full text-left px-4 py-2 font-semibold text-gray-700 hover:bg-gray-100"
+                                                className="block bg-gray-300 w- text-left px-4 py-2 font-semibold text-gray-700 hover:bg-gray-100"
                                             >
-                                                Login
+                                                <Lottie animationData={loginBtn} />
                                             </button>
                                         </Link>
                                 }

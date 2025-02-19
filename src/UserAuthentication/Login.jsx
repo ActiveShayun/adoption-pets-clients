@@ -42,11 +42,11 @@ const Login = () => {
 
     return (
         <div className='pt-24'>
-            <div className='md:w-6/12 mx-auto  h-[590px] relative rounded-md z-[98888888]'>
+            <div className='md:w-6/12 mx-auto  h-[590px] relative rounded-md z-[988]'>
                 <Helmet><title>Login Page</title></Helmet>
                 <div className='relative rounded-md'>
                     <section
-                        class="z-[34335] dark:bg-gray-900 absolute w-full mx-auto rounded-md">
+                        class="z-[335] dark:bg-gray-900 absolute w-full mx-auto rounded-md">
                         <div
                             class="flex flex-col items-center justify-center mx-auto  lg:py-0 rounded-md">
                             <div

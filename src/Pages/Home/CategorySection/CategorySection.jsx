@@ -19,10 +19,10 @@ const CategorySection = () => {
             <Tabs>
                 <TabList>
                     <Tab>
-                        <div className='text-lg font-semibold'>Cat</div>
+                        <div className='text-lg font-semibold'>Dog</div>
                     </Tab>
                     <Tab>
-                        <div className='text-lg font-semibold'>Dog</div>
+                        <div className='text-lg font-semibold'>Cat</div>
                     </Tab>
                     <Tab>
                         <div className='text-lg font-semibold'>Rabbits</div>
@@ -36,7 +36,7 @@ const CategorySection = () => {
                     <Pets pets={dogs} />
                 </TabPanel>
                 <TabPanel>
-                    <Pets pets={dogs} />
+                    <Pets pets={cats} />
                 </TabPanel>
                 <TabPanel>
                     <Pets pets={rabbits} />
