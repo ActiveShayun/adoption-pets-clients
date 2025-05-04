@@ -25,7 +25,7 @@ const ReviewSection = () => {
     })
     return (
         <div className='mt-14 mb-20'>
-            <SectionTitle subheading={'Clients Feedback'} heading={'Testimonial'}/>
+            <SectionTitle subheading={'Clients Feedback'} heading={'Testimonial'} />
             <Swiper
                 slidesPerView={3}
                 spaceBetween={30}

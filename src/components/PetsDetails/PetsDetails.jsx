@@ -17,8 +17,9 @@ const PetsDetails = () => {
 
 
     return (
-        <div className='pt-24'>
-             <Helmet><title>PetsDetails</title></Helmet>
+        <div data-aos="zoom-out-left"
+            className='pt-24' >
+            <Helmet><title>PetsDetails</title></Helmet>
             <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-xl flex flex-col md:flex-row items-center md:items-start gap-6">
                 {/* Left Side - Pet Image */}
                 <div className="relative w-full md:w-1/2 h-[500px] overflow-hidden rounded-lg shadow-lg">
@@ -30,7 +31,7 @@ const PetsDetails = () => {
                     <div className="absolute inset-0 bg-black bg-opacity-50"></div>
                     <div className="absolute bottom-4 left-4 text-white">
                         <span className="bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-md">
-                            {pets.petsCategory.toUpperCase()}
+                           {pets.petsCategory.toUpperCase()}
                         </span>
 
                         {/* <button className="ml-2 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-md">

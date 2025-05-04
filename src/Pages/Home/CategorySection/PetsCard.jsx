@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 const PetsCard = ({ pet }) => {
     console.log(pet);
     return (
-        <div class="max-w-sm w-full bg-white rounded-lg shadow-lg overflow-hidden">
+        <div
+            class="max-w-sm w-full bg-white rounded-lg shadow-lg overflow-hidden"
+            data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="1500">
             {/* <!-- Top Image & Title Section --> */}
             <div class="p-6 text-center">
                 {/* <!-- Profile Image (circular) --> */}

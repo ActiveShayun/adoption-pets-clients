@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 const PetCard = ({ pet }) => {
     const { petsName, petsImg, location, petsAge, _id, deadline } = pet;
     return (
-        <div>
+        <div data-aos="fade-up"
+            data-aos-duration="3000">
             <Helmet><title>Pet Listing</title></Helmet>
             <div class="max-w-sm mx-auto bg-gradient-to-br from-white to-gray-100 rounded-xl shadow-xl overflow-hidden">
                 <div class="relative group overflow-hidden">
@@ -27,7 +28,7 @@ const PetCard = ({ pet }) => {
                     </p>
                     <p class="text-gray-600">
                         <span class="font-semibold">Deadline : </span>
-                         {format(new Date(deadline), 'P')}
+                        {format(new Date(deadline), 'P')}
                     </p>
                     <Link to={`/petsDetails/${_id}`}>
                         <button
