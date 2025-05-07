@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdMarkEmailRead, MdOutlinePhoneInTalk } from 'react-icons/md';
 import SectionTitle from '../../../Shared/SectionTitle/SectionTitle';
 import UseAuth from '../../../AuthProvider/UseAuth';
 import { FaCamera } from "react-icons/fa";
 import { useQuery } from '@tanstack/react-query';
 import AxiosSecure from '../../../UseHooks/AxiosSecure/AxiosSecure';
+import { Link } from 'react-router-dom';
+import Modal from '../../../Shared/Modal/Modal';
 
 const Profile = () => {
     const { user } = UseAuth()
     const axiosSecure = AxiosSecure()
+    const [isOpen, setIsOpen] = useState(false)
 
     const { data: updateProfile = [] } = useQuery({
         queryKey: ['profile'],
@@ -50,7 +53,11 @@ const Profile = () => {
                     <address>
                         Dhaka, Bangladesh
                     </address>
-                    <button className='border-2 mt-4 px-3 py-1 font-semibold rounded-lg'>Update Profile</button>
+
+                    <button onClick={() => setIsOpen(true)}
+                        className='border-2 mt-4 px-3 py-1 font-semibold rounded-lg'>Update Profile</button>
+
+                    <Modal updateProfile={updateProfile} isOpen={isOpen} setIsOpen={setIsOpen} />
                 </div>
 
             </div>

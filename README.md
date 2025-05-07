@@ -42,9 +42,7 @@ install npm , mongodb.
 
 live demo <Br/>
 
-<<<<<<< HEAD
 <img src="https://ibb.co.com/C5y8QLzC" alt="Profile Picture" width="150">
-=======
 
 ![image alt](https://github.com/ActiveShayun/adoption-pets-clients/blob/7797c62734a642cd0921125622047907f092610c/Screenshot%202025-02-05%20040829.png)
 
@@ -64,4 +62,3 @@ live demo <Br/>
 8.  Admin can all actives and<br/>
 8. login and register with firebase authentication<br/>
 
->>>>>>> 161dae8517ed73fb0c0484c3f2ce43c91e3c8fcc
