@@ -8,6 +8,6 @@ export const upLoadImgBBPhoto = async (image) => {
 
     const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMG_HOSTING_KEY}`, upload)
 
-    console.log('img bb', data.data.url);
+    console.log('img bb', data);
     return data.data.url
 }

@@ -13,7 +13,7 @@ const Profile = () => {
     const axiosSecure = AxiosSecure()
     const [isOpen, setIsOpen] = useState(false)
 
-    const { data: updateProfile = [] } = useQuery({
+    const { data: updateProfile = [], refetch } = useQuery({
         queryKey: ['profile'],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/single-User?email=${user?.email}`)
@@ -57,7 +57,7 @@ const Profile = () => {
                     <button onClick={() => setIsOpen(true)}
                         className='border-2 mt-4 px-3 py-1 font-semibold rounded-lg'>Update Profile</button>
 
-                    <Modal updateProfile={updateProfile} isOpen={isOpen} setIsOpen={setIsOpen} />
+                    <Modal updateProfile={updateProfile} isOpen={isOpen} setIsOpen={setIsOpen} refetch={refetch} />
                 </div>
 
             </div>

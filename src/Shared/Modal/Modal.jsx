@@ -1,10 +1,12 @@
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useForm } from 'react-hook-form';
 import { upLoadImgBBPhoto } from '../../utiity/utility';
+import AxiosSecure from '../../UseHooks/AxiosSecure/AxiosSecure';
+import toast from 'react-hot-toast';
 
 
-const Modal = ({ isOpen, setIsOpen, updateProfile }) => {
-
+const Modal = ({ isOpen, setIsOpen, updateProfile, refetch }) => {
+    const axiosSecure = AxiosSecure()
     const {
         register,
         formState: { errors },
@@ -18,6 +20,20 @@ const Modal = ({ isOpen, setIsOpen, updateProfile }) => {
         const uploadImage = await upLoadImgBBPhoto(image)
         console.log('uploadImage', uploadImage);
 
+        const userInfo = {
+            name: data.name,
+            photo: uploadImage,
+            email: data.email
+        }
+        console.log(userInfo);
+        const res = await axiosSecure.put(`/updateProfile/${updateProfile._id}`, userInfo)
+        console.log('update user', res);
+
+        if (res.data.modifiedCount > 0) {
+            toast.success('User updated successful!')
+            refetch()
+            setIsOpen(false)
+        }
     }
 
 
