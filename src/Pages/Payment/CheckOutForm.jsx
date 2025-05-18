@@ -67,7 +67,7 @@ const CheckOutForm = () => {
             // console.log('payment Err', error);
         } else {
             // toast.success()
-            // console.log('payment success', paymentMethod);
+            console.log('payment success', paymentMethod);
             setErr('')
         }
 

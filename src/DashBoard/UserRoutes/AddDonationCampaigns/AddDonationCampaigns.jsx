@@ -31,11 +31,7 @@ const AddDonationCampaigns = () => {
         formData.append("image", value.petsImage[0]);
         // console.log(formData);
 
-        const res = await axiosPublic.post(img_hosting_api, formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        });
+        const res = await axiosPublic.post(`https://api.imgbb.com/1/upload?key=${img_hosting_api}`, formData);
         // console.log(res.data.data.url)
         const donation = {
             petsImage: res.data.data.url,
