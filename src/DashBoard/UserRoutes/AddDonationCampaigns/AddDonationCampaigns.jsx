@@ -7,11 +7,9 @@ import AxiosPublic from '../../../UseHooks/AxiosPublic';
 import AxiosSecure from '../../../UseHooks/AxiosSecure/AxiosSecure';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
+import { upLoadImgBBPhoto } from '../../../utiity/utility';
 
 
-// img upload key
-const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY
-const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
 
 const AddDonationCampaigns = () => {
     const [startDate, setStartDate] = useState(new Date());
@@ -26,15 +24,14 @@ const AddDonationCampaigns = () => {
     } = useForm()
 
     const onSubmit = async (value) => {
-        // console.log(value);
-        const formData = new FormData();
-        formData.append("image", value.petsImage[0]);
-        // console.log(formData);
 
-        const res = await axiosPublic.post(`https://api.imgbb.com/1/upload?key=${img_hosting_api}`, formData);
+
+        const uploadImg = await upLoadImgBBPhoto(value.petsImage[0])
+
+        console.log('uploadImg', uploadImg);
         // console.log(res.data.data.url)
         const donation = {
-            petsImage: res.data.data.url,
+            petsImage: uploadImg,
             petsName: value.petsName,
             amount: parseInt(value.amount),
             sortDescription: value.sortDescription,
@@ -44,7 +41,7 @@ const AddDonationCampaigns = () => {
             Pause: false
         }
         const createDonation = await axiosSecure.post('/create-donation', donation)
-        // console.log('donation', createDonation);
+        console.log('donation', createDonation);
         if (createDonation.data.insertedId) {
             toast.success('Donation create successful')
         }
