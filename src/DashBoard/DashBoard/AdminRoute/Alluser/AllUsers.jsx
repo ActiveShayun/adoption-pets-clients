@@ -38,9 +38,9 @@ const AllUsers = () => {
             <Helmet><title>All Users</title></Helmet>
             <SectionTitle subheading={'That"s Users Visit This Website'} heading={'All Users'} />
             <table className="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <thead className="text-xs text-gray-700 uppercase  dark:text-gray-400 border">
                     <tr>
-                        <th scope="col" className="px-4 py-3">User ID</th>
+                        <th scope="col" className="px-2 py-3">User ID</th>
                         <th scope="col" className="px-4 py-3">User Number</th>
                         <th scope="col" className="px-4 py-3 hidden lg:block">User Email</th>
                         <th scope="col" className="px-4 py-3">User Photo</th>

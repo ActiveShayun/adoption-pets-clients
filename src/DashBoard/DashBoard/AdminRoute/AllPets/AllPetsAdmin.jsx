@@ -53,8 +53,8 @@ const AllPetsAdmin = () => {
     
         {/* Table Wrapper for Responsiveness */}
         <div className="relative overflow-x-auto shadow-md rounded-md">
-            <table className="w-full min-w-[700px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <table className="w-full min-w-[700px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border">
+                <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
                     <tr>
                         <th scope="col" className="px-3 py-3">Serial Number</th>
                         <th scope="col" className="px-3 py-3">Pet name</th>
