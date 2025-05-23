@@ -62,7 +62,7 @@ const AllDonations = () => {
         <SectionTitle subheading={'All Donation Here'} />
     
         {/* Table Wrapper for Responsiveness */}
-        <div className="relative overflow-x-auto shadow-md rounded-md">
+        <div className="relative overflow-x-auto shadow-md rounded-md min-w-[900px]">
             <table className="w-full min-w-[900px] text-sm text-left text-gray-500 dark:text-gray-400 border border-yellow-300">
                 {/* Table Head */}
                 <thead>

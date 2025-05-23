@@ -8,11 +8,11 @@ const DonationTable = ({ donation, idx, updateDonationStatusPause, updateDonatio
 
     return (
         <>
-            <tr className='border border-yellow-300'>
-                <th>
+            <tr className='border'>
+                <th className='px-3'>
                     {idx + 1}
                 </th>
-                <td className='border border-yellow-300'>
+                <td className='border px-3'>
                     <div className="flex items-center gap-3">
                         <div className="avatar">
                             <div className="mask mask-squircle h-12 w-12">
@@ -27,16 +27,16 @@ const DonationTable = ({ donation, idx, updateDonationStatusPause, updateDonatio
                         </div>
                     </div>
                 </td>
-                <td className='border border-yellow-300'>
+                <td className='border px-3'>
                     {donation.petsName}
                 </td>
-                <th className='border border-yellow-300'>
+                <th className='border px-3'>
                     <img className='w-[50px] h-[50px] rounded-full' src={donation.petsImage} alt="" />
                 </th>
-                <th className='border border-yellow-300'>
+                <th className='border'>
                     {donation.amount} $
                 </th>
-                <th className='border border-yellow-300'>
+                <th className='border px-3'>
                     {
                         donation.Pause === 'Pause' ?
                             <button
@@ -48,7 +48,7 @@ const DonationTable = ({ donation, idx, updateDonationStatusPause, updateDonatio
 
                     }
                 </th>
-                <th>
+                <th className='px-3'>
                     <button onClick={() => handlePetsDelete(donation._id, donation.petsName)}>Delete</button>
                 </th>
                 <th>
