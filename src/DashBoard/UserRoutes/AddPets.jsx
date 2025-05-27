@@ -10,6 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import UseAuth from '../../AuthProvider/UseAuth';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { upLoadImgBBPhoto } from '../../utiity/utility';
 
 const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
@@ -31,17 +32,12 @@ const AddPets = () => {
 
     const onSubmit = async (value) => {
         // console.log(value);
-        const formData = new FormData()
-        formData.append('image', value.petsImg[0])
-
-        const { data } = await axiosPublic.post(img_hosting_api, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
+       const imgUpload = await upLoadImgBBPhoto(value.petsImg[0])
+       console.log('imgUpload',imgUpload);
+       
         // console.log('Uploaded Image URL:', data, data.data.url);
 
-        if (data.success) {
+        if (imgUpload) {
             try {
                 const allPets = {
                     email: user?.email,
@@ -52,7 +48,7 @@ const AddPets = () => {
                     sortDescription: value.sortDescription,
                     phoneNumber: value.phoneNumber,
                     description: value.description,
-                    petsImg: data.data.url,
+                    petsImg: imgUpload,
                     adopted: 'UnAdopted',
                     deadline: startDate
                 }
