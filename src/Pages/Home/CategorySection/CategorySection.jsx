@@ -7,11 +7,11 @@ import Pets from './Pets';
 const CategorySection = () => {
     const [allPets] = AllPets()
     console.log(allPets);
-    const dogs = allPets.slice(1, 6).filter(dog => dog.petsCategory === 'dog')
-    const fishes = allPets.slice(1, 6).filter(fish => fish.petsCategory === 'fish')
-    const rabbits = allPets.slice(1, 6).filter(rabbit => rabbit.petsCategory === 'rabbits')
+    const dogs = allPets.filter(dog => dog.petsCategory === 'dog').slice(0, 4)
+    const fishes = allPets.filter(fish => fish.petsCategory === 'fish').slice(0, 4)
+    const rabbits = allPets.filter(rabbit => rabbit.petsCategory === 'rabbits')
     // console.log('cats'.cats, dogs);
-    const cats = allPets.slice(1, 6).filter(c => c.petsCategory === 'cat')
+    const cats = allPets.filter(c => c.petsCategory === 'cat').slice(0, 4)
     console.log(cats);
 
     return (

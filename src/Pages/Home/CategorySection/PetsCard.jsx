@@ -9,7 +9,7 @@ const PetsCard = ({ pet }) => {
               rounded-lg shadow-lg overflow-hidden relative"
         >
             {/* <!-- Profile Image (circular) --> */}
-            <div class="mx-auto absolute h-full top-0 left-0 z-10">
+            <div class="mx-auto absolute w-full h-full top-0 left-0 z-10">
                 <img
                     src={pet.petsImg}
                     alt="pets"
@@ -42,9 +42,8 @@ const PetsCard = ({ pet }) => {
             </div>
             {/* bg black layer */}
             {/* <div className='absolute top-0 left-0 w-full h-full bg-black z-20 opacity-40'></div> */}
-            <div className="absolute top-0 left-0 w-full h-full z-20 pointer-events-none border">
-                <div className="absolute bottom-0 left-0 w-full h-[150px] bg-gradient-to-t from-black/20 to-transparent border"></div>
-            </div>
+            <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black pointer-events-none z-20"></div>
+
 
         </div>
     );
