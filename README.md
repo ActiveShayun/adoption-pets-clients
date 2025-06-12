@@ -106,7 +106,7 @@ This platform was built to leverage technology in making a positive impact in th
 
 ```bash
 # Clone Client
-[git clone ](hhttps://github.com/ActiveShayun/adoption-pets-clients)
+[git clone ](https://github.com/ActiveShayun/adoption-pets-clients)
  cd client-repo
 
 2. Install Dependencies
