@@ -106,14 +106,14 @@ This platform was built to leverage technology in making a positive impact in th
 
 ```bash
 # Clone Client
-git clone https://github.com/ActiveShayun/adoption-pets-clients.git
-cd client-repo
+[git clone ](hhttps://github.com/ActiveShayun/adoption-pets-clients)
+ cd client-repo
 
-2. Install Dependencies<br?.<br/>
+2. Install Dependencies
 # For client
 npm install
 
-3. Create .env File<br/>
+3. Create .env File
 VITE_FIREBASE_API_KEY=your_firebase_api_key
 VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
 VITE_FIREBASE_PROJECT_ID=your_project_id
@@ -125,5 +125,5 @@ VITE_IMGBB_API_KEY=your_imgbb_api_key
 VITE_BACKEND_URL=http://localhost:5000
 VITE_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 
-5. Run the Project Locally<br/>
+5. Run the Project Locally
 npm run dev
