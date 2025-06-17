@@ -70,7 +70,7 @@ const PetListing = () => {
                     </div>
                 ) :
                     adoptedPets.length ? (
-                        <div className='grid grid-cols-1 lg:grid-cols-3 justify-center gap-4 mt-8'>
+                        <div className='grid grid-cols-1 lg:grid-cols-4 justify-center gap-4 mt-8'>
                             {
                                 descendingWithDate?.map(pet =>
                                     <PetCard

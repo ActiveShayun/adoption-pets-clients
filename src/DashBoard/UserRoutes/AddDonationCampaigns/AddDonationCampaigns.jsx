@@ -8,10 +8,12 @@ import AxiosSecure from '../../../UseHooks/AxiosSecure/AxiosSecure';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
 import { upLoadImgBBPhoto } from '../../../utiity/utility';
+import { FaStarOfLife } from 'react-icons/fa';
 
 
 
 const AddDonationCampaigns = () => {
+    const [loading, setLoading] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
     const { user } = UseAuth()
     const axiosPublic = AxiosPublic()
@@ -24,12 +26,10 @@ const AddDonationCampaigns = () => {
     } = useForm()
 
     const onSubmit = async (value) => {
-
-
+        setLoading(true)
         const uploadImg = await upLoadImgBBPhoto(value.petsImage[0])
-
         console.log('uploadImg', uploadImg);
-        // console.log(res.data.data.url)
+
         const donation = {
             petsImage: uploadImg,
             petsName: value.petsName,
@@ -44,6 +44,7 @@ const AddDonationCampaigns = () => {
         console.log('donation', createDonation);
         if (createDonation.data.insertedId) {
             toast.success('Donation create successful')
+            setLoading(false)
         }
     }
 
@@ -125,10 +126,12 @@ const AddDonationCampaigns = () => {
                 <div className="flex justify-end space-x-4">
                     <button
                         type="submit"
-                        className="px-4 py-2
+                        className="px-4 py-2 flex justify-center items-center gap-3
                          bg-blue-500 text-white
                           hover:bg-blue-600 rounded-lg"
                     >
+                        <span className={`${loading ? 'animate-spin' : ''}`}>
+                            <FaStarOfLife /> </span>
                         Create Donation Campaign
                     </button>
                 </div>

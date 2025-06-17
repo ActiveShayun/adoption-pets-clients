@@ -8,21 +8,23 @@ import UseAuth from "../../AuthProvider/UseAuth";
 import DatePicker from "react-datepicker";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { upLoadImgBBPhoto } from "../../utiity/utility";
+import { FaStarOfLife } from "react-icons/fa";
 
 // img upload key
 const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
 
 const EditDonation = () => {
-
+    const [loading, setLoading] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
-    const { user } = UseAuth()
-    const axiosPublic = AxiosPublic()
-    const axiosSecure = AxiosSecure()
-    const { id } = useParams()
-    const donation = useLoaderData()
+    const { user } = UseAuth();
+    const axiosPublic = AxiosPublic();
+    const axiosSecure = AxiosSecure();
+    const { id } = useParams();
+    const donation = useLoaderData();
     // console.log(donation);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
 
     const {
@@ -33,18 +35,12 @@ const EditDonation = () => {
 
     const onSubmit = async (value) => {
         // console.log(value);
-        const formData = new FormData();
-        formData.append("image", value.petsImage[0]);
-        // console.log(formData);
+        setLoading(true)
+        const image = await upLoadImgBBPhoto(value.petsImage[0]);
+        console.log(image);
 
-        const res = await axiosPublic.post(img_hosting_api, formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        });
-        // console.log(res.data.data.url)
         const donation = {
-            petsImage: res.data.data.url,
+            petsImage: image,
             petsName: value.petsName,
             amount: parseInt(value.amount),
             sortDescription: value.sortDescription,
@@ -57,6 +53,7 @@ const EditDonation = () => {
         // console.log('donation', createDonation);
         if (createDonation.data.modifiedCount) {
             toast.success('Donation create successful')
+            setLoading(false)
             navigate('/dashboard/myCreateDonation/')
         }
     }
@@ -78,7 +75,7 @@ const EditDonation = () => {
                         <input
                             type="file"
                             {...register("petsImage")}
-                            className="file-input file-input-bordered file-input-accent  w-full" required/>
+                            className="file-input file-input-bordered file-input-accent  w-full" required />
                     </div>
                     {/* User Name */}
                     <div>
@@ -144,14 +141,14 @@ const EditDonation = () => {
                     </div>
 
                     {/* Submit Buttons */}
-                    <div className="flex justify-end space-x-4">
+                    <div className="flex justify-end space-x-4 w-full">
                         <button
                             type="submit"
-                            className="px-4 py-2
+                            className="flex justify-center items-center gap-3 px-5 py-2
                          bg-blue-500 text-white
                           hover:bg-blue-600 rounded-lg"
-                        >
-                            Create Donation Campaign
+                        ><span className={`${loading ? 'animate-spin' : ''}`}>
+                                <FaStarOfLife /> </span> Update Donation
                         </button>
                     </div>
                 </form>

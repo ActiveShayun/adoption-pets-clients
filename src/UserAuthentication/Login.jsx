@@ -9,9 +9,11 @@ import { Helmet } from 'react-helmet-async';
 import loginAnimation from '../../src/assets/login.json.json'
 import Lottie from 'lottie-react';
 import login from '../../src/assets/login.json'
+import AxiosPublic from '../UseHooks/AxiosPublic';
 
 const Login = () => {
     const { handleLogin } = UseAuth()
+    const useAxios = AxiosPublic()
     const [showPassword, setShowPassword] = useState(true)
     const navigate = useNavigate();
     const location = useLocation()
@@ -27,7 +29,8 @@ const Login = () => {
         // console.log(data)
         handleLogin(data.email, data.password)
             .then(result => {
-                const user = result.user;
+                const user = result.user.email; 
+                console.log(user);
                 // console.log('login user', user);
                 toast.success('Sign in successful')
                 navigate(form, { replace: true })

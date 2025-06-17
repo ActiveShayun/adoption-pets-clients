@@ -56,10 +56,10 @@ const AdoptionRequest = () => {
                 <table class="w-full  w-11/23 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col" class="px-2 py-2 hidden lg:block">
+                            <th scope="col" class="px-2 py-2">
                                 Name
                             </th>
-                            <th scope="col" class="px-2 py-2 hidden lg:block">
+                            <th scope="col" class="px-2 py-2">
                                 Email
                             </th>
                             <th scope="col" class="px-2 py-2">
@@ -83,10 +83,10 @@ const AdoptionRequest = () => {
                         {
                             adoptionRequest.map(request => <tr key={request._Id}
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <th scope="row" class="px-6 py-4 font-medium hidden lg:block text-gray-900 whitespace-nowrap dark:text-white">
+                                <th scope="row" class="px-2 py-4 font-medium hidden lg:block text-gray-900 whitespace-nowrap dark:text-white">
                                     {request.userName}
                                 </th>
-                                <td class="px-2 py-4 hidden lg:block">
+                                <td class="px-2 py-4">
                                     {request.email}
                                 </td>
                                 <td class="px-2 py-4">

@@ -8,14 +8,14 @@ import AxiosPublic from '../../UseHooks/AxiosPublic';
 import AxiosSecure from '../../UseHooks/AxiosSecure/AxiosSecure';
 import DatePicker from 'react-datepicker';
 import toast from 'react-hot-toast';
-
-const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY;
-const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
+import { upLoadImgBBPhoto } from '../../utiity/utility';
+import { FaStarOfLife } from 'react-icons/fa';
 
 const AdminUpdatePets = () => {
     const [startDate, setStartDate] = useState(new Date());
     const axiosSecure = AxiosSecure();
     const axiosPublic = AxiosPublic();
+    const [loading, setLoading] = useState(false)
     const { user } = UseAuth()
     const navigate = useNavigate()
     const singlePets = useLoaderData()
@@ -30,17 +30,11 @@ const AdminUpdatePets = () => {
 
     const onSubmit = async (value) => {
         // console.log(value);
-        const formData = new FormData()
-        formData.append('image', value.petsImg[0])
+        setLoading(true)
+        const imag = await upLoadImgBBPhoto(value.petsImg[0])
+        console.log('Uploaded Image URL:', imag);
 
-        const { data } = await axiosPublic.post(img_hosting_api, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
-        // console.log('Uploaded Image URL:', data, data.data.url);
-
-        if (data.success) {
+        if (imag) {
             try {
                 const allPets = {
                     email: user?.email,
@@ -51,7 +45,7 @@ const AdminUpdatePets = () => {
                     sortDescription: value.sortDescription,
                     phoneNumber: value.phoneNumber,
                     description: value.description,
-                    petsImg: data.data.url,
+                    petsImg: imag,
                     adopted: false,
                     deadline: startDate
                 }
@@ -60,7 +54,9 @@ const AdminUpdatePets = () => {
                 if (res.data.modifiedCount > 0) {
                     toast.success('Pets Successfully Updated')
                     reset()
+                    setLoading(false)
                     navigate('/dashboard/allPets/')
+
                 }
             } catch (err) {
                 // console.log(err);
@@ -69,7 +65,6 @@ const AdminUpdatePets = () => {
         }
 
     }
-
 
 
     return (
@@ -193,7 +188,9 @@ const AdminUpdatePets = () => {
                     </div>
                 </div>
                 <button type="submit"
-                    class="text-white md:w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update The Pets</button>
+                    class="flex justify-center items-center  gap-3 text-white md:w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <span className={`${loading ? 'animate-spin' : ''}`}><FaStarOfLife /></span>
+                    Update The Pets</button>
             </form>
 
         </div>

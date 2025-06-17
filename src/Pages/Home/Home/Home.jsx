@@ -9,7 +9,7 @@ import ReviewSection from '../ReviewSection/ReviewSection';
 
 const Home = () => {
     return (
-        <div>
+        <div className='max-w-7xl mx-auto'>
                  <Banner/>
                  <OurService/>
                  <PetsCategorySection/>

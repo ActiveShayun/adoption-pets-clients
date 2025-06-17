@@ -9,12 +9,13 @@ import AllPets from '../../../UseHooks/AllPets/AllPets';
 import "react-datepicker/dist/react-datepicker.css";
 import AxiosPublic from '../../../UseHooks/AxiosPublic';
 import toast from 'react-hot-toast';
+import { upLoadImgBBPhoto } from '../../../utiity/utility';
+import { FaStarOfLife } from 'react-icons/fa';
 
-const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY;
-const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
 
 const UpdatePets = () => {
     const [startDate, setStartDate] = useState(new Date());
+    const [loading, setLoading] = useState(false)
     const Pet = useLoaderData()
     const navigate = useNavigate()
     const axiosSecure = AxiosSecure();
@@ -36,17 +37,12 @@ const UpdatePets = () => {
 
     const onSubmit = async (value) => {
         // console.log(value);
-        const formData = new FormData()
-        formData.append('image', value.petsImg[0])
-
-        const { data } = await axiosPublic.post(img_hosting_api, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
+        setLoading(true)
         // console.log('Uploaded Image URL:', data, data.data.url);
+        const image = await upLoadImgBBPhoto(value.petsImg[0])
+        console.log(image);
 
-        if (data.success) {
+        if (image) {
             try {
                 const updatePet = {
                     email: user?.email,
@@ -57,7 +53,7 @@ const UpdatePets = () => {
                     sortDescription: value.sortDescription,
                     phoneNumber: value.phoneNumber,
                     description: value.description,
-                    petsImg: data.data.url,
+                    petsImg: image,
                     adopted: false,
                     deadline: startDate
                 }
@@ -66,7 +62,9 @@ const UpdatePets = () => {
                 if (res.data.matchedCount > 0) {
                     toast.success('Pets Successfully updated')
                     refetch()
+                    setLoading(false)
                     navigate('/dashboard/addMyPets/')
+
                 }
             } catch (err) {
                 // console.log(err);
@@ -162,7 +160,7 @@ const UpdatePets = () => {
                     <div class="grid lg:grid-cols-2 md:gap-6">
                         {/* description */}
                         <div class="relative z-0 w-full mb-5 group block">
-                            <textarea name="" id=""
+                            <textarea
                                 defaultValue={Pet.description}
                                 {...register("description", { required: true })}
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required
@@ -171,7 +169,7 @@ const UpdatePets = () => {
                         </div>
                         {/* sort description */}
                         <div class="relative z-0 w-full mb-5 group block">
-                            <textarea name="" id=""
+                            <textarea name=""
                                 defaultValue={Pet.sortDescription}
                                 {...register("sortDescription", { required: true })}
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required
@@ -196,11 +194,11 @@ const UpdatePets = () => {
                         </div>
                     </div>
                     <button type="submit"
-                        class="text-white md:w-full
-                      bg-blue-700 hover:bg-blue-800 focus:ring-4 
-                      focus:outline-none focus:ring-blue-300 
-                      font-medium rounded-lg text-sm 
-                       sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add a pets</button>
+                        className={`flex justify-center items-center py-2 rounded-lg font-semibold gap-3
+                        text-white md:w-full
+                          transition-opacity
+                        bg-green-600
+                        `}><span className={`${loading ? 'animate-spin' : ''}`}><FaStarOfLife /></span> Update Pets</button>
                 </form>
 
             </div>

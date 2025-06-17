@@ -55,7 +55,7 @@ const MyAddedPets = () => {
 
     return (
         <div>
-            <div className="mt-10 max-w-screen-xl relative shadow-md sm:rounded-lg overflow-x-auto overflow-hidden">
+            <div className="mt-10 text-center max-w-screen-xl relative shadow-md sm:rounded-lg overflow-x-auto overflow-hidden">
                 {/* Table Wrapper for Responsiveness */}
                 <SectionTitle subheading={'Your'} heading={'Added All Pets'} />
 
@@ -64,9 +64,9 @@ const MyAddedPets = () => {
                         <tr>
                             <th scope="col" className="px-3 py-3">Serial Number</th>
                             <th scope="col"
-                                className="px-3 py-3 hidden lg:block">Pet name</th>
+                                className=" py-3">Pet name</th>
                             <th scope="col"
-                                className="px-3 py-3 hidden lg:block">Pet category</th>
+                                className="py-3">Pet category</th>
                             <th scope="col" className="px-3 py-3">Pet image</th>
                             <th scope="col" className="px-3 py-3 md:table-cell">Update</th>
                             <th scope="col" className="px-3 py-3 md:table-cell">Delete</th>

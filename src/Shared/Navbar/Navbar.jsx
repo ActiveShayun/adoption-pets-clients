@@ -82,7 +82,7 @@ const Navbar = () => {
 
 
     return (
-        <nav className="shadow-sm bg-gray-400">
+        <nav className="shadow-sm bg-gray-400 max-w-7xl sticky z-[454544] mx-auto top-0">
             <div className="container mx-auto flex items-center justify-between px-6 ">
                 {/* Logo */}
                 <div className="text-lg font-bold text-gray-800">Pet Care</div>

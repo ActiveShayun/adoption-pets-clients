@@ -8,17 +8,13 @@ import UseAuth from '../../AuthProvider/UseAuth';
 import DatePicker from 'react-datepicker';
 import SectionTitle from '../../Shared/SectionTitle/SectionTitle';
 import toast from 'react-hot-toast';
-
-
-// img upload key
-const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY
-const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
+import { upLoadImgBBPhoto } from '../../utiity/utility';
+import { FaStarOfLife } from 'react-icons/fa';
 
 
 const UpdateDonation = () => {
-
-
     const [startDate, setStartDate] = useState(new Date());
+    const [loading, setLoading] = useState(false)
     const { user } = UseAuth()
     const { id } = useParams()
     const axiosPublic = AxiosPublic()
@@ -36,18 +32,11 @@ const UpdateDonation = () => {
 
     const onSubmit = async (value) => {
         // console.log(value);
-        const formData = new FormData();
-        formData.append("image", value.petsImage[0]);
-        // console.log(formData);
-
-        const res = await axiosPublic.post(img_hosting_api, formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        });
-        // console.log(res.data.data.url)
+        setLoading(true)
+        const imag = await upLoadImgBBPhoto(value.petsImage[0])
+        console.log(imag)
         const donation = {
-            petsImage: res.data.data.url,
+            petsImage: imag,
             petsName: value.petsName,
             amount: parseInt(value.amount),
             sortDescription: value.sortDescription,
@@ -60,6 +49,7 @@ const UpdateDonation = () => {
         // console.log('donation', createDonation);
         if (createDonation.data.modifiedCount > 0) {
             toast.success('Donation create successful')
+            setLoading(false)
             navigate('/dashBoard/allDonations/')
         }
     }
@@ -156,12 +146,14 @@ const UpdateDonation = () => {
                          bg-blue-500 text-white
                           hover:bg-blue-600 rounded-lg"
                         >
-                            Create Donation Campaign
+                            <span className={`${loading ? 'animate-spin' : ''}`}>
+                                <FaStarOfLife /> </span>
+                            Update Donation Campaign
                         </button>
                     </div>
                 </form>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 

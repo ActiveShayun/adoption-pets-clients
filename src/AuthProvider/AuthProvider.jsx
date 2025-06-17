@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, GoogleAuthProvider, updateProfile, GithubAuthProvider } from "firebase/auth";
 import auth from "../Firebase/firebase.init";
 import AxiosPublic from "../UseHooks/AxiosPublic";
+import axios from "axios";
 
 export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
@@ -40,29 +41,21 @@ const AuthProvider = ({ children }) => {
     const handleSignOut = () => {
         return signOut(auth)
     }
-    // console.log('users', user);
+    console.log('users', user);
 
     useEffect(() => {
         const unSubsCribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
 
-            // console.log('current user ---->', currentUser);
-            if (currentUser) {
-                const userInfo = { email: currentUser.email }
-                axiosPublic.post('/jwt', userInfo)
+            console.log('current user ---->', currentUser?.email);
+            if (currentUser?.email) {
+                const user = { email: currentUser.email }
+                axiosPublic.post('http://localhost:5000/jwt', user)
                     .then(res => {
-                        // console.log(res);
-                        if (res.data.token) {
-                            localStorage.setItem('access-token', res.data.token)
-                            setLoading(false)
-                        }
+                        console.log('responce', res.data);
                     })
             }
-            else {
-                localStorage.removeItem('access-token')
-                setLoading(false)
-            }
-
+            setLoading(false)
 
         })
 

@@ -8,10 +8,8 @@ import UseAuth from '../AuthProvider/UseAuth';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { upLoadImgBBPhoto } from '../utiity/utility';
 
-
-const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY
-const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(true)
@@ -27,20 +25,12 @@ const Register = () => {
     } = useForm()
     const onSubmit = async (data) => {
         // console.log(data)
+        const upLoadImg = data.userImg[0];
+        const img = await upLoadImgBBPhoto(upLoadImg)
+        console.log('img', img);
         try {
-            const userPhoto = {
-                image: data.userImg[0]
-            }
-            // hot imgbb api and get image url
-            const result = await useAxios.post(img_hosting_api, userPhoto, {
-                headers: {
-                    'content-type': 'multipart/form-data'
-                }
-            })
-            // console.log('hosting img', result.data.data.url);
-
-            if (result.data.success) {
-                const imgUrl = result.data.data.url;
+            if (img) {
+                // const imgUrl = result.data.data.url;
                 handleRegister(data.email, data.password)
                     .then(result => {
                         const user = result.user;
@@ -56,7 +46,7 @@ const Register = () => {
                             const users = {
                                 name: data.name,
                                 email: user.email,
-                                userPhoto: imgUrl,
+                                userPhoto: img,
                                 role: false
                             }
                             // console.log('database user', users);
