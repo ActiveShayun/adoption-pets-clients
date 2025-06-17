@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
             console.log('current user ---->', currentUser?.email);
             if (currentUser?.email) {
                 const user = { email: currentUser.email }
-                axiosPublic.post('http://localhost:5000/jwt', user)
+                axiosPublic.post('https://adoption-pets-server-site.vercel.app/jwt', user)
                     .then(res => {
                         console.log('responce', res.data);
                     })

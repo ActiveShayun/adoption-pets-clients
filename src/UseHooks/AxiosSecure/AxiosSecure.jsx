@@ -4,8 +4,8 @@ import UseAuth from "../../AuthProvider/UseAuth";
 
 
 const instance = axios.create({
-    baseURL: 'http://localhost:5000',
-    // baseURL: 'http://localhost:5000'
+    baseURL: 'https://adoption-pets-server-site.vercel.app',
+    // baseURL: 'https://adoption-pets-server-site.vercel.app'
 })
 const AxiosSecure = () => {
     return instance;
