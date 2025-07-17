@@ -4,23 +4,63 @@ import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../../Shared/SectionTitle/SectionTitle";
 import UsersTable from "./UsersTable";
 import UseAuth from "../../../../AuthProvider/UseAuth";
-import toast from "react-hot-toast";
+import toast, { LoaderIcon } from "react-hot-toast";
+import { useEffect, useState } from "react";
+import AxiosPublic from "../../../../UseHooks/AxiosPublic";
 
 
 const AllUsers = () => {
     const axiosSecure = AxiosSecure()
+    const axiosPublic = AxiosPublic()
+    const [count, setCount] = useState({})
     const { user } = UseAuth()
-    const { data: users = [], refetch } = useQuery({
+
+    const { data: total = [] } = useQuery({
+        queryKey: ['count'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('http://localhost:5000/users-pagination')
+            console.log(res?.data?.total);
+            return res?.data?.total
+        }
+    })
+    const [itemsPerPage, setItemsPerPage] = useState(10)
+    const [currentPage, setCurrentPage] = useState(0)
+    const numberOfPage = Math.ceil(total / itemsPerPage)
+    console.log(numberOfPage);
+    const pages = [...Array(numberOfPage).keys()]
+    console.log(pages);
+
+    const handleChancePerPage = (e) => {
+        const value = parseInt(e.target.value)
+        setItemsPerPage(value)
+        console.log(itemsPerPage);
+        setCurrentPage(0)
+    }
+
+    const handlePrevPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1)
+        }
+    }
+
+    const handleNextPage = () => {
+        if (currentPage < pages?.length - 1) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
+
+    const { data: users = [], isLoading, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/all-users')
+            const res = await axiosSecure.get(`/all-users?page=${currentPage}&size=${itemsPerPage}`)
             // console.log(res.data);
             return res.data
         }
-
-
     })
 
+    useEffect(() => {
+        refetch()
+    }, [itemsPerPage, currentPage])
 
     const handleMakeAdmin = async (id) => {
         // console.log('handleMakeAdmin', id);
@@ -34,11 +74,10 @@ const AllUsers = () => {
 
 
     return (
-        <div className="relative shadow-md rounded-xl w-full">
+        <div className="shadow-md rounded-xl w-full">
             <Helmet><title>All Users</title></Helmet>
-            <SectionTitle subheading={'That"s Users Visit This Website'} heading={'All Users'} />
-            <table className="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase  dark:text-gray-400 border">
+            <table className="border w-full">
+                <thead className="uppercase border">
                     <tr>
                         <th scope="col" className="px-2 py-3">User ID</th>
                         <th scope="col" className="px-4 py-3">User Number</th>
@@ -48,16 +87,50 @@ const AllUsers = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {users?.map((user, idx) => (
-                        <UsersTable
-                            handleMakeAdmin={handleMakeAdmin}
-                            key={user._id}
-                            user={user}
-                            idx={idx}
-                        />
-                    ))}
+                    {isLoading ? <p className="animate-spin text-3xl text-green-700"><LoaderIcon /></p> :
+                        users?.map((user, idx) => (
+                            <UsersTable
+                                handleMakeAdmin={handleMakeAdmin}
+                                key={user._id}
+                                user={user}
+                                idx={idx}
+                            />
+                        ))}
                 </tbody>
             </table>
+            <div>
+                <p>current page{currentPage}</p>
+                <button onClick={handlePrevPage}
+                    className="w-10 h-10 rounded-full bg-orange-500 text-black">
+                    Prev
+                </button>
+                {
+                    pages?.map(page => {
+                        return (
+                            <button onClick={() => setCurrentPage(page)}
+                                className={`${currentPage === page ? 'bg-yellow-600' : ''} 
+                                 bg-black text-white
+                             mr-3 w-10 h-10 rounded-full`}>
+                                {page}
+                            </button>
+                        )
+                    })
+                }
+                <div>
+                    <select value={itemsPerPage} onChange={handleChancePerPage}
+                        defaultValue="Small"
+                        className="select select-sm">
+                        <option value={'5'}>5</option>
+                        <option value={'10'}>10</option>
+                        <option value={'20'}>20</option>
+                        <option value={'50'}>50</option>
+                    </select>
+                </div>
+                <button onClick={handleNextPage}
+                    className="w-10 h-10 rounded-full bg-orange-500 text-black">
+                    Next
+                </button>
+            </div>
         </div>
     );
 };

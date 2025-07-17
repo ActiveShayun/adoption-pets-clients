@@ -11,8 +11,8 @@ const AdminCategory = () => {
             to="/dashBoard/adminState/"
             className={({ isActive }) =>
                 isActive
-                    ? 'text-black  '
-                    : 'hover:text-[#E7470C]'
+                    ? 'text-[#E7470C]'
+                    : 'hover:text-[#E7470C] transition duration-700'
             }
         >
             Admin State
@@ -21,8 +21,8 @@ const AdminCategory = () => {
             to="/dashBoard/allUsers/"
             className={({ isActive }) =>
                 isActive
-                    ? 'text-black border-b-2 '
-                    : 'hover:text-[#E7470C]'
+                    ? 'text-[#E7470C]'
+                    : 'hover:text-[#E7470C] transition duration-700'
             }
         >
             All Users
@@ -31,8 +31,8 @@ const AdminCategory = () => {
             to="/dashBoard/allPets/"
             className={({ isActive }) =>
                 isActive
-                    ? 'text-black border-b-2 '
-                    : 'hover:text-[#E7470C]'
+                    ? 'text-[#E7470C]'
+                    : 'hover:text-[#E7470C] transition duration-700'
             }
         >
             All Pets
@@ -41,8 +41,8 @@ const AdminCategory = () => {
             to="/dashBoard/allDonations/"
             className={({ isActive }) =>
                 isActive
-                    ? 'text-black border-b-2 '
-                    : 'hover:text-[#E7470C]'
+                    ? 'text-[#E7470C]'
+                    : 'hover:text-[#E7470C] transition duration-700'
             }
         >
             All Donations
@@ -51,8 +51,8 @@ const AdminCategory = () => {
             to="/dashBoard/adminProfile/"
             className={({ isActive }) =>
                 isActive
-                    ? 'text-black border-b-2 '
-                    : 'hover:text-[#E7470C]'
+                    ? 'text-[#E7470C]'
+                    : 'hover:text-[#E7470C] transition duration-700'
             }
         >
             Profile
@@ -61,21 +61,11 @@ const AdminCategory = () => {
             isAdmin && <div className='space-y-2 flex flex-col'>
                 <h2 className='text-xl font-bold mt-4'>User Route</h2>
                 <NavLink
-                    to="addMyPets"
-                    className={({ isActive }) =>
-                        isActive
-                            ? 'text-black border-b-2 '
-                            : 'hover:text-[#E7470C]'
-                    }
-                >
-                    My Added pets
-                </NavLink>
-                <NavLink
                     to="addPets"
                     className={({ isActive }) =>
                         isActive
-                            ? 'text-black border-b-2 '
-                            : 'hover:text-[#E7470C]'
+                            ? 'text-[#E7470C]'
+                            : 'hover:text-[#E7470C] transition duration-700'
                     }
                 >
                     Add a pets
@@ -84,28 +74,18 @@ const AdminCategory = () => {
                     to="CreateDonation/"
                     className={({ isActive }) =>
                         isActive
-                            ? 'text-black border-b-2 '
-                            : 'hover:text-[#E7470C]'
+                            ? 'text-[#E7470C]'
+                            : 'hover:text-[#E7470C] transition duration-700'
                     }
                 >
                     Create Donation Campaign
                 </NavLink>
                 <NavLink
-                    to="myCreateDonation/"
-                    className={({ isActive }) =>
-                        isActive
-                            ? 'text-black border-b-2 '
-                            : 'hover:text-[#E7470C]'
-                    }
-                >
-                    My Donation Campaigns
-                </NavLink>
-                <NavLink
                     to="adoptionRequest/"
                     className={({ isActive }) =>
                         isActive
-                            ? 'text-black border-b-2 '
-                            : 'hover:text-[#E7470C]'
+                            ? 'text-[#E7470C]'
+                            : 'hover:text-[#E7470C] transition duration-700'
                     }
                 >
                     Adoption Request
@@ -114,8 +94,8 @@ const AdminCategory = () => {
                     to="userPayDonation/"
                     className={({ isActive }) =>
                         isActive
-                            ? 'text-black border-b-2 '
-                            : 'hover:text-[#E7470C]'
+                            ? 'text-[#E7470C]'
+                            : 'hover:text-[#E7470C] transition duration-700'
                     }
                 >
                     User Pay Donation
