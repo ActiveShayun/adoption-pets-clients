@@ -69,41 +69,45 @@ const State = () => {
             }
 
             {/* Chart */}
-            <div className='mt-8'>
-                <div style={{ width: '100%', height: 250 }}>
-                    <ResponsiveContainer>
-                        <ComposedChart
-                            width={500}
-                            height={400}
-                            data={chart}
-                            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-                        >
-                            <CartesianGrid stroke="#f5f5f5" />
-                            <XAxis dataKey="revenue" scale="band" />
-                            <YAxis />
-                            <Tooltip />
-                            <Legend />
-                            <Area type="monotone" dataKey="category" fill="#8884d8" stroke="#8884d8" />
-                            <Bar dataKey="pv" barSize={20} fill="#413ea0" />
-                            <Line type="monotone" dataKey="quantity" stroke="#ff7300" />
-                            <Line type="monotone" dataKey="revenue" stroke="#00C49F" />
-                        </ComposedChart>
-                    </ResponsiveContainer>
-                </div>
+            {
+                chart?.length > 0 && (
+                    <div className='mt-8'>
+                        <div style={{ width: '100%', height: 250 }}>
+                            <ResponsiveContainer>
+                                <ComposedChart
+                                    width={500}
+                                    height={400}
+                                    data={chart}
+                                    margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                                >
+                                    <CartesianGrid stroke="#f5f5f5" />
+                                    <XAxis dataKey="revenue" scale="band" />
+                                    <YAxis />
+                                    <Tooltip />
+                                    <Legend />
+                                    <Area type="monotone" dataKey="category" fill="#8884d8" stroke="#8884d8" />
+                                    <Bar dataKey="pv" barSize={20} fill="#413ea0" />
+                                    <Line type="monotone" dataKey="quantity" stroke="#ff7300" />
+                                    <Line type="monotone" dataKey="revenue" stroke="#00C49F" />
+                                </ComposedChart>
+                            </ResponsiveContainer>
+                        </div>
 
-                <div className='grid grid-cols-3'>
-                    <div className='col-span-2'>
-                        <TriAngleChart />
+                        <div className='grid grid-cols-3'>
+                            <div className='col-span-2'>
+                                <TriAngleChart />
+                            </div>
+                            <div className='col-span-1'>
+                                <Calendar
+                                    className="my-calendar scale-[0.75]  origin-top-left"
+                                    onChange={onChange}
+                                    value={value}
+                                />
+                            </div>
+                        </div>
                     </div>
-                    <div className='col-span-1'>
-                        <Calendar
-                            className="my-calendar scale-[0.75]  origin-top-left"
-                            onChange={onChange}
-                            value={value}
-                        />
-                    </div>
-                </div>
-            </div>
+                )
+            }
         </div>
     );
 };

@@ -8,9 +8,11 @@ const TriAngleChart = () => {
     const axiosSecure = AxiosSecure();
     const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
     const getPath = (x, y, width, height) => {
+        if ([x, y, width, height].some(v => v == null)) return '';
+
         return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3}
-  ${x + width / 2}, ${y}
-  C${x + width / 2},${y + height / 3} ${x + (2 * width) / 3},${y + height} ${x + width}, ${y + height}
+         ${x + width / 2}, ${y}
+         C${x + width / 2},${y + height / 3} ${x + (2 * width) / 3},${y + height} ${x + width}, ${y + height}
   Z`;
     };
     const TriangleBar = (props) => {
@@ -31,22 +33,26 @@ const TriAngleChart = () => {
 
     return (
         <div className='w-[600px] h-[230px]'>
-            <ResponsiveContainer>
-                <BarChart
-                    width={700}
-                    height={230}
-                    data={chart}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="category" />
-                    <YAxis />
-                    <Bar dataKey="quantity" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
-                        {chart.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={colors[index % 6]} />
-                        ))}
-                    </Bar>
-                </BarChart>
-            </ResponsiveContainer>
+            {
+                chart.length > 0 && (
+                    <ResponsiveContainer>
+                        <BarChart
+                            width={700}
+                            height={230}
+                            data={chart}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="category" />
+                            <YAxis />
+                            <Bar dataKey="quantity" fill="#8884d8" shape={TriangleBar} label={{ position: 'top' }}>
+                                {chart.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={colors[index % 6]} />
+                                ))}
+                            </Bar>
+                        </BarChart>
+                    </ResponsiveContainer>
+                )
+            }
         </div>
     );
 };
