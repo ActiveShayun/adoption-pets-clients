@@ -20,7 +20,7 @@ const UpdateDonation = () => {
     const axiosPublic = AxiosPublic()
     const axiosSecure = AxiosSecure()
     const donation = useLoaderData()
-    // console.log('donation',donation);
+    console.log('donation', donation);
     const navigate = useNavigate()
 
 
@@ -55,101 +55,135 @@ const UpdateDonation = () => {
     }
 
 
-
     return (
         <div>
-            <div className='mt-10'>
+            <div className=''>
                 <Helmet><title> Edit Donation Campaigns</title></Helmet>
                 <SectionTitle subheading={'Update Donation Campaigns'} />
                 <form onSubmit={handleSubmit(onSubmit)}
-                    className="space-y-4 lg:w-8/12 mx-auto">
-
-                    {/* upload img section */}
-
-                    <div className='mt-2'>
-                        <label
-                            className="block text-sm font-medium text-gray-700 mb-3">
-                            Upload Image</label>
-                        <input
-                            type="file"
-                            {...register("petsImage")}
-                            className="file-input file-input-bordered file-input-accent  w-full" required />
+                    className="">
+                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3'>
+                        {/* pets image */}
+                        <div className=''>
+                            <label className='block text-[17px] font-semibold mb-2'
+                            >
+                                Upload Pets Image</label>
+                            <input
+                                {...register("petsImage", { required: 'Pets image is required' })}
+                                className='text-gray-500 py-2 px-3 input w-full border border-gray-700' type="file" />
+                            {
+                                errors?.petsImage && (
+                                    <p className='text-red-600'>
+                                        {errors?.petsImage?.message}</p>
+                                )
+                            }
+                        </div>
+                        {/* pets Name */}
+                        <div>
+                            <label
+                                className='block text-[17px] font-semibold mb-2'>
+                                Pets Name</label>
+                            <input
+                                defaultValue={donation?.petsName}
+                                type="text"
+                                {...register("petsName", { required: 'Name is required' })}
+                                className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
+                                placeholder='Enter your pets name'
+                            />
+                            {errors.petsName && <p className="text-red-500 text-sm mt-1">
+                                {errors?.petsName?.message}</p>}
+                        </div>
                     </div>
-                    {/* User Name */}
-                    <div>
-                        <label
-                            className="block text-sm font-medium text-gray-700 mb-3">
-                            Pets Name</label>
-                        <input
-                            type="text"
-                            defaultValue={donation.petsName}
-                            {...register("petsName")}
-                            className="w-full px-3 py-2 border rounded shadow-sm bg-gray-100 cursor-not-allowed"
-                            placeholder='Enter your pets name'
-                        />
-                        {errors.petsName && <p className="text-red-500 text-sm mt-1">{errors.petsName.message}</p>}
+                    {/* row 2 */}
+                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3'>
+                        {/* pets category */}
+                        <div>
+                            <label
+                                className='block text-[17px] font-semibold mb-2'>
+                                Pets Category</label>
+                            <select
+                                defaultValue={donation?.category}
+                                {...register("category")}
+                                className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
+                            >
+                                <option disabled={true}>Category</option>
+                                <option value='cat'>Cat</option>
+                                <option value='dog'>Dog</option>
+                                <option value='fish'>Fish</option>
+                                <option value='rabbits'>Rabbits</option>
+                            </select>
+                            {errors.category && <p className="text-red-500 text-sm mt-1">
+                                {errors?.petsName?.message}</p>}
+                        </div>
+                        {/* amount section*/}
+                        <div>
+                            <label className='block text-[17px] font-semibold mb-2'>MAximum Amount </label>
+                            <input
+                                defaultValue={donation?.amount}
+                                type="number"
+                                {...register("amount", { required: "amount is required" })}
+                                placeholder="Enter your amount"
+                                className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
+                            />
+                            {errors.amount && <p className="text-red-500 text-sm mt-1">
+                                {errors?.amount?.message}</p>}
+                        </div>
                     </div>
 
-                    {/* amount section*/}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-3">MAximum Amount </label>
-                        <input
-                            type="number"
-                            defaultValue={donation.amount}
-                            {...register("amount", { required: "amount is required" })}
-                            placeholder="Enter your amount"
-                            className={`w-full px-3 py-2 border rounded shadow-sm ${errors.amount ? "border-red-500" : "border-gray-300"
-                                }`}
-                        />
-                        {errors.amount && <p className="text-red-500 text-sm mt-1">{errors.amount.message}</p>}
-                    </div>
                     {/* description */}
-                    <div>
+                    <div className='mb-3'>
                         <label
-                            className="block text-sm font-medium text-gray-700 mb-3">
+                            className='block text-[17px] font-semibold mb-2'>
                             Sort Description About Pets</label>
                         <input
+                            defaultValue={donation?.sortDescription}
                             type="text"
-                            defaultValue={donation.sortDescription}
-                            {...register("sortDescription")}
-                            className="w-full px-3 py-2 border rounded shadow-sm bg-gray-100"
+                            {...register("sortDescription", { required: 'Description is required' })}
+                            className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
                             placeholder='Enter your pets description'
                         />
-                        {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>}
+                        {errors.sortDescription && <p className="text-red-500 text-sm mt-1">
+                            {errors?.sortDescription?.message}</p>}
                     </div>
                     {/*long description */}
-                    <div>
+                    <div className='mb-3'>
                         <label
-                            className="block text-sm font-medium text-gray-700 mb-3">
+                            className='block text-[17px] font-semibold mb-2'>
                             Long Description About Pets</label>
                         <input
+                            defaultValue={donation?.logDescription}
                             type="text"
-                            defaultValue={donation.logDescription}
-                            {...register("logDescription")}
-                            className="w-full px-3 py-2 border rounded shadow-sm bg-gray-100 "
+                            {...register("logDescription", { required: 'Description is required' })}
+                            className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
                             placeholder='Enter your pets description'
                         />
-                        {errors.logDescription && <p className="text-red-500 text-sm mt-1">{errors.logDescription.message}</p>}
+                        {errors.logDescription &&
+                            <p className="text-red-500 text-sm mt-1">
+                                {errors?.logDescription?.message}</p>}
                     </div>
 
-                    {/* deadline */}
-                    <div>
-                        <h2 className='block text-sm mb-2 font-medium text-gray-900 dark:text-white"'>Chose a Deadline</h2>
-                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-                    </div>
-
-                    {/* Submit Buttons */}
-                    <div className="flex justify-end space-x-4">
-                        <button
-                            type="submit"
-                            className="px-4 py-2
-                         bg-blue-500 text-white
-                          hover:bg-blue-600 rounded-lg"
-                        >
-                            <span className={`${loading ? 'animate-spin' : ''}`}>
-                                <FaStarOfLife /> </span>
-                            Update Donation Campaign
-                        </button>
+                    <div className="grid lg:grid-cols-2 items-center">
+                        {/* deadline */}
+                        <div>
+                            <h2 className='block text-[17px] font-semibold mb-2'>
+                                Chose a Deadline</h2>
+                            <DatePicker
+                                className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
+                                selected={startDate} onChange={(date) => setStartDate(date)} />
+                        </div>
+                        {/* Submit Buttons */}
+                        <div>
+                            <button
+                                type="submit"
+                                className='py-2 px-3 input mt-4 lg:mt-0
+                                            w-full border border-gray-700 flex 
+                                            items-center justify-center gap-3 bg-gradient-to-tr from-black to-yellow-500 text-white font-semibold'
+                            >
+                                <span className={`${loading ? 'animate-spin' : ''}`}>
+                                    <FaStarOfLife /> </span>
+                                Create Donation Campaign
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div >

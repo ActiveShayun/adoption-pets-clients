@@ -8,8 +8,8 @@ const PetsTable = ({ pet, idx, handlePetsDelete, updateAdoptedStatus, handleUAdo
     const { petsName, petsCategory, petsImg, adopted, _id } = pet
     return (
         <>
-            <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <tr className="border">
+                <th scope="row" class="px-3 py-4 font-medium whitespace-nowrap ">
                     {idx + 1}
                 </th>
                 <td className="py-2">

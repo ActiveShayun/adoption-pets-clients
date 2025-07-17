@@ -55,12 +55,12 @@ const MyAddedPets = () => {
 
     return (
         <div>
-            <div className="mt-10 text-center max-w-screen-xl relative shadow-md sm:rounded-lg overflow-x-auto overflow-hidden">
+            <div className="text-center max-w-screen-xl relative shadow-md sm:rounded-lg overflow-x-auto overflow-hidden">
                 {/* Table Wrapper for Responsiveness */}
                 <SectionTitle subheading={'Your'} heading={'Added All Pets'} />
 
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <table className="w-full text-sm text-left rtl:text-right">
+                    <thead className="text-xs  uppercase border">
                         <tr>
                             <th scope="col" className="px-3 py-3">Serial Number</th>
                             <th scope="col"
@@ -90,7 +90,7 @@ const MyAddedPets = () => {
 
 
             <div className="flex flex-wrap gap-3 mt-10 justify-center items-center">
-                <button onClick={handleNextBtn} className='px-4 bg-slate-300 rounded-lg'>Next</button>
+                <button onClick={handleNextBtn} className='px-4 rounded-lg'>Next</button>
                 {page.map(p => (
                     <button
                         key={p}

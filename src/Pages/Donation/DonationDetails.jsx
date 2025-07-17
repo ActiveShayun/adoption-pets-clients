@@ -1,5 +1,4 @@
 import { format, isValid } from 'date-fns';
-import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useLoaderData, useParams } from 'react-router-dom';
 import Donation from './Donation';
@@ -60,7 +59,7 @@ const DonationDetails = () => {
                             }
                         </p>
                     </div>
-                    <div className='mt-5'>
+                    {/* <div className='mt-5'>
                         {
                             detailsDonation.Pause === 'Pause' ?
                                 <button
@@ -78,7 +77,7 @@ const DonationDetails = () => {
                                     </button>
                                 </Link>
                         }
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <Donation/>

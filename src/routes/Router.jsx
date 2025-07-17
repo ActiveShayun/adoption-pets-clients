@@ -13,9 +13,7 @@ import UpdatePets from "../DashBoard/UserRoutes/MyAddedPets/UpdatePets";
 import PrivateRoute from "./PrivateRoutes/PrivateRoute";
 import AdoptionRequest from "../DashBoard/UserRoutes/AdoptionRequest/AdoptionRequest";
 import AddDonationCampaigns from "../DashBoard/UserRoutes/AddDonationCampaigns/AddDonationCampaigns";
-import Payment from "../Pages/Payment/Payment";
 import ProvideDonation from "../components/ProvideDonation/ProvideDonation";
-import MyDonations from "../DashBoard/UserRoutes/MyDonatios/MyDonations";
 import MyDonationCampaigns from "../DashBoard/UserRoutes/MyDonationCampaigns/MyDonationCampaigns";
 import EditDonation from "../components/upDateMydonation/EditDonation";
 import AllUsers from "../DashBoard/DashBoard/AdminRoute/Alluser/AllUsers";
@@ -30,9 +28,10 @@ import UserrRoutesAccess from "../components/AdminAcceccUserRoutes/UserrRoutesAc
 import DonationDetails from "../Pages/Donation/DonationDetails";
 import AdminProfile from "../DashBoard/DashBoard/AdminRoute/AdminProfile/AdminProfile";
 import Profile from "../DashBoard/UserRoutes/UserProfile/Profile";
-
-
-
+import State from "../DashBoard/DashBoard/adminState/State";
+import UserPayDonation from "../DashBoard/UserRoutes/UserAddedDonation/UserPayDonation";
+import DonationPay from "../Pages/AddedDonations/DonationPay";
+import MyDonationHistory from "../DashBoard/UserRoutes/MyDonations/MyDonationHistory";
 
 
 const router = createBrowserRouter([
@@ -58,25 +57,20 @@ const router = createBrowserRouter([
                 element: <Donation />
             },
             {
-                path: "/donated/:id",
-                element: <PrivateRoute><Payment /></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://adoption-pets-server-site.vercel.app/details-donation/${params.id}`)
-
-            },
-            {
                 path: "editPets/:id",
                 element: <PrivateRoute><UpdatePets /></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://adoption-pets-server-site.vercel.app/petsDetails/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/petsDetails/${params.id}`)
             },
             {
                 path: "/detailsDonation/:id",
                 element: <PrivateRoute> <DonationDetails /></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://adoption-pets-server-site.vercel.app/details-donation/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/details-donation/${params.id}`)
             },
             {
                 path: "donationProviders",
                 element: <PrivateRoute><ProvideDonation /></PrivateRoute>
             },
+
             {
                 path: "login",
                 element: <Login />
@@ -120,11 +114,19 @@ const router = createBrowserRouter([
             {
                 path: "/dashBoard/dashBoard/donation/:id",
                 element: <PrivateRoute><EditDonation /></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://adoption-pets-server-site.vercel.app/details-donation/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/details-donation/${params.id}`)
             },
             {
-                path: "myDonations",
-                element: <PrivateRoute> <MyDonations /></PrivateRoute>
+                path: "myDonationHistory",
+                element: <PrivateRoute> <MyDonationHistory /></PrivateRoute>
+            },
+            {
+                path: "userPayDonation",
+                element: <PrivateRoute><UserPayDonation /></PrivateRoute>
+            },
+            {
+                path: "donationPay/",
+                element: <PrivateRoute><DonationPay /></PrivateRoute>
             },
             {
                 path: "userProfile/",
@@ -132,6 +134,10 @@ const router = createBrowserRouter([
             },
 
             // admin route
+            {
+                path: 'adminState',
+                element: <State />
+            },
             {
                 path: "allUsers",
                 element: <AdminRoute><AllUsers /></AdminRoute>
@@ -143,7 +149,7 @@ const router = createBrowserRouter([
             {
                 path: "updatePets/:id",
                 element: <AdminRoute><AdminUpdatePets /></AdminRoute>,
-                loader: ({ params }) => fetch(`https://adoption-pets-server-site.vercel.app/petsDetails/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/petsDetails/${params.id}`)
             },
             {
                 path: "allDonations",
@@ -152,7 +158,7 @@ const router = createBrowserRouter([
             {
                 path: "editDonation/:id",
                 element: <AdminRoute><UpdateDonation /></AdminRoute>,
-                loader: ({ params }) => fetch(`https://adoption-pets-server-site.vercel.app/details-donation/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/details-donation/${params.id}`)
             },
             {
                 path: "adminProfile/",

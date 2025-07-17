@@ -6,6 +6,7 @@ import AdminUse from "../../UseHooks/AdminUse/AdminUse";
 import Modal from "../../Pages/Home/Home/ReviewModal/Modal";
 import loginBtn from '../../../src/assets/loginBtn.json'
 import Lottie from "lottie-react";
+import Cards from "../../DashBoard/UserRoutes/MyDonations/Cards";
 
 
 const Navbar = () => {
@@ -14,6 +15,7 @@ const Navbar = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const navigate = useNavigate()
     const [isAdmin] = AdminUse()
+    const { myDonations } = Cards()
 
     // console.log('isAdmin', isAdmin);
 
@@ -61,6 +63,19 @@ const Navbar = () => {
         >
             Donation Campaigns
         </NavLink>
+        <NavLink
+            to={"donation/"}
+            className={({ isActive }) =>
+                isActive
+                    ? 'text-black border-b-2 border-blue-500'
+                    : 'hover:text-[#E7470C]'
+            }
+        >
+            <div className="flex items-center gap-2">
+                My Donation
+                <span className="text-red-700">{myDonations?.length}</span>
+            </div>
+        </NavLink>
         <button
             onClick={() => document.getElementById('my_modal_1').showModal()}
             className={({ isActive }) =>
@@ -107,7 +122,7 @@ const Navbar = () => {
                         {dropdownOpen && (
                             <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
                                 {isAdmin ? <NavLink
-                                    to={'dashboard/allUsers'}
+                                    to={'/dashBoard/adminState/'}
                                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 >
                                     Dashboard

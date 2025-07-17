@@ -12,7 +12,7 @@ const [isAdmin] = AdminUse()
 
     // console.log('isAdmin navbaR', isAdmin);
     return (
-        <div className='bg-[#EDF6FF] px-4 py-8  max-w-screen-xl mx-auto rounded-md'>
+        <div className='bg-[#F2F2F2] px-4 py-8  max-w-screen-xl mx-auto rounded-md'>
             <div className='lg:max-w-7xl mx-auto'>
                 <section className='grid lg:grid-cols-12 lg:gap-10'>
                     <aside className='lg:col-span-3'>

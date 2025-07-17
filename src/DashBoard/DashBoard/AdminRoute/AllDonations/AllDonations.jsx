@@ -15,7 +15,7 @@ const AllDonations = () => {
         queryKey: ['donation'],
         queryFn: async () => {
             const res = await axiosSecure.get('/all-donation')
-            // console.log(res.data);
+            console.log(res.data);
             return res.data
         }
 
@@ -59,14 +59,14 @@ const AllDonations = () => {
     return (
         <div>
         <Helmet><title>All Donations</title></Helmet>
-        <SectionTitle subheading={'All Donation Here'} />
+        {/* <SectionTitle subheading={'All Donation Here'} /> */}
     
         {/* Table Wrapper for Responsiveness */}
         <div className="relative overflow-x-auto shadow-md rounded-md min-w-[900px]">
-            <table className="w-full min-w-[900px] text-sm text-left text-gray-500 dark:text-gray-400 border border-yellow-300">
+            <table className="w-full text-sm text-left border border-yellow-300">
                 {/* Table Head */}
                 <thead>
-                    <tr className="border border-yellow-300 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-xs text-gray-700 uppercase">
+                    <tr className="border border-yellow-300  text-xs uppercase">
                         <th className="px-3 py-2">ID</th>
                         <th className="px-3 py-2">Donation Owner</th>
                         <th className="px-3 py-2">Pets Name</th>

@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, GoogleAuthProvider, updateProfile, GithubAuthProvider } from "firebase/auth";
 import auth from "../Firebase/firebase.init";
 import AxiosPublic from "../UseHooks/AxiosPublic";
-import axios from "axios";
+
 
 export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
@@ -50,12 +50,19 @@ const AuthProvider = ({ children }) => {
             console.log('current user ---->', currentUser?.email);
             if (currentUser?.email) {
                 const user = { email: currentUser.email }
-                axiosPublic.post('https://adoption-pets-server-site.vercel.app/jwt', user)
+                axiosPublic.post('http://localhost:5000/jwt', user)
                     .then(res => {
-                        console.log('responce', res.data);
+                        console.log('response', res.data);
+                        setLoading(false)
                     })
             }
-            setLoading(false)
+            else {
+                axiosPublic.post('http://localhost:5000/logout', {})
+                    .then(res => {
+                        console.log('logout', res.data)
+                        setLoading(false)
+                    })
+            }
 
         })
 

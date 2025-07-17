@@ -34,7 +34,7 @@ const AllUsers = () => {
 
 
     return (
-        <div className="mt-10 relative shadow-md rounded-xl w-full">
+        <div className="relative shadow-md rounded-xl w-full">
             <Helmet><title>All Users</title></Helmet>
             <SectionTitle subheading={'That"s Users Visit This Website'} heading={'All Users'} />
             <table className="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

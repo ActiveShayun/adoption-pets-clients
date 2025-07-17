@@ -24,9 +24,8 @@ const SocialLogin = () => {
                     userPhoto: user.photoURL,
                     role: false
                 }
-                const res = axiosPublic.post('/users', users)
                 // console.log('store data base', res);
-                // navigate(form, { replace: true })
+                navigate(form, { replace: true })
             })
             .catch(err => {
                 // console.log(err);

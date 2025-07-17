@@ -49,13 +49,13 @@ const AdoptionRequest = () => {
 
 
     return (
-        <div className="py-10">
+        <div className="">
             <Helmet><title>Adoption Request</title></Helmet>
             <SectionTitle subheading={'Your'} heading={'Adoption request'} />
             <div class="relative shadow-md sm:rounded-lg">
-                <table class="w-full  w-11/23 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
+                <table className="w-full  w-11/23 text-sm text-left rtl:text-right border">
+                    <thead class="text-xs  uppercase border">
+                        <tr className="border">
                             <th scope="col" class="px-2 py-2">
                                 Name
                             </th>
@@ -82,26 +82,29 @@ const AdoptionRequest = () => {
                     <tbody>
                         {
                             adoptionRequest.map(request => <tr key={request._Id}
-                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <th scope="row" class="px-2 py-4 font-medium hidden lg:block text-gray-900 whitespace-nowrap dark:text-white">
+                                className=" border-b ">
+                                <td  className="px-2 py-2
+                                font-medium   
+                                 whitespace-nowrap
+                                ">
                                     {request.userName}
-                                </th>
-                                <td class="px-2 py-4">
+                                </td>
+                                <td className="px-2 py-1">
                                     {request.email}
                                 </td>
-                                <td class="px-2 py-4">
+                                <td className="px-2 py-2">
                                     {request.phoneNumber}
                                 </td>
-                                <td class="px-2 py-4">
+                                <td className="px-2 py-2">
                                     {request.location}
                                 </td>
-                                <td class="px-2 py-4 ">
+                                <td className="px-2 py-2">
                                     <img className="w-[40px] h-[40px] rounded-full" src={request.petsImg} alt="" />
                                 </td>
-                                <td class="px-2 py-4 ">
+                                <td className="px-2 py-2 ">
                                     {request.petsName}
                                 </td>
-                                <td class="px-2 py-4">
+                                <td className="px-2 py-2">
                                     <div className="flex gap-2">
                                         <button
                                             onClick={() => updateAdoptedStatus(request._id,)}

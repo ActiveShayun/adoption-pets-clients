@@ -41,26 +41,26 @@ const MyDonationCampaigns = () => {
 
     return (
         <div>
-            <div className="pt-10">
+            <div className="">
                 <Helmet><title>My Donations</title></Helmet>
                 <SectionTitle subheading={'Your All Donations Campaigns'} />
 
                 <div className="mt-4">
                     {/* Table Wrapper for Responsiveness */}
                     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <table className="w-full text-sm text-left rtl:text-right">
+                            <thead className="text-xs uppercase border border-yellow-300">
                                 <tr>
-                                    <th scope="col" className="px-4 py-3">Pet name</th>
-                                    <th scope="col" className="px-4 py-3">Max Donation</th>
-                                    <th scope="col" className="px-4 py-3">
+                                    <th scope="col" className="px-4 py-2">Pet name</th>
+                                    <th scope="col" className="px-4 py-2">Max Donation</th>
+                                    <th scope="col" className="px-4 py-2">
                                         <button>Donation Control</button>
                                     </th>
-                                    <th scope="col" className="px-4 py-3">
+                                    <th scope="col" className="px-4 py-2">
                                         <button>View Donators</button>
                                     </th>
-                                    <th scope="col" className="px-4 py-3  sm:table-cell">Edit</th>
-                                    <th scope="col" className="px-4 py-3 hidden lg:block ">Pets Image</th>
+                                    <th scope="col" className="px-4 py-2  sm:table-cell">Edit</th>
+                                    <th scope="col" className="px-4 py-2 hidden lg:block ">Pets Image</th>
                                 </tr>
                             </thead>
                             <tbody>

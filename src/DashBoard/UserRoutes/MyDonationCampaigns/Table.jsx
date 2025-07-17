@@ -25,17 +25,18 @@ const Table = ({ donation, updateDonationStatusPause, updateDonationStatusUnPaus
 
     return (
         <>
-            <tr class=" border border-yellow-300 dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 text-black">
+            <tr class=" border border-yellow-300 ">
                 <th scope="row"
-                    class="px-6 py-4 border border-yellow-300 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    class="px-6 py-2 border border-yellow-300 font-medium 
+                     whitespace-nowrap">
                     {donation.petsName}
                 </th>
                 <td
-                    class="px-6 py-4 border border-yellow-300 ">
+                    class="px-6 py-2 border border-yellow-300 ">
                     $ {donation.amount}
                 </td>
                 <td
-                    class="px-6 py-4 border border-yellow-300 ">
+                    class="px-6 py-2 border border-yellow-300 ">
                     {donation.Pause === 'Pause' ?
                         <button
                             onClick={() => updateDonationStatusUnPause(donation._id)}
@@ -47,7 +48,7 @@ const Table = ({ donation, updateDonationStatusPause, updateDonationStatusUnPaus
                     }
                 </td>
                 <td
-                    class="px-6 py-4 border border-yellow-300 ">
+                    class="px-6 py-2 border border-yellow-300 ">
                     <button >
                         <button onClick={() => { handleShowDonators(donation._id); modalRef.current.showModal() }}
                         >View Donators</button>
@@ -55,13 +56,13 @@ const Table = ({ donation, updateDonationStatusPause, updateDonationStatusUnPaus
 
                 </td>
                 <td
-                    class="px-6 py-4 text-right border border-yellow-300 ">
+                    class="px-6 py-2 text-right border border-yellow-300 ">
                     <Link
                         to={`/dashBoard/dashBoard/donation/${donation._id}`}>
                         <button><FaEdit /></button>
                     </Link>
                 </td>
-                <td class="px-6 py-4 text-right hidden lg:block">
+                <td class="px-6 py-2 text-right hidden lg:block">
                     <img className='w-[50px] h-[50px] rounded-full'
                         src={donation.petsImage} alt="" />
                 </td>

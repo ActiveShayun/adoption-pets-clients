@@ -14,7 +14,6 @@ import { upLoadImgBBPhoto } from '../utiity/utility';
 const Register = () => {
     const [showPassword, setShowPassword] = useState(true)
     const { handleRegister, userProfileUpdate } = UseAuth()
-    const useAxios = AxiosPublic()
     const navigate = useNavigate();
     const location = useLocation()
     const form = location?.state?.form?.pathname || '/';
@@ -29,42 +28,35 @@ const Register = () => {
         const img = await upLoadImgBBPhoto(upLoadImg)
         console.log('img', img);
         try {
-            if (img) {
-                // const imgUrl = result.data.data.url;
-                handleRegister(data.email, data.password)
-                    .then(result => {
-                        const user = result.user;
-                        // console.log('register', user, user.displayName);
-                        toast.success('user create successful')
-
-                        // update user name and photo
-                        userProfileUpdate({
-                            displayName: data.name,
-                            photoURL: imgUrl
+            // const imgUrl = result.data.data.url;
+            handleRegister(data.email, data.password)
+                .then(result => {
+                    const user = result.user;
+                    console.log('register', user, user.displayName);
+                    toast.success('user create successful')
+                    // update user name and photo
+                    userProfileUpdate({
+                        displayName: data.name,
+                        photoURL: img
+                    })
+                        .then(res => {
+                            console.log(res.data);
                         })
-                        if (user) {
-                            const users = {
-                                name: data.name,
-                                email: user.email,
-                                userPhoto: img,
-                                role: false
-                            }
-                            // console.log('database user', users);
-                            // user infoRmation store database 
-                            const res = useAxios.post('/users', users)
-                            // console.log('user store database', res);
-                        }
-                        navigate(form, { replace: true })
-                    })
-                    .catch(err => {
-                        // console.log('register error', err);
-                        toast.error('user create failed', err)
-                    })
-            }
+                        .catch((err)=>{
+                            console.log(err);
+                        })
+
+                        
+                    // navigate(form, { replace: true })
+                })
+                .catch(err => {
+                    // console.log('register error', err);
+                    toast.error('user create failed', err)
+                })
+
         } catch (error) {
             // console.log('error', error);
         }
-
     }
     return (
         <div className='pt-24'>

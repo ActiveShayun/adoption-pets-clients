@@ -12,7 +12,7 @@ const Donation = () => {
         queryKey: ['donation'],
         queryFn: async () => {
             const res = await axiosSecure.get('/all-donation')
-            // console.log(res.data);
+            console.log(res.data);
             return res.data
         }
 

@@ -64,7 +64,6 @@ const UpdatePets = () => {
                     refetch()
                     setLoading(false)
                     navigate('/dashboard/addMyPets/')
-
                 }
             } catch (err) {
                 // console.log(err);

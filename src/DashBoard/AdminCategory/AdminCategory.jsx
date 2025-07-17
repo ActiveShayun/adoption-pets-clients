@@ -1,65 +1,163 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import AdminUse from '../../UseHooks/AdminUse/AdminUse';
-import UserCategory from '../UserCategory/UserCategory';
+import { AiOutlineMenuFold } from "react-icons/ai";
+import UseAuth from '../../AuthProvider/UseAuth';
 
 const AdminCategory = () => {
     const [isAdmin] = AdminUse()
+    const { user } = UseAuth()
+    const dashBoardMenu = <>
+        <NavLink
+            to="/dashBoard/adminState/"
+            className={({ isActive }) =>
+                isActive
+                    ? 'text-black  '
+                    : 'hover:text-[#E7470C]'
+            }
+        >
+            Admin State
+        </NavLink>
+        <NavLink
+            to="/dashBoard/allUsers/"
+            className={({ isActive }) =>
+                isActive
+                    ? 'text-black border-b-2 '
+                    : 'hover:text-[#E7470C]'
+            }
+        >
+            All Users
+        </NavLink>
+        <NavLink
+            to="/dashBoard/allPets/"
+            className={({ isActive }) =>
+                isActive
+                    ? 'text-black border-b-2 '
+                    : 'hover:text-[#E7470C]'
+            }
+        >
+            All Pets
+        </NavLink>
+        <NavLink
+            to="/dashBoard/allDonations/"
+            className={({ isActive }) =>
+                isActive
+                    ? 'text-black border-b-2 '
+                    : 'hover:text-[#E7470C]'
+            }
+        >
+            All Donations
+        </NavLink>
+        <NavLink
+            to="/dashBoard/adminProfile/"
+            className={({ isActive }) =>
+                isActive
+                    ? 'text-black border-b-2 '
+                    : 'hover:text-[#E7470C]'
+            }
+        >
+            Profile
+        </NavLink>
+        {
+            isAdmin && <div className='space-y-2 flex flex-col'>
+                <h2 className='text-xl font-bold mt-4'>User Route</h2>
+                <NavLink
+                    to="addMyPets"
+                    className={({ isActive }) =>
+                        isActive
+                            ? 'text-black border-b-2 '
+                            : 'hover:text-[#E7470C]'
+                    }
+                >
+                    My Added pets
+                </NavLink>
+                <NavLink
+                    to="addPets"
+                    className={({ isActive }) =>
+                        isActive
+                            ? 'text-black border-b-2 '
+                            : 'hover:text-[#E7470C]'
+                    }
+                >
+                    Add a pets
+                </NavLink>
+                <NavLink
+                    to="CreateDonation/"
+                    className={({ isActive }) =>
+                        isActive
+                            ? 'text-black border-b-2 '
+                            : 'hover:text-[#E7470C]'
+                    }
+                >
+                    Create Donation Campaign
+                </NavLink>
+                <NavLink
+                    to="myCreateDonation/"
+                    className={({ isActive }) =>
+                        isActive
+                            ? 'text-black border-b-2 '
+                            : 'hover:text-[#E7470C]'
+                    }
+                >
+                    My Donation Campaigns
+                </NavLink>
+                <NavLink
+                    to="adoptionRequest/"
+                    className={({ isActive }) =>
+                        isActive
+                            ? 'text-black border-b-2 '
+                            : 'hover:text-[#E7470C]'
+                    }
+                >
+                    Adoption Request
+                </NavLink>
+                <NavLink
+                    to="userPayDonation/"
+                    className={({ isActive }) =>
+                        isActive
+                            ? 'text-black border-b-2 '
+                            : 'hover:text-[#E7470C]'
+                    }
+                >
+                    User Pay Donation
+                </NavLink>
+                <NavLink to={'/'}>Home</NavLink>
+            </div>
+        }
+    </>
+    console.log(user);
     return (
-        <div className='bg-[#EFF7FF] rounded-xl'>
-            <aside class="shadow-xl mt-10">
-                <div class="pt-6 p-3">
-                    <h1 class="text-2xl font-bold text-blue-600">Admin Dashboard</h1>
+        <div className='rounded-xl'>
+            <aside class="shadow-xl">
+                <div className='mb-2'>
+                    <h1 class="text-xl font-bold">
+                        <span className='mr-2'>Hi</span>
+                        <span className='text-[#FF8042]'>
+                            {user?.displayName}</span>
+                        <span className='block'>Wel Come To Dashboard</span></h1>
                 </div>
-                <div class="flex flex-col px-4 gap-3">
-                    <NavLink
-                        to="/dashBoard/allUsers/"
-                        className={({ isActive }) =>
-                            isActive
-                                ? 'text-black border-b-2 border-blue-500'
-                                : 'hover:text-[#E7470C]'
-                        }
-                    >
-                        All Users
-                    </NavLink>
-                    <NavLink
-                        to="/dashBoard/allPets/"
-                        className={({ isActive }) =>
-                            isActive
-                                ? 'text-black border-b-2 border-blue-500'
-                                : 'hover:text-[#E7470C]'
-                        }
-                    >
-                        All Pets
-                    </NavLink>
-                    <NavLink
-                        to="/dashBoard/allDonations/"
-                        className={({ isActive }) =>
-                            isActive
-                                ? 'text-black border-b-2 border-blue-500'
-                                : 'hover:text-[#E7470C]'
-                        }
-                    >
-                        All Donations
-                    </NavLink>
-                    <NavLink
-                        to="/dashBoard/adminProfile/"
-                        className={({ isActive }) =>
-                            isActive
-                                ? 'text-black border-b-2 border-blue-500'
-                                : 'hover:text-[#E7470C]'
-                        }
-                    >
-                        Profile
-                    </NavLink>
+                <div className="drawer lg:drawer-open z-[1000000]">
+                    <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+                    <div className="drawer-content">
+                        {/* Page content here */}
+                        <label htmlFor="my-drawer-2" className="drawer-button lg:hidden">
+                            <AiOutlineMenuFold className='text-xl mt-4' />
+                        </label>
+                    </div>
+                    <div className="drawer-side">
+                        <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
 
+                        <ul className="menu bg-base-200 space-y-2
+                        text-base-content  font-medium text-[16px] p-4 lg:p-0">
+                            {/* Sidebar content here */}
+                            {dashBoardMenu}
+                        </ul>
+                    </div>
+                    <div>
+
+                    </div>
                 </div>
                 <div className='mt-10 px-4 py-4 border-t-2 border-gray-400'>
-                    <div>
-                        {
-                            isAdmin && <UserCategory />
-                        }
-                    </div>
+
                 </div>
             </aside>
 

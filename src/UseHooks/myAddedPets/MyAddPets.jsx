@@ -42,7 +42,7 @@ const MyAddPets = () => {
         queryKey: ['myPets'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/my-added-pets?email=${user.email}&totalPage=${currentPage}&currentPage=${totalPage}`)
-            // console.log('my pets', res.data);
+            console.log('my pets', res.data);
             return res.data
         }
 

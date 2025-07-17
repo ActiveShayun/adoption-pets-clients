@@ -11,15 +11,13 @@ import Lottie from 'lottie-react';
 import login from '../../src/assets/login.json'
 import AxiosPublic from '../UseHooks/AxiosPublic';
 
+
 const Login = () => {
     const { handleLogin } = UseAuth()
-    const useAxios = AxiosPublic()
     const [showPassword, setShowPassword] = useState(true)
     const navigate = useNavigate();
     const location = useLocation()
-    const form = location.state?.form?.pathname || "/";
-    // console.log('form', form);
-
+    const form = location.state?.form?.pathname || '/'
     const {
         register,
         formState: { errors },
@@ -29,14 +27,14 @@ const Login = () => {
         // console.log(data)
         handleLogin(data.email, data.password)
             .then(result => {
-                const user = result.user.email; 
-                console.log(user);
+                const user = result;
+                console.log('Login user',user);
                 // console.log('login user', user);
                 toast.success('Sign in successful')
-                navigate(form, { replace: true })
+                // navigate(form, { replace: true })
             })
             .catch(err => {
-                // console.log('login err', err);
+                console.log('login err', err);
                 toast.error('sign in failed')
             })
     }

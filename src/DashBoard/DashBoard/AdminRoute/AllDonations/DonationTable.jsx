@@ -1,6 +1,5 @@
-
 import UseAuth from '../../../../AuthProvider/UseAuth';
-import { Link, Links } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const DonationTable = ({ donation, idx, updateDonationStatusPause, updateDonationStatusUnPause, handlePetsDelete }) => {
 
@@ -15,7 +14,7 @@ const DonationTable = ({ donation, idx, updateDonationStatusPause, updateDonatio
                 <td className='border px-3'>
                     <div className="flex items-center gap-3">
                         <div className="avatar">
-                            <div className="mask mask-squircle h-12 w-12">
+                            <div className="mask mask-squircle mb-2 h-12 w-12">
                                 <img
                                     src={user?.photoURL}
                                     alt="Avatar Tailwind CSS Component" />
