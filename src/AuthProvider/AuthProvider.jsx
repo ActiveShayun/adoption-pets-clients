@@ -58,18 +58,18 @@ const AuthProvider = ({ children }) => {
                     role: 'user',
                     admin: false
                 }
-                axiosPublic.post('https://adoption-pets-server-site-quxu36g77-apu-roys-projects.vercel.app/users', userInfo)
+                axiosPublic.post('http://localhost:5000/users', userInfo)
                     .then(res => {
                         console.log('userInfo res',res);
                     })
-                axiosSecure.post('https://adoption-pets-server-site-quxu36g77-apu-roys-projects.vercel.app/jwt', user)
+                axiosSecure.post('http://localhost:5000/jwt', user)
                     .then(res => {
                         console.log('response jwt', res.data);
                         setLoading(false)
                     })
             }
             else {
-                axiosSecure.post('https://adoption-pets-server-site-quxu36g77-apu-roys-projects.vercel.app/logout', {})
+                axiosSecure.post('http://localhost:5000/logout', {})
                     .then(res => {
                         console.log('logout', res.data)
                         setLoading(false)
