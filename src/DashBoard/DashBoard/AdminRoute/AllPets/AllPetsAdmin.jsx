@@ -16,7 +16,7 @@ const AllPetsAdmin = () => {
     const { data: count = [] } = useQuery({
         queryKey: ['count'],
         queryFn: async () => {
-            const res = await axiosPublic.get('http://localhost:5000/allPets-pagination')
+            const res = await axiosPublic.get('https://adoption-pets-server-site-quxu36g77-apu-roys-projects.vercel.app/allPets-pagination')
             console.log('count', res?.data?.total);
             return res?.data?.total
         }
@@ -51,7 +51,7 @@ const AllPetsAdmin = () => {
     const { data: pets = [], refetch: appPetsRefetch } = useQuery({
         queryKey: ['pets',],
         queryFn: async () => {
-            const { data } = await axiosPublic.get(`http://localhost:5000/admin-allPets?page=${currentPage}&size=${itemsPerPage}`)
+            const { data } = await axiosPublic.get(`https://adoption-pets-server-site-quxu36g77-apu-roys-projects.vercel.app/admin-allPets?page=${currentPage}&size=${itemsPerPage}`)
             console.log('pets', data);
             return data
         }
