@@ -122,7 +122,7 @@ VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
 VITE_FIREBASE_APP_ID=your_app_id
 
 VITE_IMGBB_API_KEY=your_imgbb_api_key
-VITE_BACKEND_URL=http://localhost:5000
+VITE_BACKEND_URL=https://adoption-pets-server-site.vercel.app
 VITE_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 
 5. Run the Project Locally
