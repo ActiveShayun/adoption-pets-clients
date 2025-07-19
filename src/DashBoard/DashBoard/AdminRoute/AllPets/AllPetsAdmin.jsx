@@ -1,15 +1,67 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AllPets from '../../../../UseHooks/AllPets/AllPets';
-import SectionTitle from '../../../../Shared/SectionTitle/SectionTitle';
 import { Helmet } from 'react-helmet-async';
 import PetsTable from './PetsTable';
 import Swal from 'sweetalert2';
-import AxiosSecure from '../../../../UseHooks/AxiosSecure/AxiosSecure';
 import toast from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
+import AxiosPublic from '../../../../UseHooks/AxiosPublic';
+import Pagination from '../../../../Shared/paginationPage/Pagination';
+
 
 const AllPetsAdmin = () => {
     const [allPets, refetch] = AllPets()
-    const axiosSecure = AxiosSecure();
+    const axiosPublic = AxiosPublic()
+
+    const { data: count = [] } = useQuery({
+        queryKey: ['count'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('http://localhost:5000/allPets-pagination')
+            console.log('count', res?.data?.total);
+            return res?.data?.total
+        }
+    })
+    console.log('count', count);
+    const [itemsPerPage, setItemsPerPage] = useState(10)
+    const [currentPage, setCurrentPage] = useState(0)
+    const numberOfPage = Math.ceil(count / itemsPerPage)
+    console.log('numberOfPage', numberOfPage);
+    const pages = [...Array(numberOfPage).keys()]
+    console.log('pages', pages);
+
+    const handleChancePerPage = (e) => {
+        const value = parseInt(e.target.value)
+        console.log(value);
+        setItemsPerPage(value)
+        setCurrentPage(0)
+    }
+
+    const handleNextPage = () => {
+        if (currentPage < pages.length - 1) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
+
+    const handlePrevPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1)
+        }
+    }
+
+    const { data: pets = [], refetch: appPetsRefetch } = useQuery({
+        queryKey: ['pets',],
+        queryFn: async () => {
+            const { data } = await axiosPublic.get(`http://localhost:5000/admin-allPets?page=${currentPage}&size=${itemsPerPage}`)
+            console.log('pets', data);
+            return data
+        }
+    })
+
+    useEffect(() => {
+        appPetsRefetch()
+    }, [itemsPerPage, currentPage])
+
+    console.log('all pets', pets);
 
     const handlePetsDelete = async (id, pateName) => {
         const result = await Swal.fire({
@@ -48,39 +100,49 @@ const AllPetsAdmin = () => {
     }
     return (
         <div>
-        <Helmet><title>All Pets</title></Helmet>
-        <SectionTitle subheading={'All Pets'} />
-    
-        {/* Table Wrapper for Responsiveness */}
-        <div className="relative overflow-x-auto shadow-md rounded-md">
-            <table className="w-full min-w-[700px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border">
-                <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
-                    <tr>
-                        <th scope="col" className="px-3 py-3">Serial Number</th>
-                        <th scope="col" className="px-3 py-3">Pet name</th>
-                        <th scope="col" className="px-3 py-3">Pet category</th>
-                        <th scope="col" className="px-3 py-3">Pet image</th>
-                        <th scope="col" className="px-3 py-3">Update</th>
-                        <th scope="col" className="px-3 py-3">Delete</th>
-                        <th scope="col" className="px-3 py-3">Adopted Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {allPets?.map((pet, idx) => (
-                        <PetsTable
-                            idx={idx}
-                            pet={pet}
-                            key={pet._id}
-                            handlePetsDelete={handlePetsDelete}
-                            updateAdoptedStatus={updateAdoptedStatus}
-                            handleUAdoptedStatus={handleUAdoptedStatus}
-                        />
-                    ))}
-                </tbody>
-            </table>
+            <Helmet><title>All Pets</title></Helmet>
+            {/* Table Wrapper for Responsiveness */}
+            <div className="relative overflow-x-auto shadow-md rounded-md">
+                <table className="w-full text-sm font-semibold min-w-[700px] text-left border">
+                    <thead className="text-sm text-left uppercase border">
+                        <tr>
+                            <th scope="col" className="px-3 py-3">Serial Number</th>
+                            <th scope="col" className="px-3 py-3">Pet name</th>
+                            <th scope="col" className="px-3 py-3">Pet category</th>
+                            <th scope="col" className="px-3 py-3">Pet image</th>
+                            <th scope="col" className="px-3 py-3">Update</th>
+                            <th scope="col" className="px-3 py-3">Delete</th>
+                            <th scope="col" className="px-3 py-3">Adopted Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {allPets?.map((pet, idx) => (
+                            <PetsTable
+                                idx={idx}
+                                pet={pet}
+                                key={pet._id}
+                                handlePetsDelete={handlePetsDelete}
+                                updateAdoptedStatus={updateAdoptedStatus}
+                                handleUAdoptedStatus={handleUAdoptedStatus}
+                            />
+                        ))}
+                    </tbody>
+                </table>
+                <div className=''>
+                    {/* paginaTION container */}
+                    <Pagination
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        itemsPerPage={itemsPerPage}
+                        handleChancePerPage={handleChancePerPage}
+                        handleNextPage={handleNextPage}
+                        handlePrevPage={handlePrevPage}
+                        pages={pages}
+                    />
+                </div>
+            </div>
         </div>
-    </div>
-    
+
     );
 };
 

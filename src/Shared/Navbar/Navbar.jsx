@@ -64,7 +64,7 @@ const Navbar = () => {
             Donation Campaigns
         </NavLink>
         <NavLink
-            to={"donation/"}
+            to={""}
             className={({ isActive }) =>
                 isActive
                     ? 'text-black border-b-2 border-blue-500'
@@ -72,7 +72,7 @@ const Navbar = () => {
             }
         >
             <div className="flex items-center gap-2">
-                My Donation
+                My Donation Card
                 <span className="text-red-700">{myDonations?.length}</span>
             </div>
         </NavLink>

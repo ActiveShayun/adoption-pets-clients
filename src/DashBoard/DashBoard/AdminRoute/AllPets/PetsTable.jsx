@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 
@@ -8,32 +7,32 @@ const PetsTable = ({ pet, idx, handlePetsDelete, updateAdoptedStatus, handleUAdo
     // console.log(pet);
     return (
         <>
-            <tr class="border-b dark:border-gray-700">
-                <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <tr class="border">
+                <th scope="row" class="px-3 py-3 font-semibold whitespace-nowrap">
                     {idx + 1}
                 </th>
-                <td class="px-6 py-2">
+                <td class="px-3">
                     {pet?.petsName}
                 </td>
-                <td class="px-6 py-2">
+                <td class="px-3">
                     {pet?.petsCategory}
                 </td>
-                <td class="px-6 py-2">
+                <td class="px-3">
                     <img className='w-[50px] h-[50px] rounded-full' src={pet?.petsImg} alt="" />
                 </td>
-                <td class="px-6 py-2 text-lg text-green-500">
+                <td class="px-3 text-lg text-green-500">
                     <Link to={`/dashBoard/updatePets/${pet._id}`}>
                         <FaEdit />
                     </Link>
                 </td>
-                <td class="px-6 py-4 text-lg ">
+                <td class="px-3 text-lg ">
                     <button onClick={() => handlePetsDelete(pet._id, pet.petsName)}
                         className='text-red-500'
                     >
                         <RiDeleteBin2Line />
                     </button>
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-3">
                     {
                         pet.adopted === 'Adopted' ?
                             <button

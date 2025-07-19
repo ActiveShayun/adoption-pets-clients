@@ -1,15 +1,66 @@
 import Swal from "sweetalert2";
 import AxiosSecure from "../../../UseHooks/AxiosSecure/AxiosSecure";
-import MyAddPets from "../../../UseHooks/myAddedPets/MyAddPets";
 import PetsTable from "./PetsTable";
 import toast from "react-hot-toast";
 import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
+import { useQuery } from "@tanstack/react-query";
+import UseAuth from "../../../AuthProvider/UseAuth";
+import { useState } from "react";
+import Pagination from "../../../Shared/paginationPage/Pagination";
+
 
 
 const MyAddedPets = () => {
-    const [myPets, refetch, isLoading, handleTotalPages, page, totalPage, setCurrentPage, currentPage, handleNextBtn, handlePrevBtn] = MyAddPets()
-    // console.log('myPets', myPets);
+    const { user } = UseAuth()
+    console.log(user.email);
     const axiosSecure = AxiosSecure()
+
+
+
+    const { data: count = [] } = useQuery({
+        queryKey: ['count'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/pets-pagination`)
+            console.log('my pets', res);
+            return res?.data?.result
+        }
+    })
+
+    const [itemsPerPage, setItemsPerPage] = useState(10)
+    const [currentPage, setCurrentPage] = useState(0)
+    const numberOfPage = Math.ceil(count / itemsPerPage)
+    console.log('numberOfPage', numberOfPage);
+    const pages = [...Array(numberOfPage).keys()]
+    console.log('pages', pages);
+
+    const handleChancePerPage = (e) => {
+        const value = parseInt(e.target.value)
+        console.log(value);
+        setItemsPerPage(value)
+        setCurrentPage(0)
+    }
+
+    const handleNextPage = () => {
+        if (currentPage < pages.length - 1) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
+
+    const handlePrevPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1)
+        }
+    }
+
+    const { data: myPets = [], refetch, isLoading } = useQuery({
+        queryKey: ['myPets'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/my-added-pets?email=${user?.email}`)
+            console.log('my pets', res.data);
+            return res.data
+        }
+    })
+
 
     const handlePetsDelete = async (id, pateName) => {
         const result = await Swal.fire({
@@ -60,7 +111,7 @@ const MyAddedPets = () => {
                 <SectionTitle subheading={'Your'} heading={'Added All Pets'} />
 
                 <table className="w-full text-sm text-left rtl:text-right">
-                    <thead className="text-xs  uppercase border">
+                    <thead className=" font-semibold uppercase border">
                         <tr>
                             <th scope="col" className="px-3 py-3">Serial Number</th>
                             <th scope="col"
@@ -86,30 +137,20 @@ const MyAddedPets = () => {
                         ))}
                     </tbody>
                 </table>
+                <div className=''>
+                    {/* paginaTION container */}
+                    <Pagination
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        itemsPerPage={itemsPerPage}
+                        handleChancePerPage={handleChancePerPage}
+                        handleNextPage={handleNextPage}
+                        handlePrevPage={handlePrevPage}
+                        pages={pages}
+                    />
+                </div>
             </div>
 
-
-            <div className="flex flex-wrap gap-3 mt-10 justify-center items-center">
-                <button onClick={handleNextBtn} className='px-4 rounded-lg'>Next</button>
-                {page.map(p => (
-                    <button
-                        key={p}
-                        onClick={() => setCurrentPage(p)}
-                        className={`bg-gray-500 text-white px-3 rounded-xl ${currentPage === p ? 'bg-yellow-600' : ''}`}
-                    >
-                        {p}
-                    </button>
-                ))}
-                <select defaultValue={totalPage} onChange={handleTotalPages} className="px-3 py-1 border rounded">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                    <option value="40">40</option>
-                    <option value="50">50</option>
-                </select>
-                <button onClick={handlePrevBtn} className='px-3 bg-slate-300 rounded-lg'>Prev</button>
-            </div>
         </div>
 
     );

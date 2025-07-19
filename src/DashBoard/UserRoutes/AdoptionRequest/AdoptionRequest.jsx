@@ -26,10 +26,24 @@ const AdoptionRequest = () => {
         try {
             const res = await axiosSecure.patch(`/accepts-adopted-request/${id}`)
             console.log('update status', res);
-            // if (res.data.result.modifiedCount > 0) {
-            //     refetch()
-            //     toast.success('Adopted Status Updated Done')
-            // }
+            if (res.data.modifiedCount > 0) {
+                refetch()
+                toast.success('Adopted Status Updated Done')
+            }
+        } catch (err) {
+            toast.error(err.message)
+            console.log(err);
+        }
+    }
+    const handleUnAdoptedStatus = async (id) => {
+        console.log(id);
+        try {
+            const res = await axiosSecure.patch(`/unAdopted-request/${id}`)
+            console.log('update status', res);
+            if (res.data.modifiedCount > 0) {
+                refetch()
+                toast.success('Adopted Status Updated Done')
+            }
         } catch (err) {
             toast.error(err.message)
             console.log(err);
@@ -60,9 +74,6 @@ const AdoptionRequest = () => {
                                 Name
                             </th>
                             <th scope="col" class="px-2 py-2">
-                                Email
-                            </th>
-                            <th scope="col" class="px-2 py-2">
                                 Phone Number
                             </th>
                             <th scope="col" class="px-2 py-2">
@@ -83,14 +94,11 @@ const AdoptionRequest = () => {
                         {
                             adoptionRequest.map(request => <tr key={request._Id}
                                 className=" border-b ">
-                                <td  className="px-2 py-2
+                                <td className="px-2 py-2
                                 font-medium   
                                  whitespace-nowrap
                                 ">
                                     {request.userName}
-                                </td>
-                                <td className="px-2 py-1">
-                                    {request.email}
                                 </td>
                                 <td className="px-2 py-2">
                                     {request.phoneNumber}
@@ -106,16 +114,16 @@ const AdoptionRequest = () => {
                                 </td>
                                 <td className="px-2 py-2">
                                     <div className="flex gap-2">
-                                        <button
-                                            onClick={() => updateAdoptedStatus(request._id,)}
-                                        >
+                                        <>
                                             {
                                                 request.adopted === 'Adopted' ?
-                                                    <p className="text-green-600">
-                                                        Adopted</p> :
-                                                    <p>Not Adopted</p>
+                                                    <button onClick={() => handleUnAdoptedStatus(request._id,)}
+                                                        className="text-green-600">
+                                                        Un Adopted</button> :
+                                                    <button onClick={() => updateAdoptedStatus(request._id,)}
+                                                    >Adopted</button>
                                             }
-                                        </button>
+                                        </>
                                         <button
                                             onClick={() => rejectAdoptionRequest(request._id)}
                                         >Reject</button>

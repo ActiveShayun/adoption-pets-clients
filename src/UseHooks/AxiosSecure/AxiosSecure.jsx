@@ -4,8 +4,9 @@ import toast from "react-hot-toast";
 import UseAuth from "../../AuthProvider/UseAuth";
 
 
+
 const axiosInstance = axios.create({
-    baseURL: 'https://adoption-pets-server-site.vercel.app',
+    baseURL: 'http://localhost:5000',
     withCredentials: true
 })
 const AxiosSecure = () => {
@@ -17,7 +18,7 @@ const AxiosSecure = () => {
             console.log('axios interceptor caught error', error);
             console.log('error.status',error.status);
 
-            if (error.status === 401 || error.status === 500) {
+            if (error?.status === 401 || error?.status === 400) {
                 console.log('need to logout', error.status);
                 handleSignOut()
                     .then(() => {

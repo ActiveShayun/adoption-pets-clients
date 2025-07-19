@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import AxiosSecure from "../AxiosSecure/AxiosSecure";
 import { useEffect, useState } from "react";
+import AxiosPublic from "../AxiosPublic";
 
 
 const AllPets = () => {
-    const axiosSecure = AxiosSecure()
+    const axiosPublic = AxiosPublic()
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("")
 
@@ -12,15 +12,17 @@ const AllPets = () => {
     const { data: allPets = [], refetch, isLoading: loading } = useQuery({
         queryKey: ['pets'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/AllPets?search=${search}&category=${category}`)
+            const res = await axiosPublic.get(`/AllPets?search=${search}&category=${category}`)
             console.log('apppets', res.data);
             return res.data
         }
     })
+
     useEffect(() => {
         refetch()
     }, [search, category, refetch])
-    return [allPets, refetch, loading, search, setSearch, category, setCategory]
+
+    return [allPets, refetch, loading, search, setSearch, category, setCategory ]
 };
 
 export default AllPets;

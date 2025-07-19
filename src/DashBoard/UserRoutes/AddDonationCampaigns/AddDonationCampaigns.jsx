@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import UseAuth from '../../../AuthProvider/UseAuth';
 import DatePicker from 'react-datepicker';
 import AxiosPublic from '../../../UseHooks/AxiosPublic';
-import AxiosSecure from '../../../UseHooks/AxiosSecure/AxiosSecure';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
 import { upLoadImgBBPhoto } from '../../../utiity/utility';
@@ -17,7 +16,6 @@ const AddDonationCampaigns = () => {
     const [startDate, setStartDate] = useState(new Date());
     const { user } = UseAuth()
     const axiosPublic = AxiosPublic()
-    const axiosSecure = AxiosSecure()
 
     const {
         register,
@@ -41,7 +39,7 @@ const AddDonationCampaigns = () => {
             donationEmail: user?.email,
             Pause: false
         }
-        const createDonation = await axiosSecure.post('/create-donation', donation)
+        const createDonation = await axiosPublic.post('/create-donation', donation)
         console.log('donation', createDonation);
         if (createDonation.data.insertedId) {
             toast.success('Donation create successful')

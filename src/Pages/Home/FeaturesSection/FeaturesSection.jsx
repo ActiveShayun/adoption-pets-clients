@@ -1,7 +1,7 @@
 
 import { FaPaw, FaHandsHelping, FaHeart, FaShieldAlt } from 'react-icons/fa';
 import SectionTitle from '../../../Shared/SectionTitle/SectionTitle';
-
+import Marquee from "react-fast-marquee";
 const FeaturesSection = () => {
     const features = [
         {
@@ -42,20 +42,26 @@ const FeaturesSection = () => {
                     <p className="text-center text-gray-600 mb-12 text-lg">
                         Discover how we make a difference for animals and communities alike.
                     </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {features.map((feature) => (
-                            <div
-                                key={feature.id}
-                                className="bg-white shadow-lg rounded-lg p-6 text-center hover:shadow-xl transition-shadow duration-300"
-                            >
-                                <div className="mb-4">{feature.icon}</div>
-                                <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                                    {feature.title}
-                                </h3>
-                                <p className="text-gray-600">{feature.description}</p>
+                            <div>
+                                <Marquee speed={100} pauseOnHover={true}>
+                                    <div
+                                        key={feature.id}
+                                        className="bg-white shadow-xl border mx-4 rounded-lg p-6 text-center hover:shadow-xl transition-shadow duration-300 w-[300px]"
+                                    >
+                                        <div className="mb-4">{feature.icon}</div>
+                                        <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                                            {feature.title}
+                                        </h3>
+                                        <p className="text-gray-600">{feature.description}</p>
+                                    </div>
+                                </Marquee>
                             </div>
                         ))}
                     </div>
+
+
                 </div>
             </section>
         </div>

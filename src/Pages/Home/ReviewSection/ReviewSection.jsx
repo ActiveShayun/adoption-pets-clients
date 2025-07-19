@@ -52,16 +52,20 @@ const ReviewSection = () => {
             >
                 {
                     reviews?.map(review => <SwiperSlide>
-                        <div className="bg-white shadow-lg rounded-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
+                        <div className="bg-white shadow-lg 
+                        rounded-lg p-6 text-center hover:shadow-xl h-[300px]
+                         transition-shadow duration-300">
                             <p><FaQuoteLeft /></p>
                             <img
                                 className='w-[100px] h-[100px] rounded-full mx-auto'
                                 src={review?.clients?.photo} alt="review" />
                             <h2 className='text-xl font-semibold mt-2'>
                                 {review?.clients?.name}</h2>
-                            <p>{review?.review}</p>
+                            <p>{review?.review.slice(0, 90)}...</p>
                             <div className='flex justify-center'>
-                                <ReactStars count={review.rating} size={30} activeColor="#FFD700" />
+                                <ReactStars
+                                    count={review.rating}
+                                    size={30} activeColor="#FFD700" />
                             </div>
                             <p className='flex justify-end'><FaQuoteRight /></p>
                         </div>

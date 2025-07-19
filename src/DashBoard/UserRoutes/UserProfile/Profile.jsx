@@ -5,7 +5,6 @@ import UseAuth from '../../../AuthProvider/UseAuth';
 import { FaCamera } from "react-icons/fa";
 import { useQuery } from '@tanstack/react-query';
 import AxiosSecure from '../../../UseHooks/AxiosSecure/AxiosSecure';
-import { Link } from 'react-router-dom';
 import Modal from '../../../Shared/Modal/Modal';
 
 const Profile = () => {
@@ -23,24 +22,17 @@ const Profile = () => {
 
     })
     return (
-        <div className='min-h-screen flex flex-col items-center justify-center relative'>
+        <div className=''>
             <SectionTitle heading={'Your Vip Profile'} />
-            <div className='bg-slide-1 w-9/12 h-[200px] bg-cover bg-no-repeat p-4  rounded-md 
-         '>
-                <div className='w-[150px] h-[150px] object-cover rounded-full  z-70 relative top-28'>
+            <div className=' p-4 '>
+                <div className='rounded-full'>
                     <img
                         src={updateProfile?.userPhoto} alt=""
                         className='w-[150px] h-[150px] object-cover rounded-full
                         '
                     />
-                    <div className='relative -top-10 -right-[50%]'>
-                        <input
-                            className='w-[30px] h-[30px] top-0 left-2  rounded-full z-50 absolute opacity-0'
-                            name='profile-pic'
-                            type="file" required />
-                    </div>
                 </div>
-                <div className='relative top-32'>
+                <div className=''>
                     <h2 className='font-semibold'>Name - {updateProfile?.name}</h2>
                     <h2 className='font-semibold flex gap-2 items-center'>
                         <span><MdMarkEmailRead /></span>
@@ -57,7 +49,10 @@ const Profile = () => {
                     <button onClick={() => setIsOpen(true)}
                         className='border-2 mt-4 px-3 py-1 font-semibold rounded-lg'>Update Profile</button>
 
-                    <Modal updateProfile={updateProfile} isOpen={isOpen} setIsOpen={setIsOpen} refetch={refetch} />
+                    <Modal
+                        updateProfile={updateProfile}
+                        isOpen={isOpen} setIsOpen={setIsOpen}
+                        refetch={refetch} />
                 </div>
 
             </div>

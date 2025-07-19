@@ -6,7 +6,7 @@ import SectionTitle from '../../../Shared/SectionTitle/SectionTitle';
 
 const ProfileCard = () => {
     return (
-        <div className='min-h-screen flex flex-col items-center justify-center relative'>
+        <div className='min-h-screen flex flex-col  justify-center'>
             <SectionTitle heading={'Your Vip Profile'} />
             <div className='bg-slide-1 w-9/12 h-[200px] bg-cover bg-no-repeat p-4  rounded-md 
      '>

@@ -15,19 +15,19 @@ const AddedDonations = () => {
                     isLoading && <p className='text-center'>Loading</p>
                 }
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <table class="w-full text-sm text-left border">
+                        <thead class="text-xs uppercase border">
                             <tr>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-4 py-3">
                                     Donner Name
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-4 py-3">
                                     Pet Image
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-4 py-3">
                                     Pet name
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-4 py-3">
                                     Donated amount
                                 </th>
                                 {myDonations?.length ?
@@ -45,18 +45,18 @@ const AddedDonations = () => {
                         <tbody>
                             {
                                 myDonations?.map(donation => <tr key={donation._id}
-                                    class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    class="">
+                                    <th scope="row" class="px-4 py-4 font-medium whitespace-nowrap">
                                         {donation.donnerName}
                                     </th>
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <th scope="row" class="px-4 py-4 font-medium  whitespace-nowrap ">
                                         <img className='w-[50px] h-[50px] rounded-full'
                                             src={donation.petsImage} alt="" />
                                     </th>
-                                    <td class="px-6 py-4">
+                                    <td class="px-4 py-4">
                                         {donation.petsName}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-4 py-4">
                                         {donation.donationAmount}
                                     </td>
                                 </tr>)

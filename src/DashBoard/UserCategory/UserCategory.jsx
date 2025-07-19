@@ -9,8 +9,8 @@ const UserCategory = () => {
             to="addMyPets"
             className={({ isActive }) =>
                 isActive
-                    ? 'text-black border-b-2 border-blue-500'
-                    : 'hover:text-[#E7470C]'
+                    ? 'text-[#E7470C]'
+                    : 'hover:text-[#E7470C] transition duration-700'
             }
         >
             My Added pets
@@ -19,8 +19,8 @@ const UserCategory = () => {
             to="addPets"
             className={({ isActive }) =>
                 isActive
-                    ? 'text-black border-b-2 border-blue-500'
-                    : 'hover:text-[#E7470C]'
+                    ? 'text-[#E7470C]'
+                    : 'hover:text-[#E7470C] transition duration-700'
             }
         >
             Add a pets
@@ -29,8 +29,8 @@ const UserCategory = () => {
             to="CreateDonation/"
             className={({ isActive }) =>
                 isActive
-                    ? 'text-black border-b-2 border-blue-500'
-                    : 'hover:text-[#E7470C]'
+                    ? 'text-[#E7470C]'
+                    : 'hover:text-[#E7470C] transition duration-700'
             }
         >
             Create Donation Campaign
@@ -39,8 +39,8 @@ const UserCategory = () => {
             to="myCreateDonation/"
             className={({ isActive }) =>
                 isActive
-                    ? 'text-black border-b-2 border-blue-500'
-                    : 'hover:text-[#E7470C]'
+                    ? 'text-[#E7470C]'
+                    : 'hover:text-[#E7470C] transition duration-700'
             }
         >
             My Donation Campaigns
@@ -49,8 +49,8 @@ const UserCategory = () => {
             to="myDonationHistory/"
             className={({ isActive }) =>
                 isActive
-                    ? 'text-black border-b-2 border-blue-500'
-                    : 'hover:text-[#E7470C]'
+                    ? 'text-[#E7470C]'
+                    : 'hover:text-[#E7470C] transition duration-700'
             }
         >
             My Payment History
@@ -59,8 +59,8 @@ const UserCategory = () => {
             to="adoptionRequest/"
             className={({ isActive }) =>
                 isActive
-                    ? 'text-black border-b-2 border-blue-500'
-                    : 'hover:text-[#E7470C]'
+                    ? 'text-[#E7470C]'
+                    : 'hover:text-[#E7470C] transition duration-700'
             }
         >
             Adoption Request
@@ -69,8 +69,8 @@ const UserCategory = () => {
             to="userPayDonation/"
             className={({ isActive }) =>
                 isActive
-                    ? 'text-black border-b-2 border-blue-500'
-                    : 'hover:text-[#E7470C]'
+                    ? 'text-[#E7470C]'
+                    : 'hover:text-[#E7470C] transition duration-700'
             }
         >
             User Pay Donation

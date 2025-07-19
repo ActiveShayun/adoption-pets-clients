@@ -9,7 +9,7 @@ const PetsTable = ({ pet, idx, handlePetsDelete, updateAdoptedStatus, handleUAdo
     return (
         <>
             <tr className="border">
-                <th scope="row" class="px-3 py-4 font-medium whitespace-nowrap ">
+                <th scope="row" class="px-3 py-3 font-medium whitespace-nowrap ">
                     {idx + 1}
                 </th>
                 <td className="py-2">
@@ -18,7 +18,7 @@ const PetsTable = ({ pet, idx, handlePetsDelete, updateAdoptedStatus, handleUAdo
                 <td className="py-2">
                     {petsCategory}
                 </td>
-                <td className="lg:px-6 py-2">
+                <td className="lg:px-6 py-3">
                     <img className='w-[50px] h-[50px] rounded-full' src={petsImg} alt="" />
                 </td>
                 <td className="lg:px-6 py-2 text-lg">
@@ -26,12 +26,12 @@ const PetsTable = ({ pet, idx, handlePetsDelete, updateAdoptedStatus, handleUAdo
                         <FaEdit />
                     </Link>
                 </td>
-                <td className="lg:px-6 py-4 text-lg">
+                <td className="lg:px-6 py-3 text-lg">
                     <button onClick={() => handlePetsDelete(_id, petsName)}>
                         <RiDeleteBin2Line />
                     </button>
                 </td>
-                <td className="lg:px-6 py-4">
+                <td className="lg:px-6 py-3">
                     {
                         adopted === 'Adopted' ?
                             <button

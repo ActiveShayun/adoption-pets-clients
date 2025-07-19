@@ -1,24 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 import AxiosSecure from "../../../../UseHooks/AxiosSecure/AxiosSecure";
 import { Helmet } from "react-helmet-async";
-import SectionTitle from "../../../../Shared/SectionTitle/SectionTitle";
 import UsersTable from "./UsersTable";
 import UseAuth from "../../../../AuthProvider/UseAuth";
 import toast, { LoaderIcon } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import AxiosPublic from "../../../../UseHooks/AxiosPublic";
+import Pagination from "../../../../Shared/paginationPage/Pagination";
 
 
 const AllUsers = () => {
     const axiosSecure = AxiosSecure()
     const axiosPublic = AxiosPublic()
-    const [count, setCount] = useState({})
     const { user } = UseAuth()
 
     const { data: total = [] } = useQuery({
         queryKey: ['count'],
         queryFn: async () => {
-            const res = await axiosPublic.get('https://adoption-pets-server-site.vercel.app/users-pagination')
+            const res = await axiosPublic.get('http://localhost:5000/users-pagination')
             console.log(res?.data?.total);
             return res?.data?.total
         }
@@ -76,14 +75,14 @@ const AllUsers = () => {
     return (
         <div className="shadow-md rounded-xl w-full">
             <Helmet><title>All Users</title></Helmet>
-            <table className="border w-full">
-                <thead className="uppercase border">
+            <table className="border w-full text-left text-sm font-semibold">
+                <thead className="uppercase tex-sm border text-sm">
                     <tr>
-                        <th scope="col" className="px-2 py-3">User ID</th>
-                        <th scope="col" className="px-4 py-3">User Number</th>
-                        <th scope="col" className="px-4 py-3 hidden lg:block">User Email</th>
-                        <th scope="col" className="px-4 py-3">User Photo</th>
-                        <th scope="col" className="px-4 py-3">Make Admin</th>
+                        <th className="px-3 py-3">User ID</th>
+                        <th className="px-3 py-3">User Number</th>
+                        <th className="px-3 py-3 hidden lg:block">User Email</th>
+                        <th className="px-3 py-3">User Photo</th>
+                        <th className="px-3 py-3">Make Admin</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,38 +97,15 @@ const AllUsers = () => {
                         ))}
                 </tbody>
             </table>
-            <div>
-                <p>current page{currentPage}</p>
-                <button onClick={handlePrevPage}
-                    className="w-10 h-10 rounded-full bg-orange-500 text-black">
-                    Prev
-                </button>
-                {
-                    pages?.map(page => {
-                        return (
-                            <button onClick={() => setCurrentPage(page)}
-                                className={`${currentPage === page ? 'bg-yellow-600' : ''} 
-                                 bg-black text-white
-                             mr-3 w-10 h-10 rounded-full`}>
-                                {page}
-                            </button>
-                        )
-                    })
-                }
-                <div>
-                    <select value={itemsPerPage} onChange={handleChancePerPage}
-                        defaultValue="Small"
-                        className="select select-sm">
-                        <option value={'5'}>5</option>
-                        <option value={'10'}>10</option>
-                        <option value={'20'}>20</option>
-                        <option value={'50'}>50</option>
-                    </select>
-                </div>
-                <button onClick={handleNextPage}
-                    className="w-10 h-10 rounded-full bg-orange-500 text-black">
-                    Next
-                </button>
+            <div className="">
+                <Pagination
+                    pages={pages}
+                    currentPage={currentPage}
+                    itemsPerPage={itemsPerPage}
+                    setCurrentPage={setCurrentPage}
+                    handleChancePerPage={handleChancePerPage}
+                    handlePrevPage={handlePrevPage}
+                    handleNextPage={handleNextPage} />
             </div>
         </div>
     );

@@ -13,13 +13,9 @@ import { Helmet } from 'react-helmet-async';
 import { upLoadImgBBPhoto } from '../../utiity/utility';
 import { FaStarOfLife } from 'react-icons/fa';
 
-const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY;
-const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
-
 
 const AddPets = () => {
     const [startDate, setStartDate] = useState(new Date());
-    const axiosSecure = AxiosSecure();
     const axiosPublic = AxiosPublic();
     const [loading, setLoading] = useState(false)
     const { user } = UseAuth()
@@ -56,7 +52,7 @@ const AddPets = () => {
                     adopted: 'UnAdopted',
                     deadline: startDate
                 }
-                const res = await axiosSecure.post('allPets', allPets)
+                const res = await axiosPublic.post('allPets', allPets)
                 // console.log('result', res);
                 if (res.data.insertedId) {
                     toast.success('Pets Successfully Added')

@@ -14,14 +14,14 @@ const DonationTable = ({ donation, idx, updateDonationStatusPause, updateDonatio
                 <td className='border px-3'>
                     <div className="flex items-center gap-3">
                         <div className="avatar">
-                            <div className="mask mask-squircle mb-2 h-12 w-12">
+                            <div className="mask mask-squircle mb-2 h-10 w-10">
                                 <img
                                     src={user?.photoURL}
                                     alt="Avatar Tailwind CSS Component" />
                             </div>
                         </div>
                         <div>
-                            <div className="font-bold">{user?.displayName}</div>
+                            <div className="font-semibold">{user?.displayName}</div>
 
                         </div>
                     </div>

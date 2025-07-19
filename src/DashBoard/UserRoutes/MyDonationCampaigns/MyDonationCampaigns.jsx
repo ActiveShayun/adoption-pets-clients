@@ -5,20 +5,65 @@ import { useQuery } from '@tanstack/react-query';
 import UseAuth from '../../../AuthProvider/UseAuth';
 import toast from 'react-hot-toast';
 import Table from './Table';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import Pagination from '../../../Shared/paginationPage/Pagination';
+
 
 const MyDonationCampaigns = () => {
     const axiosSecure = AxiosSecure()
-    const { user, handleShowDonators } = UseAuth()
+    const { user } = UseAuth()
+    console.log(user);
+
+    const { data: count = [], } = useQuery({
+        queryKey: ['count'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/my-donation-pagination/${user?.email}`)
+            console.log('pagination count', res?.data?.result);
+            return res?.data?.result
+        }
+    })
+    const [itemsPerPage, setItemsPerPage] = useState(10)
+    const [currentPage, setCurrentPage] = useState(0)
+    const numberOfPage = Math.ceil(count / itemsPerPage)
+    console.log(numberOfPage);
+    const pages = [...Array(numberOfPage).keys()]
+    console.log(pages);
+
+    const handleChancePerPage = (e) => {
+        const value = parseInt(e.target.value)
+        setItemsPerPage(value)
+        console.log(itemsPerPage);
+        setCurrentPage(0)
+    }
+
+    const handlePrevPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1)
+        }
+    }
+
+    const handleNextPage = () => {
+        if (currentPage < pages?.length - 1) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
+
 
     const { data: myDonation = [], refetch } = useQuery({
-        queryKey: ['donation'],
+        queryKey: ['donation', user?.email, currentPage, itemsPerPage],
+
         queryFn: async () => {
-            const res = await axiosSecure.get(`/my-donation/${user?.email}`)
-            // console.log(res.data);
+            const res = await axiosSecure.get(`/my-donation?email=${user?.email}&page=${currentPage}&size=${itemsPerPage}`)
+            console.log(res.data);
             return res.data
         }
-
     })
+
+
+    useEffect(() => {
+        refetch()
+    }, [currentPage, itemsPerPage])
 
     // control donation api
     const updateDonationStatusPause = async (id) => {
@@ -74,10 +119,21 @@ const MyDonationCampaigns = () => {
                                 ))}
                             </tbody>
                         </table>
+                        {/* pagination  container */}
+                        <div className="">
+                            <Pagination
+                                pages={pages}
+                                currentPage={currentPage}
+                                itemsPerPage={itemsPerPage}
+                                setCurrentPage={setCurrentPage}
+                                handleChancePerPage={handleChancePerPage}
+                                handlePrevPage={handlePrevPage}
+                                handleNextPage={handleNextPage} />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
 
     );
 };

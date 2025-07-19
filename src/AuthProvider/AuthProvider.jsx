@@ -1,13 +1,14 @@
 import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, GoogleAuthProvider, updateProfile, GithubAuthProvider } from "firebase/auth";
 import auth from "../Firebase/firebase.init";
+import AxiosSecure from "../UseHooks/AxiosSecure/AxiosSecure";
 import AxiosPublic from "../UseHooks/AxiosPublic";
 
-
-export const AuthContext = createContext(null)
+export const AuthContext = createContext({})
 const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null)
+    const axiosSecure = AxiosSecure()
     const axiosPublic = AxiosPublic()
 
 
@@ -50,14 +51,25 @@ const AuthProvider = ({ children }) => {
             console.log('current user ---->', currentUser?.email);
             if (currentUser?.email) {
                 const user = { email: currentUser.email }
-                axiosPublic.post('https://adoption-pets-server-site.vercel.app/jwt', user)
+                const userInfo = {
+                    name: currentUser.displayName,
+                    email: currentUser.email,
+                    userPhoto: currentUser.photoURL,
+                    role: 'user',
+                    admin: false
+                }
+                axiosPublic.post('http://localhost:5000/users', userInfo)
                     .then(res => {
-                        console.log('response', res.data);
+                        console.log('userInfo res',res);
+                    })
+                axiosSecure.post('http://localhost:5000/jwt', user)
+                    .then(res => {
+                        console.log('response jwt', res.data);
                         setLoading(false)
                     })
             }
             else {
-                axiosPublic.post('https://adoption-pets-server-site.vercel.app/logout', {})
+                axiosSecure.post('http://localhost:5000/logout', {})
                     .then(res => {
                         console.log('logout', res.data)
                         setLoading(false)
