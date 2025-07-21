@@ -17,7 +17,7 @@ const AllUsers = () => {
     const { data: total = [] } = useQuery({
         queryKey: ['count'],
         queryFn: async () => {
-            const res = await axiosPublic.get('http://localhost:5000/users-pagination')
+            const res = await axiosPublic.get('https://adoption-pets-server-site.vercel.app/users-pagination')
             console.log(res?.data?.total);
             return res?.data?.total
         }
