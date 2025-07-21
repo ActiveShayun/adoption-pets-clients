@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async';
-import SectionTitle from '../../../Shared/SectionTitle/SectionTitle';
 import AxiosSecure from '../../../UseHooks/AxiosSecure/AxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import UseAuth from '../../../AuthProvider/UseAuth';
@@ -88,12 +87,10 @@ const MyDonationCampaigns = () => {
         <div>
             <div className="">
                 <Helmet><title>My Donations</title></Helmet>
-                <SectionTitle subheading={'Your All Donations Campaigns'} />
-
                 <div className="mt-4">
                     {/* Table Wrapper for Responsiveness */}
-                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <table className="w-full text-sm text-left rtl:text-right">
+                    <div className="w-full overflow-x-auto shadow-md sm:rounded-lg">
+                        <table className="min-w-[720px] overflow-x-auto w-full text-sm text-left rtl:text-right">
                             <thead className="text-xs uppercase border border-yellow-300">
                                 <tr>
                                     <th scope="col" className="px-4 py-2">Pet name</th>

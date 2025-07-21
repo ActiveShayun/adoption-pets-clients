@@ -7,16 +7,18 @@ import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
 import AxiosPublic from '../../../../UseHooks/AxiosPublic';
 import Pagination from '../../../../Shared/paginationPage/Pagination';
+import AxiosSecure from '../../../../UseHooks/AxiosSecure/AxiosSecure';
 
 
 const AllPetsAdmin = () => {
-    const [allPets, refetch] = AllPets()
+    const { allPets, refetch } = AllPets()
     const axiosPublic = AxiosPublic()
+    const axiosSecure = AxiosSecure()
 
     const { data: count = [] } = useQuery({
         queryKey: ['count'],
         queryFn: async () => {
-            const res = await axiosPublic.get('https://adoption-pets-server-site.vercel.app/allPets-pagination')
+            const res = await axiosPublic.get('http://localhost:5000/allPets-pagination')
             console.log('count', res?.data?.total);
             return res?.data?.total
         }
@@ -48,18 +50,15 @@ const AllPetsAdmin = () => {
         }
     }
 
-    const { data: pets = [], refetch: appPetsRefetch } = useQuery({
-        queryKey: ['pets',],
+    const { data: pets = [], refetch: refetchAllPets } = useQuery({
+        queryKey: ['pets', currentPage, itemsPerPage],
         queryFn: async () => {
-            const { data } = await axiosPublic.get(`https://adoption-pets-server-site.vercel.app/admin-allPets?page=${currentPage}&size=${itemsPerPage}`)
+            const { data } = await axiosPublic.get(`http://localhost:5000/admin-allPets?page=${currentPage}&size=${itemsPerPage}`)
             console.log('pets', data);
             return data
         }
     })
 
-    useEffect(() => {
-        appPetsRefetch()
-    }, [itemsPerPage, currentPage])
 
     console.log('all pets', pets);
 
@@ -99,50 +98,46 @@ const AllPetsAdmin = () => {
         }
     }
     return (
-        <div>
+        <div className="max-w-full overflow-x-auto shadow-md rounded-md">
             <Helmet><title>All Pets</title></Helmet>
-            {/* Table Wrapper for Responsiveness */}
-            <div className="relative overflow-x-auto shadow-md rounded-md">
-                <table className="w-full text-sm font-semibold min-w-[700px] text-left border">
-                    <thead className="text-sm text-left uppercase border">
-                        <tr>
-                            <th scope="col" className="px-3 py-3">Serial Number</th>
-                            <th scope="col" className="px-3 py-3">Pet name</th>
-                            <th scope="col" className="px-3 py-3">Pet category</th>
-                            <th scope="col" className="px-3 py-3">Pet image</th>
-                            <th scope="col" className="px-3 py-3">Update</th>
-                            <th scope="col" className="px-3 py-3">Delete</th>
-                            <th scope="col" className="px-3 py-3">Adopted Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {allPets?.map((pet, idx) => (
-                            <PetsTable
-                                idx={idx}
-                                pet={pet}
-                                key={pet._id}
-                                handlePetsDelete={handlePetsDelete}
-                                updateAdoptedStatus={updateAdoptedStatus}
-                                handleUAdoptedStatus={handleUAdoptedStatus}
-                            />
-                        ))}
-                    </tbody>
-                </table>
-                <div className=''>
-                    {/* paginaTION container */}
-                    <Pagination
-                        currentPage={currentPage}
-                        setCurrentPage={setCurrentPage}
-                        itemsPerPage={itemsPerPage}
-                        handleChancePerPage={handleChancePerPage}
-                        handleNextPage={handleNextPage}
-                        handlePrevPage={handlePrevPage}
-                        pages={pages}
-                    />
-                </div>
+            <table className="min-w-[700px] w-full overflow-x-auto  text-sm font-semibold text-left border">
+                <thead className="text-sm text-left uppercase border">
+                    <tr>
+                        <th scope="col" className="px-3 py-3">Serial Number</th>
+                        <th scope="col" className="px-3 py-3">Pet name</th>
+                        <th scope="col" className="px-3 py-3">Pet category</th>
+                        <th scope="col" className="px-3 py-3">Pet image</th>
+                        <th scope="col" className="px-3 py-3">Update</th>
+                        <th scope="col" className="px-3 py-3">Delete</th>
+                        <th scope="col" className="px-3 py-3">Adopted Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {pets?.map((pet, idx) => (
+                        <PetsTable
+                            idx={idx}
+                            pet={pet}
+                            key={pet._id}
+                            handlePetsDelete={handlePetsDelete}
+                            updateAdoptedStatus={updateAdoptedStatus}
+                            handleUAdoptedStatus={handleUAdoptedStatus}
+                        />
+                    ))}
+                </tbody>
+            </table>
+            <div className=''>
+                {/* paginaTION container */}
+                <Pagination
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    itemsPerPage={itemsPerPage}
+                    handleChancePerPage={handleChancePerPage}
+                    handleNextPage={handleNextPage}
+                    handlePrevPage={handlePrevPage}
+                    pages={pages}
+                />
             </div>
         </div>
-
     );
 };
 

@@ -7,22 +7,21 @@ const AllPets = () => {
     const axiosPublic = AxiosPublic()
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("")
+    const [sort, setSort] = useState("")
+    console.log('sort', sort);
 
 
     const { data: allPets = [], refetch, isLoading: loading } = useQuery({
-        queryKey: ['pets'],
+        queryKey: ['pets', sort, search, category],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/AllPets?search=${search}&category=${category}`)
-            console.log('apppets', res.data);
+            const res = await axiosPublic.get(`/AllPets?search=${search}&category=${category}&sort=${sort}`)
+            console.log('all pets', res.data);
             return res.data
         }
     })
 
-    useEffect(() => {
-        refetch()
-    }, [search, category, refetch])
 
-    return [allPets, refetch, loading, search, setSearch, category, setCategory ]
+    return { allPets, loading, search, setSearch, category, setCategory, setSort, sort, refetch }
 };
 
 export default AllPets;

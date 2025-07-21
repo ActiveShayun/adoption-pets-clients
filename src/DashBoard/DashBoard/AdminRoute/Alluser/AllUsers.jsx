@@ -17,7 +17,7 @@ const AllUsers = () => {
     const { data: total = [] } = useQuery({
         queryKey: ['count'],
         queryFn: async () => {
-            const res = await axiosPublic.get('https://adoption-pets-server-site.vercel.app/users-pagination')
+            const res = await axiosPublic.get('http://localhost:5000/users-pagination')
             console.log(res?.data?.total);
             return res?.data?.total
         }
@@ -73,9 +73,9 @@ const AllUsers = () => {
 
 
     return (
-        <div className="shadow-md rounded-xl w-full">
+        <div className="shadow-md overflow-x-auto rounded-xl w-full">
             <Helmet><title>All Users</title></Helmet>
-            <table className="border w-full text-left text-sm font-semibold">
+            <table className="border min-w-[720px] overflow-x-auto w-full text-left text-sm font-semibold">
                 <thead className="uppercase tex-sm border text-sm">
                     <tr>
                         <th className="px-3 py-3">User ID</th>

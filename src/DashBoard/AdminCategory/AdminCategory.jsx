@@ -2,6 +2,14 @@ import { NavLink } from 'react-router-dom';
 import AdminUse from '../../UseHooks/AdminUse/AdminUse';
 import { AiOutlineMenuFold } from "react-icons/ai";
 import UseAuth from '../../AuthProvider/UseAuth';
+import { MdOutlineFileDownloadDone } from 'react-icons/md';
+import { BiDonateHeart } from 'react-icons/bi';
+import { GiPayMoney, GiPlagueDoctorProfile } from 'react-icons/gi';
+import { FcHome } from 'react-icons/fc';
+import { FaUsers } from "react-icons/fa6";
+import { GrUserAdmin } from "react-icons/gr";
+import { MdPets } from "react-icons/md";
+import { FaDonate } from "react-icons/fa";
 
 const AdminCategory = () => {
     const [isAdmin] = AdminUse()
@@ -15,7 +23,10 @@ const AdminCategory = () => {
                     : 'hover:text-[#E7470C] transition duration-700'
             }
         >
-            Admin State
+            <span className='flex items-center gap-2'>
+                <GrUserAdmin />
+                Admin State
+            </span>
         </NavLink>
         <NavLink
             to="/dashBoard/allUsers/"
@@ -25,7 +36,10 @@ const AdminCategory = () => {
                     : 'hover:text-[#E7470C] transition duration-700'
             }
         >
-            All Users
+            <span className='flex items-center gap-2'>
+                <FaUsers />
+                All Users
+            </span>
         </NavLink>
         <NavLink
             to="/dashBoard/allPets/"
@@ -35,7 +49,10 @@ const AdminCategory = () => {
                     : 'hover:text-[#E7470C] transition duration-700'
             }
         >
-            All Pets
+            <span className='flex items-center gap-2'>
+                <MdPets />
+                All Pets
+            </span>
         </NavLink>
         <NavLink
             to="/dashBoard/allDonations/"
@@ -45,7 +62,10 @@ const AdminCategory = () => {
                     : 'hover:text-[#E7470C] transition duration-700'
             }
         >
-            All Donations
+            <span className='flex items-center gap-2'>
+                <FaDonate />
+                All Donations
+            </span>
         </NavLink>
         <NavLink
             to="/dashBoard/adminProfile/"
@@ -55,79 +75,88 @@ const AdminCategory = () => {
                     : 'hover:text-[#E7470C] transition duration-700'
             }
         >
-            Profile
+            <span className='flex items-center gap-2'>
+                <GiPlagueDoctorProfile />
+                Profile
+            </span>
         </NavLink>
         {
-            isAdmin && <div className='space-y-2 flex flex-col'>
-                <h2 className='text-xl font-bold mt-4'>User Route</h2>
-                <NavLink
-                    to="addPets"
-                    className={({ isActive }) =>
-                        isActive
-                            ? 'text-[#E7470C]'
-                            : 'hover:text-[#E7470C] transition duration-700'
-                    }
-                >
-                    Add a pets
+            isAdmin && <>
+                <div className='flex flex-col space-y-4'>
+                    <h2 className='text-xl font-bold mt-4'>User Route</h2>
+                    <NavLink
+                        to="addPets"
+                        className={({ isActive }) =>
+                            isActive
+                                ? 'text-[#E7470C]'
+                                : 'hover:text-[#E7470C] transition duration-700'
+                        }
+                    >
+                        <span className='flex items-center gap-2'>
+                            <MdOutlineFileDownloadDone />
+                            Add a pets
+                        </span>
+                    </NavLink>
+                    <NavLink
+                        to="CreateDonation/"
+                        className={({ isActive }) =>
+                            isActive
+                                ? 'text-[#E7470C]'
+                                : 'hover:text-[#E7470C] transition duration-700'
+                        }
+                    >
+                        <span className='flex items-center gap-2'>
+                            <BiDonateHeart />
+                            Create Donation Campaign
+                        </span>
+                    </NavLink>
+                    <NavLink
+                        to="userPayDonation/"
+                        className={({ isActive }) =>
+                            isActive
+                                ? 'text-[#E7470C]'
+                                : 'hover:text-[#E7470C] transition duration-700'
+                        }
+                    >
+                        <span className='flex items-center gap-2'>
+                            <GiPayMoney />
+                            User Pay
+                        </span>
+                    </NavLink>
+                </div>
+                <NavLink to={'/'}>
+                    <span className='flex items-center gap-2'>
+                        <FcHome />
+                        Home
+                    </span>
                 </NavLink>
-                <NavLink
-                    to="CreateDonation/"
-                    className={({ isActive }) =>
-                        isActive
-                            ? 'text-[#E7470C]'
-                            : 'hover:text-[#E7470C] transition duration-700'
-                    }
-                >
-                    Create Donation Campaign
-                </NavLink>
-                <NavLink
-                    to="adoptionRequest/"
-                    className={({ isActive }) =>
-                        isActive
-                            ? 'text-[#E7470C]'
-                            : 'hover:text-[#E7470C] transition duration-700'
-                    }
-                >
-                    Adoption Request
-                </NavLink>
-                <NavLink
-                    to="userPayDonation/"
-                    className={({ isActive }) =>
-                        isActive
-                            ? 'text-[#E7470C]'
-                            : 'hover:text-[#E7470C] transition duration-700'
-                    }
-                >
-                    User Pay Donation
-                </NavLink>
-                <NavLink to={'/'}>Home</NavLink>
-            </div>
+            </>
         }
     </>
     console.log(user);
     return (
-        <div className='rounded-xl'>
+        <div className='rounded-xl p-4 overflow-x-auto'>
             <aside class="shadow-xl">
-                <div className='mb-2'>
-                    <h1 class="text-xl font-bold">
-                        <span className='mr-2'>Hi</span>
-                        <span className='text-[#FF8042]'>
-                            {user?.displayName}</span>
-                        <span className='block'>Wel Come To Dashboard</span></h1>
+                <div>
+                    <h1 class="text-2xl font-bold text-[#00C49F] block lg:hidden italic">WelCome to Dashboard</h1>
+                    <h1 class="text-2xl font-bold text-[#00C49F] lg:mb-4">Pet Care</h1>
                 </div>
                 <div className="drawer lg:drawer-open z-[1000000]">
                     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content">
                         {/* Page content here */}
-                        <label htmlFor="my-drawer-2" className="drawer-button lg:hidden">
+                        <label htmlFor="my-drawer-2" className="lg:hidden">
                             <AiOutlineMenuFold className='text-xl mt-4' />
                         </label>
                     </div>
                     <div className="drawer-side">
-                        <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-
-                        <ul className="menu bg-base-200 space-y-2
-                        text-base-content  font-medium text-[16px] p-4 lg:p-0">
+                        <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay">
+                            <span className='text-right block text-red-900 lg:hidden'>
+                                Close Menu
+                            </span>
+                        </label>
+                        <ul className="menu bg-base-200 space-y-4
+                        text-base-content min-h-full  font-medium text-[16px] p-4 lg:p-0">
                             {/* Sidebar content here */}
                             {dashBoardMenu}
                         </ul>
@@ -135,9 +164,6 @@ const AdminCategory = () => {
                     <div>
 
                     </div>
-                </div>
-                <div className='mt-10 px-4 py-4 border-t-2 border-gray-400'>
-
                 </div>
             </aside>
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { MdMarkEmailRead, MdOutlinePhoneInTalk } from 'react-icons/md';
 import SectionTitle from '../../../Shared/SectionTitle/SectionTitle';
 

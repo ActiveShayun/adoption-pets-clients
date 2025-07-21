@@ -2,7 +2,6 @@ import Swal from "sweetalert2";
 import AxiosSecure from "../../../UseHooks/AxiosSecure/AxiosSecure";
 import PetsTable from "./PetsTable";
 import toast from "react-hot-toast";
-import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 import { useQuery } from "@tanstack/react-query";
 import UseAuth from "../../../AuthProvider/UseAuth";
 import { useState } from "react";
@@ -108,9 +107,7 @@ const MyAddedPets = () => {
         <div>
             <div className="text-center max-w-screen-xl relative shadow-md sm:rounded-lg overflow-x-auto overflow-hidden">
                 {/* Table Wrapper for Responsiveness */}
-                <SectionTitle subheading={'Your'} heading={'Added All Pets'} />
-
-                <table className="w-full text-sm text-left rtl:text-right">
+                <table className="min-w-[720px] overflow-x-auto w-full text-sm text-left rtl:text-right">
                     <thead className=" font-semibold uppercase border">
                         <tr>
                             <th scope="col" className="px-3 py-3">Serial Number</th>

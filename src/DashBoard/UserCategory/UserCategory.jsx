@@ -1,6 +1,16 @@
 
 import { AiOutlineMenuFold } from 'react-icons/ai';
 import { NavLink } from 'react-router-dom';
+import { BsDatabaseFillAdd } from "react-icons/bs";
+import { MdOutlineFileDownloadDone } from "react-icons/md";
+import { BiDonateHeart } from "react-icons/bi";
+import { FaDonate } from "react-icons/fa";
+import { TbTransactionDollar } from "react-icons/tb";
+import { LuGitPullRequestCreateArrow } from "react-icons/lu";
+import { GiPayMoney } from "react-icons/gi";
+import { GiPlagueDoctorProfile } from "react-icons/gi";
+import { FcHome } from "react-icons/fc";
+
 
 const UserCategory = () => {
 
@@ -13,7 +23,10 @@ const UserCategory = () => {
                     : 'hover:text-[#E7470C] transition duration-700'
             }
         >
-            My Added pets
+            <span className='flex items-center gap-2'>
+                <BsDatabaseFillAdd />
+                My Added pets
+            </span>
         </NavLink>
         <NavLink
             to="addPets"
@@ -23,7 +36,10 @@ const UserCategory = () => {
                     : 'hover:text-[#E7470C] transition duration-700'
             }
         >
-            Add a pets
+            <span className='flex items-center gap-2'>
+                <MdOutlineFileDownloadDone />
+                Add a pets
+            </span>
         </NavLink>
         <NavLink
             to="CreateDonation/"
@@ -33,7 +49,10 @@ const UserCategory = () => {
                     : 'hover:text-[#E7470C] transition duration-700'
             }
         >
-            Create Donation Campaign
+            <span className='flex items-center gap-2'>
+                <BiDonateHeart />
+                Create Donation Campaign
+            </span>
         </NavLink>
         <NavLink
             to="myCreateDonation/"
@@ -43,7 +62,10 @@ const UserCategory = () => {
                     : 'hover:text-[#E7470C] transition duration-700'
             }
         >
-            My Donation Campaigns
+            <span className='flex items-center gap-2'>
+                <FaDonate />
+                My Donation Campaigns
+            </span>
         </NavLink>
         <NavLink
             to="myDonationHistory/"
@@ -53,7 +75,10 @@ const UserCategory = () => {
                     : 'hover:text-[#E7470C] transition duration-700'
             }
         >
-            My Payment History
+            <span className='flex items-center gap-2'>
+                <TbTransactionDollar />
+                My Payment History
+            </span>
         </NavLink>
         <NavLink
             to="adoptionRequest/"
@@ -63,7 +88,10 @@ const UserCategory = () => {
                     : 'hover:text-[#E7470C] transition duration-700'
             }
         >
-            Adoption Request
+            <span className='flex items-center gap-2'>
+                <LuGitPullRequestCreateArrow />
+                Adoption Request
+            </span>
         </NavLink>
         <NavLink
             to="userPayDonation/"
@@ -73,7 +101,10 @@ const UserCategory = () => {
                     : 'hover:text-[#E7470C] transition duration-700'
             }
         >
-            User Pay Donation
+            <span className='flex items-center gap-2'>
+                <GiPayMoney />
+                User Pay Donationfff
+            </span>
         </NavLink>
         <NavLink
             to="userProfile/"
@@ -83,35 +114,44 @@ const UserCategory = () => {
                     : 'hover:text-[#815241]'
             }
         >
-            Profile
+            <span className='flex items-center gap-2'>
+                <GiPlagueDoctorProfile />
+                Profile
+            </span>
         </NavLink>
-        <NavLink to={'/'}>Home</NavLink>
+        <NavLink to={'/'}>
+            <span className='flex items-center gap-2'>
+                <FcHome />
+                Home
+            </span>
+        </NavLink>
     </>
 
     return (
-        <div className='z-[90000]'>
+        <div className='z-[90000] p-4'>
             <div>
-                <h1 class="text-2xl font-bold text-blue-600">User Dashboard</h1>
+                <h1 class="text-2xl font-bold text-[#00C49F] block lg:hidden italic">WelCome to Dashboard</h1>
+                <h1 class="text-2xl font-bold text-[#00C49F]">Pet Care</h1>
             </div>
             <div className="drawer lg:drawer-open z-[1000000]">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     {/* Page content here */}
-                    <label htmlFor="my-drawer-2" className="drawer-button lg:hidden">
+                    <label htmlFor="my-drawer-2" className="lg:hidden">
                         <AiOutlineMenuFold className='text-xl mt-4' />
                     </label>
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar"
                         className="drawer-overlay"></label>
-                    <ul className="menu bg-base-200 text-base-content space-y-2
-                     min-h-full text-[17px]">
+                    <ul className="menu bg-base-200 text-base-content space-y-4 lg:mt-4
+                     min-h-full text-[16px] p-4 lg:p-0 lg:px-0">
                         {/* Sidebar content here */}
                         {dashBoardMenu}
                     </ul>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

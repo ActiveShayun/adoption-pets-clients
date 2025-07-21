@@ -1,11 +1,9 @@
-import SectionTitle from '../../Shared/SectionTitle/SectionTitle';
 import { useForm } from 'react-hook-form';
 import AxiosSecure from '../../UseHooks/AxiosSecure/AxiosSecure';
 import AxiosPublic from '../../UseHooks/AxiosPublic';
 import toast from 'react-hot-toast';
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 import UseAuth from '../../AuthProvider/UseAuth';
 import { useNavigate } from 'react-router-dom';
@@ -43,7 +41,7 @@ const AddPets = () => {
                     email: user?.email,
                     petsName: value.petsName,
                     petsCategory: value.petsCategory,
-                    petsAge: value.petsAge,
+                    petsAge: parseInt(value.petsAge),
                     location: value.location,
                     sortDescription: value.sortDescription,
                     phoneNumber: value.phoneNumber,
@@ -71,14 +69,13 @@ const AddPets = () => {
     return (
         <div className=''>
             <Helmet><title>Add Pets</title></Helmet>
-            <SectionTitle subheading={'Favourite'} heading={'Add a pets'} />
             <form onSubmit={handleSubmit(onSubmit)}
                 className=" mx-auto">
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
                     {/* user email */}
                     <div class="w-full mb-2">
                         <label for="floating_email"
-                            className='block text-[17px] font-semibold mb-2'>
+                            className='block font-semibold mb-2'>
                             Email address*</label>
                         <input type="email"
                             className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
@@ -97,7 +94,7 @@ const AddPets = () => {
                     <div className="grid md:grid-cols-1 md:gap-6">
                         <div className="w-full mb-2">
                             <label for=""
-                                className='block text-[17px] font-semibold mb-2'>
+                                className='block font-semibold mb-2'>
                                 Phone*</label>
                             <input type="number"
                                 className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
@@ -118,7 +115,7 @@ const AddPets = () => {
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
                     {/* pets name */}
                     <div className="w-full mb-2 group">
-                        <label className='block text-[17px] font-semibold mb-2'
+                        <label className='block  font-semibold mb-2'
                         >Pet Name*</label>
                         <input type="text"
                             className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
@@ -133,7 +130,7 @@ const AddPets = () => {
                     </div>
                     {/* pets age */}
                     <div className="relative z-0 w-fullmb-2 group">
-                        <label className='block text-[17px] font-semibold mb-2'>
+                        <label className='block  font-semibold mb-2'>
                             Pets Age*</label>
                         <input type="number"
                             className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
@@ -151,7 +148,7 @@ const AddPets = () => {
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
                     {/* pet location */}
                     <div class="relative z-0 w-full mb-2 group">
-                        <label className='block text-[17px] font-semibold mb-2'>
+                        <label className='block  font-semibold mb-2'>
                             Pets Location*</label>
                         <input type="text"
                             className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
@@ -166,7 +163,7 @@ const AddPets = () => {
                     {/* Choose Category */}
                     <div className='flex justify-start gap-6'>
                         <div className="w-full">
-                            <label htmlFor="" className='block text-[17px] font-semibold mb-2' >
+                            <label htmlFor="" className='block  font-semibold mb-2' >
                                 Select Category*
                             </label>
                             <select
@@ -193,7 +190,7 @@ const AddPets = () => {
                     {/* description */}
                     <div className="relative z-0 w-full mb-2 group block">
                         <label for="floating_company"
-                            className='block text-[17px] font-semibold mb-2' >
+                            className='block  font-semibold mb-2' >
                             Long Description*</label>
                         <textarea name="" id=""
                             className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
@@ -208,7 +205,7 @@ const AddPets = () => {
                     </div>
                     {/* sort description */}
                     <div className="w-fullmb-2 ">
-                        <label className='block text-[17px] font-semibold mb-2'>
+                        <label className='block  font-semibold mb-2'>
                             Sort Description*</label>
                         <textarea name="" id=""
                             className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
@@ -226,14 +223,14 @@ const AddPets = () => {
                 {/* hit imgbb and get  from url */}
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-4 items-center'>
                     <div className='w-full'>
-                        <h2 className='block text-[17px] font-semibold mb-2'>
+                        <h2 className='block  font-semibold mb-2'>
                             Chose a Deadline</h2>
                         <DatePicker
                             className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
                             selected={startDate} onChange={(date) => setStartDate(date)} />
                     </div>
                     <div className='mt-2'>
-                        <label className='block text-[17px] font-semibold mb-2' for="file_input">Upload Image*</label>
+                        <label className='block  font-semibold mb-2' for="file_input">Upload Image*</label>
                         <input
                             className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
                             {...register("petsImg", { required: 'Upload image is required' })}

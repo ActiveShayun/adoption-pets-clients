@@ -50,13 +50,12 @@ const AddDonationCampaigns = () => {
     return (
         <div className=''>
             <Helmet><title> AddDonation Campaigns</title></Helmet>
-            <SectionTitle subheading={'Your Generosity Helps Us Provide for Pets in Need'} heading={'Support Our Mission'} />
             <form onSubmit={handleSubmit(onSubmit)}
                 className="">
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3'>
                     {/* pets image */}
                     <div className=''>
-                        <label className='block text-[17px] font-semibold mb-2'
+                        <label className='block  font-semibold mb-2'
                         >
                             Upload Pets Image</label>
                         <input
@@ -72,7 +71,7 @@ const AddDonationCampaigns = () => {
                     {/* pets Name */}
                     <div>
                         <label
-                            className='block text-[17px] font-semibold mb-2'>
+                            className='block  font-semibold mb-2'>
                             Pets Name</label>
                         <input
                             type="text"
@@ -89,7 +88,7 @@ const AddDonationCampaigns = () => {
                     {/* pets category */}
                     <div>
                         <label
-                            className='block text-[17px] font-semibold mb-2'>
+                            className='block  font-semibold mb-2'>
                             Pets Category</label>
                         <select defaultValue="Medium"
                             {...register("category")}
@@ -106,7 +105,7 @@ const AddDonationCampaigns = () => {
                     </div>
                     {/* amount section*/}
                     <div>
-                        <label className='block text-[17px] font-semibold mb-2'>MAximum Amount </label>
+                        <label className='block  font-semibold mb-2'>MAximum Amount </label>
                         <input
                             type="number"
                             {...register("amount", { required: "amount is required" })}
@@ -121,7 +120,7 @@ const AddDonationCampaigns = () => {
                 {/* description */}
                 <div className='mb-3'>
                     <label
-                        className='block text-[17px] font-semibold mb-2'>
+                        className='block  font-semibold mb-2'>
                         Sort Description About Pets</label>
                     <input
                         type="text"
@@ -135,7 +134,7 @@ const AddDonationCampaigns = () => {
                 {/*long description */}
                 <div className='mb-3'>
                     <label
-                        className='block text-[17px] font-semibold mb-2'>
+                        className='block  font-semibold mb-2'>
                         Long Description About Pets</label>
                     <input
                         type="text"
@@ -151,7 +150,7 @@ const AddDonationCampaigns = () => {
                 <div className="grid lg:grid-cols-2 items-center">
                     {/* deadline */}
                     <div>
-                        <h2 className='block text-[17px] font-semibold mb-2'>
+                        <h2 className='block  font-semibold mb-2'>
                             Chose a Deadline</h2>
                         <DatePicker
                             className='text-gray-500 py-2 px-3 input w-full border border-gray-700'

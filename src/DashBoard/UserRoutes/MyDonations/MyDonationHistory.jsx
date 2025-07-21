@@ -57,15 +57,10 @@ const MyDonationHistory = () => {
     }
 
     return (
-        <div>
-            <Helmet><title>My Donations</title></Helmet>
-            <SectionTitle subheading={'Your Donations History'} />
-            <div className='mt-5'>
-                {/* {
-                    isLoading && <p className='text-center'>Loading</p>
-                } */}
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left border">
+            <div className='mt-5 '>
+                   <Helmet><title>My Donations</title></Helmet>
+                <div class="max-w-full overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full min-w-[720px] overflow-x-auto text-sm text-left border">
                         <thead class="text-sm uppercase border">
                             <tr>
                                 <th scope="col" class="px-4 py-3">
@@ -123,7 +118,6 @@ const MyDonationHistory = () => {
                 </div>
 
             </div>
-        </div>
     );
 };
 

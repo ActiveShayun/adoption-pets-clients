@@ -93,7 +93,7 @@ const State = () => {
                             </ResponsiveContainer>
                         </div>
 
-                        <div className='grid grid-cols-3'>
+                        <div className='grid grid-cols-1 lg:grid-cols-3'>
                             <div className='col-span-2'>
                                 <TriAngleChart />
                             </div>

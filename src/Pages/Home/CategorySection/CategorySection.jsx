@@ -5,7 +5,7 @@ import Pets from './Pets';
 
 
 const CategorySection = () => {
-    const [allPets] = AllPets()
+    const { allPets } = AllPets()
     console.log(allPets);
     const dogs = allPets.filter(dog => dog.petsCategory === 'dog').slice(0, 4)
     const fishes = allPets.filter(fish => fish.petsCategory === 'fish').slice(0, 4)

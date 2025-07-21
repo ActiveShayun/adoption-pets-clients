@@ -4,19 +4,24 @@ import { Link } from "react-router-dom";
 
 const PetCard = ({ pet }) => {
     const { petsName, petsImg, location, petsAge, _id, deadline } = pet;
+    console.log(petsAge);
     return (
         <div data-aos="fade-up"
             data-aos-duration="3000">
             <Helmet><title>Pet Listing</title></Helmet>
-            <div class="max-w-sm mx-auto bg-gradient-to-br from-white to-gray-100 rounded-xl shadow-xl overflow-hidden">
-                <div class="relative group overflow-hidden">
+            <div class="max-w-sm mx-auto bg-gradient-to-br group from-white to-gray-100 rounded-xl shadow-xl overflow-hidden">
+                <div class="relative overflow-hidden">
                     <img
-                        class="w-full h-56 object-cover transform transition-transform duration-300 group-hover:scale-110"
+                        class="w-full h-56 object-cover duration-700 transform transition-transform  group-hover:scale-110"
                         src={petsImg}
                         alt="Pet Image"
                     />
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <h2 class="text-3xl font-extrabold text-white">{petsName}</h2>
+                        <h2 class="text-3xl opacity-0 group-hover:opacity-100 scale-80 group-hover:scale-100
+                        ease-in-out pointer-events-none transform transition-all duration-800
+                        font-extrabold text-white">
+                            {petsName}
+                        </h2>
                     </div>
                 </div>
                 <div class="p-5 space-y-3">

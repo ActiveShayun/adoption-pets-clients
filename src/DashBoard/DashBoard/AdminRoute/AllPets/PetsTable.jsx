@@ -4,7 +4,7 @@ import { RiDeleteBin2Line } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
 const PetsTable = ({ pet, idx, handlePetsDelete, updateAdoptedStatus, handleUAdoptedStatus }) => {
-    // console.log(pet);
+    console.log('pet.petsAge',pet.petsAge);
     return (
         <>
             <tr class="border">

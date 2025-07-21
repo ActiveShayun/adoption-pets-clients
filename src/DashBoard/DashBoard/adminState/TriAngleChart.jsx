@@ -32,7 +32,7 @@ const TriAngleChart = () => {
 
 
     return (
-        <div className='w-[600px] h-[230px]'>
+        <div className='lg:w-[600px] h-[230px]'>
             {
                 chart.length > 0 && (
                     <ResponsiveContainer>
