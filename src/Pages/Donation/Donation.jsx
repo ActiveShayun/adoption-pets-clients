@@ -19,11 +19,11 @@ const Donation = () => {
     })
 
     return (
-        <div className='pt-20 mx-auto'>
+        <div className='pt-10 mx-auto'>
          <Helmet><title>Donation Page</title></Helmet>
             <SectionTitle subheading={'Support Our Mission'} heading={'Save Pets Life'} />
 
-            <div className='w-10/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto justify-items-center'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center  gap-4 mx-auto justify-items-center'>
                 {
                     allDonation?.map(donation =>
                         <DonationCard

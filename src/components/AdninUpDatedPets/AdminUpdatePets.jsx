@@ -19,7 +19,7 @@ const AdminUpdatePets = () => {
     const { user } = UseAuth()
     const navigate = useNavigate()
     const singlePets = useLoaderData()
-    // console.log(singlePets);
+    console.log(singlePets);
 
     const {
         register,
@@ -65,32 +65,45 @@ const AdminUpdatePets = () => {
         }
 
     }
-
+console.log(errors);
 
     return (
-        <div className='py-8'>
+        <div className=''>
             <Helmet><title>Add Pets</title></Helmet>
-            <SectionTitle subheading={'Favourite'} heading={'Update a pets'} />
             <form onSubmit={handleSubmit(onSubmit)}
-                class="lg:w-8/12 mx-auto">
+                className=" mx-auto">
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
                     {/* user email */}
-                    <div class="relative z-0 w-full mb-5 group">
+                    <div class="w-full mb-2">
+                        <label for="floating_email"
+                            className='block font-semibold mb-2'>
+                            Email address*</label>
                         <input type="email"
+                            className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
                             defaultValue={user?.email}
-                            {...register("email", { required: true })}
-                            id="floating_email" class="block py-2.5 px-0 w-full  text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label for="floating_email" class="peer-focus:font-medium absolute text-white  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+                            {...register("email", { required: 'email is required' })}
+                            id="floating_email" />
+
+                        {
+                            errors?.email && (
+                                <p className='text-red-600'>{errors?.email?.message}</p>
+                            )
+                        }
+
                     </div>
                     {/* phone number */}
-                    <div class="grid md:grid-cols-1 md:gap-6">
-                        <div class="relative z-0 w-full mb-5 group">
+                    <div className="grid md:grid-cols-1 md:gap-6">
+                        <div className="w-full mb-2">
+                            <label for=""
+                                className='block font-semibold mb-2'>
+                                Phone*</label>
                             <input type="number"
-                                defaultValue={singlePets.phoneNumber}
+                            defaultValue={singlePets.phoneNumber}
+                                className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
                                 {...register("phoneNumber",
                                     { required: true, maxLength: 11, minLength: 11 })}
                                 id="floating_phone"
-                                class="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                placeholder=" Enter your number" required />
                             {/* err handling */}
                             {errors.phoneNumber && errors.phoneNumber.type === "minLength" && (
                                 <p className="text-red-600" role='alert'>Phone number must be 11 digits</p>
@@ -98,99 +111,156 @@ const AdminUpdatePets = () => {
                             {errors.phoneNumber && errors.phoneNumber.type === "maxLength" && (
                                 <p className="text-red-600" role='alert'>Phone number must be 11 digits</p>
                             )}
-                            <label for="floating_phone"
-                                class="peer-focus:font-medium absolute 
-                            text-black dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number (01723-456-780)</label>
                         </div>
                     </div>
                 </div>
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
                     {/* pets name */}
-                    <div class="relative z-0 w-full mb-5 group">
+                    <div className="w-full mb-2 group">
+                        <label className='block  font-semibold mb-2'
+                        >Pet Name*</label>
                         <input type="text"
-                            defaultValue={singlePets.petsName}
-                            {...register("petsName", { required: true })}
-                            id="floating_password"
-                            class="block py-2.5 px-0 w-full text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label for="floating_password" class="peer-focus:font-medium absolute text-black dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Pet Name</label>
+                        defaultValue={singlePets.petsName}
+                            className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
+                            {...register("petsName", { required: 'Pets name is required' })}
+                            placeholder="Enter pets name" />
+                        {
+                            errors?.petsName && (
+                                <p className='text-red-600'>{errors?.petsName?.message}</p>
+                            )
+                        }
+
                     </div>
                     {/* pets age */}
-                    <div class="relative z-0 w-full mb-5 group">
+                    <div className="relative z-0 w-fullmb-2 group">
+                        <label className='block  font-semibold mb-2'>
+                            Pets Age*</label>
                         <input type="number"
-                            defaultValue={singlePets.petsAge}
-                            {...register("petsAge", { required: true })}
+                        defaultValue={singlePets.petsAge}
+                            className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
+                            {...register("petsAge", { required: 'Pets age is required' })}
                             id="floating_repeat_password"
-                            class="block py-2.5 px-0 w-full text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label for="floating_repeat_password" class="peer-focus:font-medium absolute text-black dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Pets Age</label>
+                            placeholder="Enter pets age" />
+                        {
+                            errors?.petsAge && (
+                                <p className='text-red-600'>{errors?.petsAge?.message}</p>
+                            )
+                        }
                     </div>
                 </div>
 
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
                     {/* pet location */}
-                    <div class="relative z-0 w-full mb-5 group">
+                    <div class="relative z-0 w-full mb-2 group">
+                        <label className='block  font-semibold mb-2'>
+                            Pets Location*</label>
                         <input type="text"
-                            defaultValue={singlePets.location}
-                            {...register("location", { required: true })}
-                            id="floating_first_name"
-                            class="block py-2.5 px-0 w-full text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label for="floating_first_name" class="peer-focus:font-medium absolute text-black dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Pets Location</label>
+                        defaultValue={singlePets.location}
+                            className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
+                            {...register("location", { required: 'Location in required' })}
+                            placeholder="Enter location" />
+                        {
+                            errors?.location && (
+                                <p className='text-red-600'>{errors?.location?.message}</p>
+                            )
+                        }
                     </div>
                     {/* Choose Category */}
-                    <div className='flex justify-start items-center gap-6'>
-                        <div class="w-full mb-8 lg:mb-0">
-                            <select id="countries"
+                    <div className='flex justify-start gap-6'>
+                        <div className="w-full">
+                            <label htmlFor="" className='block  font-semibold mb-2' >
+                                Select Category*
+                            </label>
+                            <select
                                 defaultValue={singlePets.petsCategory}
-                                {...register("petsCategory", { required: true })}
-                                class="text-black text-sm border-none rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 border-b-2 border-gray-300" required>
+                                {...register("petsCategory", { required: 'Category is required ' })}
+                                className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
+                            >
                                 <option value='' >Choose Category</option>
                                 <option value="cat">Cat</option>
                                 <option value="dog">Dog</option>
                                 <option value="rabbits">Rabbits</option>
                                 <option value="fish">Fish</option>
                             </select>
+                            {
+                                errors?.petsCategory && (
+                                    <p className='text-red-600'>{errors?.petsCategory?.message}</p>
+                                )
+                            }
                         </div>
                     </div>
                 </div>
 
                 <div class="grid lg:grid-cols-2 md:gap-6">
                     {/* description */}
-                    <div class="relative z-0 w-full mb-5 group block">
+                    <div className="relative z-0 w-full mb-2 group block">
+                        <label for="floating_company"
+                            className='block  font-semibold mb-2' >
+                            Long Description*</label>
                         <textarea name="" id=""
-                            defaultValue={singlePets.description}
-                            {...register("description", { required: true })}
-                            class="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required
+                        defaultValue={singlePets.description}
+                            className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
+                            {...register("description", { required: 'Description is required' })}
+                            placeholder="Long description..."
                         ></textarea>
-                        <label for="floating_company" class="peer-focus:font-medium absolute text-sm text-black  dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Long Description</label>
+                        {
+                            errors?.description && (
+                                <p className='text-red-600'>{errors?.description?.message}</p>
+                            )
+                        }
                     </div>
                     {/* sort description */}
-                    <div class="relative z-0 w-full mb-5 group block">
+                    <div className="w-fullmb-2 ">
+                        <label className='block  font-semibold mb-2'>
+                            Sort Description*</label>
                         <textarea name="" id=""
-                            defaultValue={singlePets.sortDescription}
-                            {...register("sortDescription", { required: true })}
-                            class="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required
+                        defaultValue={singlePets.sortDescription}
+                            className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
+                            {...register("sortDescription",
+                                { required: 'Sort Description required' })}
+                            placeholder="sort Description"
                         ></textarea>
-                        <label for="floating_company" class="peer-focus:font-medium absolute  text-black dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Sort Description</label>
+                        {
+                            errors?.sortDescription && (
+                                <p className='text-red-600'>{errors?.sortDescription?.message}</p>
+                            )
+                        }
                     </div>
                 </div>
                 {/* hit imgbb and get  from url */}
-                <div className='grid grid-cols-1 md:grid-cols-2 ' >
-                    <div className=''>
-                        <h2 className='block text-sm mb-2 font-medium text-black'>Chose a Deadline</h2>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-4 items-baseline'>
+                    <div className='w-full'>
+                        <h2 className='block  font-semibold mb-2'>
+                            Chose a Deadline</h2>
                         <DatePicker
+                            className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
                             selected={startDate} onChange={(date) => setStartDate(date)} />
                     </div>
                     <div className='mt-2'>
-                        <label class="block text-sm mb-2 font-medium text-black dark:text-white" for="file_input">Upload Image</label>
+                        <label className='block  font-semibold mb-2' for="file_input">Upload Image*</label>
                         <input
-                            {...register("petsImg", { required: true })}
-                            class="block w-full  text-black border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file" required />
-                        <p class="my-2 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+                            className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
+                            {...register("petsImg", { required: 'Upload image is required' })}
+                            type="file" />
+                        {
+                            errors?.petsImg && (
+                                <p className='text-red-600'>{errors?.petsAge?.message}</p>
+                            )
+                        }
+                        <p className="my-2 text-sm" id="file_input_help">
+                            SVG, PNG, JPG or GIF (MAX. 800x400px).
+                        </p>
                     </div>
                 </div>
-                <button type="submit"
-                    class="flex justify-center items-center  gap-3 text-white md:w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <span className={`${loading ? 'animate-spin' : ''}`}><FaStarOfLife /></span>
-                    Update The Pets</button>
+                <div className='mt-4'>
+                    <button type="submit"
+                        className='py-2 px-3 input
+                                    w-full border border-gray-700 flex 
+                                    items-center justify-center gap-3 bg-gradient-to-tr from-black to-yellow-500 text-white font-semibold'>
+                        <span className={`${loading ? 'animate-spin' : 'hidden'}`}><FaStarOfLife /></span>
+                        Updated a pets</button>
+                </div>
+
             </form>
 
         </div>

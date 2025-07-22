@@ -10,19 +10,20 @@ const DonationDetails = () => {
     return (
         <div className='pt-28'>
             <Helmet><title>Donation Details</title></Helmet>
-            <div className="max-w-4xl relative mx-auto  p-6 bg-white rounded-lg shadow-xl flex flex-col md:flex-row items-center md:items-start gap-6">
+            <div className="max-w-4xl mx-auto  p-6 bg-white rounded-lg shadow-xl
+             grid grid-cols-1  lg:grid-cols-2 gap-4 ">
                 {/* Left Side - Pet Image */}
-                <div className="relative w-full md:w-1/2 h-96 overflow-hidden rounded-lg shadow-lg">
+                <div className="relative w-full h-full rounded-lg shadow-lg">
                     <img
                         src={detailsDonation.petsImage}
                         alt={detailsDonation.petsName}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover rounded-xl"
                     />
-                    <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+                    <div className="absolute inset-0 bg-black bg-opacity-50 rounded-xl"></div>
                 </div>
 
                 {/* Right Side - Pet Details */}
-                <div className="flex flex-col justify-between w-full md:w-1/2">
+                <div className="flex flex-col justify-between w-full">
                     <h2 className="text-3xl font-bold text-gray-800">{detailsDonation.petsName}</h2>
                     <p className="text-gray-600 text-lg italic mt-2">{detailsDonation.sortDescription}</p>
 
@@ -59,25 +60,6 @@ const DonationDetails = () => {
                             }
                         </p>
                     </div>
-                    {/* <div className='mt-5'>
-                        {
-                            detailsDonation.Pause === 'Pause' ?
-                                <button
-                                    disabled={detailsDonation.Pause === 'Pause'}
-                                    className="ml-2 bg-red-500 text-white text-xs font-bold  px-4 py-2 rounded-md">
-                                    {detailsDonation.Pause === 'Pause' &&
-                                        'Do Not Donate Now'
-                                    }
-                                </button> :
-                                <Link to={`/donated/${detailsDonation._id}`}>
-                                    <button
-                                        disabled={detailsDonation.Pause === 'Pause'}
-                                        className="ml-2 bg-red-500 text-white text-xs font-bold  px-4 py-2 rounded-md">
-                                        Donate Now
-                                    </button>
-                                </Link>
-                        }
-                    </div> */}
                 </div>
             </div>
             <Donation/>

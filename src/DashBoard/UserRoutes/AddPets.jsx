@@ -55,8 +55,8 @@ const AddPets = () => {
                 if (res.data.insertedId) {
                     toast.success('Pets Successfully Added')
                     setLoading(false)
-                    reset()
-                    navigate('/dashboard/addMyPets/')
+                    // reset()
+                    // navigate('/dashboard/addMyPets/')
                 }
             } catch (err) {
                 // console.log(err);

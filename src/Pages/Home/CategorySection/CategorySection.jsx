@@ -2,17 +2,18 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import AllPets from '../../../UseHooks/AllPets/AllPets';
 import Pets from './Pets';
+import { getAllPets } from '../../../UseHooks/getAllPets/getAllPets';
 
 
 const CategorySection = () => {
-    const { allPets } = AllPets()
-    console.log(allPets);
-    const dogs = allPets.filter(dog => dog.petsCategory === 'dog').slice(0, 4)
-    const fishes = allPets.filter(fish => fish.petsCategory === 'fish').slice(0, 4)
-    const rabbits = allPets.filter(rabbit => rabbit.petsCategory === 'rabbits')
+    const { data } = AllPets()
+
+    const dogs = data?.pages[0]?.filter(dog => dog.petsCategory === 'dog').slice(0, 5)
+    const fishes = data?.pages[0]?.filter(fish => fish.petsCategory === 'fish').slice(0, 4)
+    const rabbits = data?.pages[0]?.filter(rabbit => rabbit.petsCategory === 'rabbits')
     // console.log('cats'.cats, dogs);
-    const cats = allPets.filter(c => c.petsCategory === 'cat').slice(0, 4)
-    console.log(cats);
+    const cats = data?.pages[0]?.filter(c => c.petsCategory === 'cat').slice(0, 4)
+    console.log('CategorySection', dogs);
 
     return (
         <div className='text-center mt-10'>

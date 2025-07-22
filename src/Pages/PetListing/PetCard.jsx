@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const PetCard = ({ pet }) => {
     const { petsName, petsImg, location, petsAge, _id, deadline } = pet;
-    console.log(petsAge);
+    // console.log('pat card',pet);
     return (
         <div data-aos="fade-up"
             data-aos-duration="3000">

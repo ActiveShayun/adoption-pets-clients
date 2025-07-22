@@ -1,13 +1,17 @@
 import { NavLink } from 'react-router-dom';
 import footerAnimation from '../../assets/footerImg.json'
 import Lottie from 'lottie-react';
+import { FaFacebook } from "react-icons/fa";
+import { FaDiscord } from "react-icons/fa6";
+import { FaTwitter } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
     return (
         <div>
-            <footer class="  mt-16">
+            <footer class="bg-[#9CA3AF]  mt-16 py-4 text-white">
                 <div class="mx-auto w-full max-w-screen-xl">
-                    <div class=" px-4 py-6 lg:py-8 md:grid-cols-4">
+                    <div class=" px-4  md:grid-cols-4">
                         <div >
                             <div className='flex items-center justify-center gap-4 lg:gap-8'>
                                 <NavLink
@@ -58,29 +62,29 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="px-4 py-6 border text-black">
-                        <div class="flex mt-4 gap-5 mb-4
+                    <div class="px-4 text-black pt-10">
+                        <div class="flex justify-center mt-4 gap-8 mb-4 mt-4
                         ">
-                            <a href="https://www.facebook.com/" className='text-black'>
-                                Facebook page
+                            <a href="https://www.facebook.com/"
+                                className='text-white text-2xl'>
+                                <FaFacebook />
                             </a>
                             <a href="https://x.com/?lang=en&mx=2"
-                                className=''>
-                                Discord community
+                                className='text-white text-2xl'>
+                                <FaDiscord />
                             </a>
                             <a href="https://x.com/?lang=en&mx=2"
-                                className="">
-                                Twitter page
+                                className='text-white text-2xl'>
+                                <FaTwitter />
                             </a>
-                            <a href="#" class="">
-                                GitHub account
-                            </a>
-                            <a href="#" class="">
-                                Dribbble account
+                            <a href="#" className='text-white text-2xl'>
+                                <FaInstagram />
                             </a>
                         </div>
-                        <div>
-                            <span class="text-sm sm:text-center">© 2023 <a href="https://flowbite.com/">Adoption Zone</a>. All Rights Reserved.
+                        <div >
+                            <span class="text-sm text-center block">© 2023
+                                <a href="https://flowbite.com/">Adoption Zone</a>.
+                                All Rights Reserved.
                             </span>
                         </div>
                     </div>
