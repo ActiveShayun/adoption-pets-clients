@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import SectionTitle from '../../Shared/SectionTitle/SectionTitle';
 import { useForm } from 'react-hook-form';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import UseAuth from '../../AuthProvider/UseAuth';
-import AxiosPublic from '../../UseHooks/AxiosPublic';
 import AxiosSecure from '../../UseHooks/AxiosSecure/AxiosSecure';
 import DatePicker from 'react-datepicker';
 import toast from 'react-hot-toast';
@@ -14,7 +12,6 @@ import { FaStarOfLife } from 'react-icons/fa';
 const AdminUpdatePets = () => {
     const [startDate, setStartDate] = useState(new Date());
     const axiosSecure = AxiosSecure();
-    const axiosPublic = AxiosPublic();
     const [loading, setLoading] = useState(false)
     const { user } = UseAuth()
     const navigate = useNavigate()
@@ -32,40 +29,38 @@ const AdminUpdatePets = () => {
         // console.log(value);
         setLoading(true)
         const imag = await upLoadImgBBPhoto(value.petsImg[0])
-        console.log('Uploaded Image URL:', imag);
+        // console.log('Uploaded Image URL:', imag);
 
-        if (imag) {
-            try {
-                const allPets = {
-                    email: user?.email,
-                    petsName: value.petsName,
-                    petsCategory: value.petsCategory,
-                    petsAge: value.petsAge,
-                    location: value.location,
-                    sortDescription: value.sortDescription,
-                    phoneNumber: value.phoneNumber,
-                    description: value.description,
-                    petsImg: imag,
-                    adopted: false,
-                    deadline: startDate
-                }
-                const res = await axiosSecure.put(`/update-pets/${singlePets._id}`, allPets)
-                // console.log('result', res);
-                if (res.data.modifiedCount > 0) {
-                    toast.success('Pets Successfully Updated')
-                    reset()
-                    setLoading(false)
-                    navigate('/dashboard/allPets/')
-
-                }
-            } catch (err) {
-                // console.log(err);
-                toast.error(err.message)
+        try {
+            const allPets = {
+                email: user?.email,
+                petsName: value.petsName,
+                petsCategory: value.petsCategory,
+                petsAge: parseInt(value.petsAge),
+                location: value.location,
+                sortDescription: value.sortDescription,
+                phoneNumber: value.phoneNumber,
+                description: value.description,
+                petsImg: imag,
+                adopted: false,
+                deadline: startDate
             }
+            const res = await axiosSecure.put(`/update-pets/${singlePets._id}`, allPets)
+            // console.log('result', res);
+            if (res.data.modifiedCount > 0) {
+                toast.success('Pets Successfully Updated')
+                reset()
+                setLoading(false)
+                navigate('/dashboard/allPets/')
+
+            }
+        } catch (err) {
+            // console.log(err);
+            toast.error(err.message)
         }
 
     }
-console.log(errors);
+    console.log(errors);
 
     return (
         <div className=''>
@@ -98,7 +93,7 @@ console.log(errors);
                                 className='block font-semibold mb-2'>
                                 Phone*</label>
                             <input type="number"
-                            defaultValue={singlePets.phoneNumber}
+                                defaultValue={singlePets.phoneNumber}
                                 className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
                                 {...register("phoneNumber",
                                     { required: true, maxLength: 11, minLength: 11 })}
@@ -120,7 +115,7 @@ console.log(errors);
                         <label className='block  font-semibold mb-2'
                         >Pet Name*</label>
                         <input type="text"
-                        defaultValue={singlePets.petsName}
+                            defaultValue={singlePets.petsName}
                             className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
                             {...register("petsName", { required: 'Pets name is required' })}
                             placeholder="Enter pets name" />
@@ -136,7 +131,7 @@ console.log(errors);
                         <label className='block  font-semibold mb-2'>
                             Pets Age*</label>
                         <input type="number"
-                        defaultValue={singlePets.petsAge}
+                            defaultValue={singlePets.petsAge}
                             className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
                             {...register("petsAge", { required: 'Pets age is required' })}
                             id="floating_repeat_password"
@@ -155,7 +150,7 @@ console.log(errors);
                         <label className='block  font-semibold mb-2'>
                             Pets Location*</label>
                         <input type="text"
-                        defaultValue={singlePets.location}
+                            defaultValue={singlePets.location}
                             className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
                             {...register("location", { required: 'Location in required' })}
                             placeholder="Enter location" />
@@ -198,7 +193,7 @@ console.log(errors);
                             className='block  font-semibold mb-2' >
                             Long Description*</label>
                         <textarea name="" id=""
-                        defaultValue={singlePets.description}
+                            defaultValue={singlePets.description}
                             className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
                             {...register("description", { required: 'Description is required' })}
                             placeholder="Long description..."
@@ -214,7 +209,7 @@ console.log(errors);
                         <label className='block  font-semibold mb-2'>
                             Sort Description*</label>
                         <textarea name="" id=""
-                        defaultValue={singlePets.sortDescription}
+                            defaultValue={singlePets.sortDescription}
                             className='text-gray-500 py-2 px-3 input w-full border border-gray-700'
                             {...register("sortDescription",
                                 { required: 'Sort Description required' })}
