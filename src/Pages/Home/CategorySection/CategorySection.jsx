@@ -2,21 +2,33 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import AllPets from '../../../UseHooks/AllPets/AllPets';
 import Pets from './Pets';
-import { getAllPets } from '../../../UseHooks/getAllPets/getAllPets';
+import { useQuery } from '@tanstack/react-query';
+import AxiosPublic from '../../../UseHooks/AxiosPublic';
 
 
 const CategorySection = () => {
-    const { data } = AllPets()
+    const axiosPublic = AxiosPublic()
+    const { data: pets = [] } = useQuery({
+        queryKey: ['pets'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/allPetsHome')
+            console.log(res.data);
+            return res.data
+        }
+    })
 
-    const dogs = data?.pages[0]?.filter(dog => dog.petsCategory === 'dog').slice(0, 5)
-    const fishes = data?.pages[0]?.filter(fish => fish.petsCategory === 'fish').slice(0, 4)
-    const rabbits = data?.pages[0]?.filter(rabbit => rabbit.petsCategory === 'rabbits')
+    console.log("📦 All Pets Data:", pets)
+
+    const dogs = pets?.filter(dog => dog.petsCategory === 'dog').slice(0, 4)
+    const fishes = pets?.filter(fish => fish.petsCategory === 'fish').slice(0, 4)
+    const rabbits = pets?.filter(rabbit => rabbit.petsCategory === 'rabbits')
     // console.log('cats'.cats, dogs);
-    const cats = data?.pages[0]?.filter(c => c.petsCategory === 'cat').slice(0, 4)
-    console.log('CategorySection', dogs);
+    const cats = pets?.filter(c => c.petsCategory === 'cat').slice(0, 4)
+    console.log('dogs', dogs);
 
     return (
         <div className='text-center mt-10'>
+
             <Tabs>
                 <TabList>
                     <Tab>
