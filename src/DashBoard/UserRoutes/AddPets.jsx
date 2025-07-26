@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { upLoadImgBBPhoto } from '../../utiity/utility';
 import { FaStarOfLife } from 'react-icons/fa';
+import useImageCompress from '../../utiity/compressImage ';
 
 
 const AddPets = () => {
@@ -18,6 +19,7 @@ const AddPets = () => {
     const [loading, setLoading] = useState(false)
     const { user } = UseAuth()
     const navigate = useNavigate()
+    const { compress } = useImageCompress()
 
     const {
         register,
@@ -30,38 +32,30 @@ const AddPets = () => {
         toast.success('Data Adding...')
         // console.log(value);
         setLoading(true)
-        const imgUpload = await upLoadImgBBPhoto(value.petsImg[0])
+        const compressImage = await compress(value.petsImg[0])
+        const imgUpload = await upLoadImgBBPhoto(compressImage)
         console.log('imgUpload', imgUpload);
 
-        // console.log('Uploaded Image URL:', data, data.data.url);
-
-        if (imgUpload) {
-            try {
-                const allPets = {
-                    email: user?.email,
-                    petsName: value.petsName,
-                    petsCategory: value.petsCategory,
-                    petsAge: parseInt(value.petsAge),
-                    location: value.location,
-                    sortDescription: value.sortDescription,
-                    phoneNumber: value.phoneNumber,
-                    description: value.description,
-                    petsImg: imgUpload,
-                    adopted: 'UnAdopted',
-                    deadline: startDate
-                }
-                const res = await axiosPublic.post('allPets', allPets)
-                // console.log('result', res);
-                if (res.data.insertedId) {
-                    toast.success('Pets Successfully Added')
-                    setLoading(false)
-                    // reset()
-                    // navigate('/dashboard/addMyPets/')
-                }
-            } catch (err) {
-                // console.log(err);
-                toast.error(err.message)
-            }
+        const allPets = {
+            email: user?.email,
+            petsName: value.petsName,
+            petsCategory: value.petsCategory,
+            petsAge: parseInt(value.petsAge),
+            location: value.location,
+            sortDescription: value.sortDescription,
+            phoneNumber: value.phoneNumber,
+            description: value.description,
+            // petsImg: imgUpload,
+            adopted: 'UnAdopted',
+            deadline: startDate
+        }
+        const res = await axiosPublic.post('/allPets', allPets)
+        console.log('result', res.data.insertedId);
+        if (res.data.insertedId) {
+            toast.success('Pets Successfully Added')
+            setLoading(false)
+            reset()
+            navigate('/dashboard/addMyPets/')
         }
 
     }
@@ -249,7 +243,9 @@ const AddPets = () => {
                             className='py-2 px-3 input
                              w-full border border-gray-700 flex 
                              items-center justify-center gap-3 bg-gradient-to-tr from-black to-yellow-500 text-white font-semibold'>
-                            <span className={`${loading ? 'animate-spin' : ''}`}><FaStarOfLife /></span>
+                            <span className={`${loading ? 'animate-spin' : ''}`}>
+                                <FaStarOfLife />
+                            </span>
                             Add a pets</button>
                     </div>
                 </div>

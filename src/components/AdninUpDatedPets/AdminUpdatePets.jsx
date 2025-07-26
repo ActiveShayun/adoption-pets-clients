@@ -8,6 +8,7 @@ import DatePicker from 'react-datepicker';
 import toast from 'react-hot-toast';
 import { upLoadImgBBPhoto } from '../../utiity/utility';
 import { FaStarOfLife } from 'react-icons/fa';
+import useImageCompress from '../../utiity/compressImage ';
 
 const AdminUpdatePets = () => {
     const [startDate, setStartDate] = useState(new Date());
@@ -17,6 +18,7 @@ const AdminUpdatePets = () => {
     const navigate = useNavigate()
     const singlePets = useLoaderData()
     console.log(singlePets);
+    const { compress, loading: compressLoading, error } = useImageCompress()
 
     const {
         register,
@@ -28,8 +30,10 @@ const AdminUpdatePets = () => {
     const onSubmit = async (value) => {
         // console.log(value);
         setLoading(true)
-        const imag = await upLoadImgBBPhoto(value.petsImg[0])
-        // console.log('Uploaded Image URL:', imag);
+        const compressImage = await compress(value.petsImg[0])
+        console.log(compressImage);
+        const imag = await upLoadImgBBPhoto(compressImage)
+        console.log('Uploaded Image URL:', imag);
 
         try {
             const allPets = {

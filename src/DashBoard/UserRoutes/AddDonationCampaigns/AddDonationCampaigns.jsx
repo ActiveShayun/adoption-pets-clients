@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
 import { upLoadImgBBPhoto } from '../../../utiity/utility';
 import { FaStarOfLife } from 'react-icons/fa';
+import useImageCompress from '../../../utiity/compressImage ';
 
 
 
@@ -16,6 +17,7 @@ const AddDonationCampaigns = () => {
     const [startDate, setStartDate] = useState(new Date());
     const { user } = UseAuth()
     const axiosPublic = AxiosPublic()
+    const { compress } = useImageCompress()
 
     const {
         register,
@@ -25,11 +27,12 @@ const AddDonationCampaigns = () => {
 
     const onSubmit = async (value) => {
         setLoading(true)
-        const uploadImg = await upLoadImgBBPhoto(value.petsImage[0])
+        const compressImage = await compress(value.petsImage[0])
+        const uploadImg = await upLoadImgBBPhoto(compressImage)
         console.log('uploadImg', uploadImg);
 
         const donation = {
-            petsImage: uploadImg,
+            // petsImage: uploadImg,
             petsName: value.petsName,
             category: value.category,
             amount: parseInt(value.amount),

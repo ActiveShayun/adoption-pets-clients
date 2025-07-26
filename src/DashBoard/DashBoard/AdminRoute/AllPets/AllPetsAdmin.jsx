@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import AllPets from '../../../../UseHooks/AllPets/AllPets';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import PetsTable from './PetsTable';
 import Swal from 'sweetalert2';
@@ -11,14 +10,13 @@ import AxiosSecure from '../../../../UseHooks/AxiosSecure/AxiosSecure';
 
 
 const AllPetsAdmin = () => {
-    const { allPets, refetch } = AllPets()
     const axiosPublic = AxiosPublic()
     const axiosSecure = AxiosSecure()
 
     const { data: count = [] } = useQuery({
         queryKey: ['count'],
         queryFn: async () => {
-            const res = await axiosPublic.get('https://adoption-pets-server-site.vercel.app/allPets-pagination')
+            const res = await axiosPublic.get('http://localhost:5000/allPets-pagination')
             console.log('count', res?.data?.total);
             return res?.data?.total
         }
@@ -50,10 +48,10 @@ const AllPetsAdmin = () => {
         }
     }
 
-    const { data: pets = [], refetch: refetchAllPets } = useQuery({
+    const { data: pets = [], refetch } = useQuery({
         queryKey: ['pets', currentPage, itemsPerPage],
         queryFn: async () => {
-            const { data } = await axiosPublic.get(`https://adoption-pets-server-site.vercel.app/admin-allPets?page=${currentPage}&size=${itemsPerPage}`)
+            const { data } = await axiosPublic.get(`http://localhost:5000/admin-allPets?page=${currentPage}&size=${itemsPerPage}`)
             console.log('pets', data);
             return data
         }
@@ -81,7 +79,7 @@ const AllPetsAdmin = () => {
 
     const updateAdoptedStatus = async (id) => {
         const res = await axiosSecure.patch(`/adopted-status-chance/${id}`)
-        // console.log(res);
+        console.log(res);
         if (res.data.modifiedCount > 0) {
             toast.success('Updated Adoption Status Successful')
             refetch()
@@ -91,7 +89,7 @@ const AllPetsAdmin = () => {
     // cancel adopted status
     const handleUAdoptedStatus = async (id) => {
         const res = await axiosSecure.patch(`/adopted-request-cancel/${id}`)
-        // console.log(res);
+        console.log(res);
         if (res.data.modifiedCount > 0) {
             toast.success('Updated Adoption Status Successful')
             refetch()

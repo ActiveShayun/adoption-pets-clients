@@ -10,6 +10,7 @@ import SectionTitle from '../../Shared/SectionTitle/SectionTitle';
 import toast from 'react-hot-toast';
 import { upLoadImgBBPhoto } from '../../utiity/utility';
 import { FaStarOfLife } from 'react-icons/fa';
+import useImageCompress from '../../utiity/compressImage ';
 
 
 const UpdateDonation = () => {
@@ -22,6 +23,7 @@ const UpdateDonation = () => {
     const donation = useLoaderData()
     console.log('donation', donation);
     const navigate = useNavigate()
+    const { compress } = useImageCompress()
 
 
     const {
@@ -33,7 +35,8 @@ const UpdateDonation = () => {
     const onSubmit = async (value) => {
         // console.log(value);
         setLoading(true)
-        const imag = await upLoadImgBBPhoto(value.petsImage[0])
+        const compressImage = await compress(value.petsImage[0])
+        const imag = await upLoadImgBBPhoto(compressImage)
         console.log(imag)
         const donation = {
             petsImage: imag,

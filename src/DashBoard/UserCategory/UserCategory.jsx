@@ -103,7 +103,7 @@ const UserCategory = () => {
         >
             <span className='flex items-center gap-2'>
                 <GiPayMoney />
-                User Pay Donationfff
+                User Pay Donation
             </span>
         </NavLink>
         <NavLink

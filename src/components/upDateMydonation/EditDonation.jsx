@@ -32,11 +32,11 @@ const EditDonation = () => {
     const onSubmit = async (value) => {
         // console.log(value);
         setLoading(true)
-        const image = await upLoadImgBBPhoto(value.petsImage[0]);
-        console.log(image);
+        // const image = await upLoadImgBBPhoto(value.petsImage[0]);
+        // console.log(image);
 
         const donation = {
-            petsImage: image,
+            // petsImage: image,
             petsName: value.petsName,
             amount: parseInt(value.amount),
             sortDescription: value.sortDescription,

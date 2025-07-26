@@ -57,14 +57,9 @@ const router = createBrowserRouter([
                 element: <Donation />
             },
             {
-                path: "editPets/:id",
-                element: <PrivateRoute><UpdatePets /></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://adoption-pets-server-site.vercel.app/petsDetails/${params.id}`)
-            },
-            {
                 path: "/detailsDonation/:id",
                 element: <PrivateRoute> <DonationDetails /></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://adoption-pets-server-site.vercel.app/details-donation/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/details-donation/${params.id}`)
             },
             {
                 path: "donationProviders",
@@ -96,6 +91,11 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><MyAddedPets /></PrivateRoute>
             },
             {
+                path: "/dashBoard/dashBoard/editPets/:id",
+                element: <PrivateRoute><UpdatePets /></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/petsDetails/${params.id}`)
+            },
+            {
                 path: "addPets",
                 element: <PrivateRoute> <AddPets /></PrivateRoute>
             },
@@ -114,7 +114,7 @@ const router = createBrowserRouter([
             {
                 path: "/dashBoard/dashBoard/donation/:id",
                 element: <PrivateRoute><EditDonation /></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://adoption-pets-server-site.vercel.app/details-donation/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/details-donation/${params.id}`)
             },
             {
                 path: "myDonationHistory",
@@ -149,7 +149,7 @@ const router = createBrowserRouter([
             {
                 path: "updatePets/:id",
                 element: <AdminRoute><AdminUpdatePets /></AdminRoute>,
-                loader: ({ params }) => fetch(`https://adoption-pets-server-site.vercel.app/petsDetails/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/petsDetails/${params.id}`)
             },
             {
                 path: "allDonations",
@@ -158,7 +158,7 @@ const router = createBrowserRouter([
             {
                 path: "editDonation/:id",
                 element: <AdminRoute><UpdateDonation /></AdminRoute>,
-                loader: ({ params }) => fetch(`https://adoption-pets-server-site.vercel.app/details-donation/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/details-donation/${params.id}`)
             },
             {
                 path: "adminProfile/",

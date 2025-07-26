@@ -22,7 +22,7 @@ const PetsTable = ({ pet, idx, handlePetsDelete, updateAdoptedStatus, handleUAdo
                     <img className='w-[50px] h-[50px] rounded-full' src={petsImg} alt="" />
                 </td>
                 <td className="px-3 py-2 text-lg">
-                    <Link to={`/editPets/${_id}`}>
+                    <Link to={`/dashBoard/dashBoard/editPets/${_id}`}>
                         <FaEdit />
                     </Link>
                 </td>
